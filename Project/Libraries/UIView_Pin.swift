@@ -150,7 +150,7 @@ extension UIView {
     @discardableResult
     func pinWidth(to superview: UIView, _ mult: Double = 1) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
-        let constraint = widthAnchor.constraint(equalTo: superview.widthAnchor, constant: CGFloat(mult))
+        let constraint = widthAnchor.constraint(equalTo: superview.widthAnchor, multiplier: CGFloat(mult))
         constraint.isActive = true
 
         return constraint
@@ -159,7 +159,7 @@ extension UIView {
     @discardableResult
     func pinWidth(to size: NSLayoutDimension, _ mult: Double = 1) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
-        let constraint = widthAnchor.constraint(equalTo: size, constant: CGFloat(mult))
+        let constraint = widthAnchor.constraint(equalTo: size, multiplier: CGFloat(mult))
         constraint.isActive = true
 
         return constraint
@@ -168,7 +168,7 @@ extension UIView {
     @discardableResult
     func pinHeight(to superview: UIView, _ mult: Double = 1) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
-        let constraint = centerYAnchor.constraint(equalTo: superview.centerYAnchor, constant: CGFloat(mult))
+        let constraint = heightAnchor.constraint(equalTo: superview.heightAnchor, multiplier: CGFloat(mult))
         constraint.isActive = true
 
         return constraint
@@ -177,7 +177,7 @@ extension UIView {
     @discardableResult
     func pinHeight(to size: NSLayoutDimension, _ mult: Double = 1) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
-        let constraint = heightAnchor.constraint(equalTo: size, constant: CGFloat(mult))
+        let constraint = heightAnchor.constraint(equalTo: size, multiplier: CGFloat(mult))
         constraint.isActive = true
 
         return constraint
