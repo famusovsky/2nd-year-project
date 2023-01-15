@@ -10,6 +10,7 @@ enum BoardTile: Codable {
 }
 
 struct Board: Codable {
+    private let start: Coordinate
     private let width: Int
     private let height: Int
     private var field: [BoardTile]
@@ -18,6 +19,7 @@ struct Board: Codable {
         width = 0
         height = 0
         field = []
+        start = Coordinate(x: 0, y: 0)
     }
 
     public init(JSON: String) {
@@ -26,13 +28,29 @@ struct Board: Codable {
         self = try! decoder.decode(Board.self, from: data)
     }
 
-    public func getWidth() -> Int { width }
+    public func getWidth() -> Int {
+        width
+    }
 
-    public func getHeight() -> Int { height }
+    public func getHeight() -> Int {
+        height
+    }
 
-    public func getTile(_ x: size_t, _ y: size_t) -> BoardTile { field[width * y + x] }
+    public func getStartX() -> Int {
+        start.x
+    }
 
-    public func getTile(_ num: size_t) -> BoardTile { field[num] }
+    public func getStartY() -> Int {
+        start.y
+    }
+
+    public func getTile(_ x: size_t, _ y: size_t) -> BoardTile {
+        field[width * y + x]
+    }
+
+    public func getTile(_ num: size_t) -> BoardTile {
+        field[num]
+    }
 
     public func getJSON() -> String {
         let encoder = JSONEncoder()
