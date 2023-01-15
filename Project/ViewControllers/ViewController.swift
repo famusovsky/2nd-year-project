@@ -12,10 +12,11 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let str = """
+        // TODO: load game from file
+        /*let str = """
                   {"width":2,"field":[{"empty":{}},{"room":{"_0":[0,{}]}},{"room":{"_0":[0,{}]}},{"empty":{}}],"height":2}
                   """
-        board = Board(JSON: str)
+        board = Board(JSON: str)*/
         
         mapView.isHidden = true
         view.addSubview(mapView)
@@ -30,11 +31,12 @@ final class ViewController: UIViewController {
     }*/
 
     private func setupView() {
+        // TODO: setup main view
         view.backgroundColor = .systemBackground
     }
 
     private func setupUI() {
-
+        // TODO: setup UI
     }
 
     private func setupMapView() {
@@ -44,7 +46,7 @@ final class ViewController: UIViewController {
 
         if let board = board {
             var prevTile: UIView? = nil
-            for i in 0..<board.getWidth() * board.getHeight() {
+            for i in 0..<board.width * board.height {
                 print(i)
 
                 let tile = UIView()
@@ -58,7 +60,7 @@ final class ViewController: UIViewController {
                 }
 
                 if i != 0 {
-                    if i % board.getWidth() == 0 {
+                    if i % board.width == 0 {
                         tile.pinTop(to: prevTile!.bottomAnchor)
                         tile.pinLeft(to: mapView)
                     } else {
@@ -70,8 +72,8 @@ final class ViewController: UIViewController {
                     tile.pinLeft(to: mapView)
                 }
 
-                tile.pinHeight(to: mapView, 1 / CGFloat(board.getHeight()))
-                tile.pinWidth(to: mapView, 1 / CGFloat(board.getWidth()))
+                tile.pinHeight(to: mapView, 1 / CGFloat(board.height))
+                tile.pinWidth(to: mapView, 1 / CGFloat(board.width))
 
                 prevTile = tile
             }
