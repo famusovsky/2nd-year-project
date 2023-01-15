@@ -11,7 +11,6 @@
 		3F7982782969BA7C00AF6702 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7982772969BA7C00AF6702 /* SceneDelegate.swift */; };
 		3F7982802969BA7C00AF6702 /* Project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F79827E2969BA7C00AF6702 /* Project.xcdatamodeld */; };
 		3F7982822969BA7D00AF6702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7982812969BA7D00AF6702 /* Assets.xcassets */; };
-		D317C04D0C02F9ED7829DCBD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317CAF89DB4EEF251E15296 /* MapViewController.swift */; };
 		D317C079A7B08B69D4589732 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C018DFDDB296EF5B6420 /* Player.swift */; };
 		D317C0E264A6FCF9D73A8746 /* UIView_Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C5BCAE72D820973EF23A /* UIView_Pin.swift */; };
 		D317C31483BB4A3B9CA12821 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C1EFE91BAB35C62198F7 /* Board.swift */; };
@@ -33,7 +32,6 @@
 		D317C1EFE91BAB35C62198F7 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		D317C5BCAE72D820973EF23A /* UIView_Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Pin.swift; sourceTree = "<group>"; };
 		D317CA704F3E858E9ED13F2E /* Directions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Directions.swift; sourceTree = "<group>"; };
-		D317CAF89DB4EEF251E15296 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D317CD69557AC2459ED5350D /* Interaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interaction.swift; sourceTree = "<group>"; };
 		D317CE551F0FE2E36045CEB8 /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,7 +101,6 @@
 		D317C94BC86F6DB3E96BAB66 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D317CAF89DB4EEF251E15296 /* MapViewController.swift */,
 				D317C048D4E8765C428C38FB /* ViewController.swift */,
 			);
 			path = ViewControllers;
@@ -194,7 +191,6 @@
 				D317CBF2683F2D2DB521D970 /* Coordinate.swift in Sources */,
 				D317CFA2493B9DE54322688C /* Directions.swift in Sources */,
 				D317C57D1F96F51200B66D97 /* Interaction.swift in Sources */,
-				D317C04D0C02F9ED7829DCBD /* MapViewController.swift in Sources */,
 				D317CE373725AD0811E5D779 /* ViewController.swift in Sources */,
 				D317C079A7B08B69D4589732 /* Player.swift in Sources */,
 			);
