@@ -12,6 +12,7 @@
 		3F7982802969BA7C00AF6702 /* Project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F79827E2969BA7C00AF6702 /* Project.xcdatamodeld */; };
 		3F7982822969BA7D00AF6702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7982812969BA7D00AF6702 /* Assets.xcassets */; };
 		D317C04D0C02F9ED7829DCBD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317CAF89DB4EEF251E15296 /* MapViewController.swift */; };
+		D317C079A7B08B69D4589732 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C018DFDDB296EF5B6420 /* Player.swift */; };
 		D317C0E264A6FCF9D73A8746 /* UIView_Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C5BCAE72D820973EF23A /* UIView_Pin.swift */; };
 		D317C31483BB4A3B9CA12821 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C1EFE91BAB35C62198F7 /* Board.swift */; };
 		D317C57D1F96F51200B66D97 /* Interaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317CD69557AC2459ED5350D /* Interaction.swift */; };
@@ -27,6 +28,7 @@
 		3F79827F2969BA7C00AF6702 /* Project.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Project.xcdatamodel; sourceTree = "<group>"; };
 		3F7982812969BA7D00AF6702 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F7982862969BA7D00AF6702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D317C018DFDDB296EF5B6420 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		D317C048D4E8765C428C38FB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D317C1EFE91BAB35C62198F7 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		D317C5BCAE72D820973EF23A /* UIView_Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Pin.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				D317CE551F0FE2E36045CEB8 /* Coordinate.swift */,
 				D317CA704F3E858E9ED13F2E /* Directions.swift */,
 				D317CD69557AC2459ED5350D /* Interaction.swift */,
+				D317C018DFDDB296EF5B6420 /* Player.swift */,
 			);
 			path = InGameObjects;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				D317C57D1F96F51200B66D97 /* Interaction.swift in Sources */,
 				D317C04D0C02F9ED7829DCBD /* MapViewController.swift in Sources */,
 				D317CE373725AD0811E5D779 /* ViewController.swift in Sources */,
+				D317C079A7B08B69D4589732 /* Player.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
