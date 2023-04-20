@@ -19,7 +19,7 @@ final class ViewController: UIViewController {
                 "startDirection":0,
                 "width":2,
                 "height":2,
-                "field":[{"empty":{}},{"room":{"_0":[0,{}]}},{"room":{"_0":[0,{}]}},{"empty":{}}],
+                "field":[{"empty":{}},{"filled":{"_0":[0,{}]}},{"filled":{"_0":[0,{}]}},{"empty":{}}],
                 }
                 """
         board = Board(JSON: str)
@@ -61,7 +61,7 @@ final class ViewController: UIViewController {
                 switch board.getTile(i) {
                 case .empty:
                     tile.backgroundColor = .systemYellow
-                case .room(_):
+                case .filled(_):
                     tile.backgroundColor = .systemPurple
                 }
                 

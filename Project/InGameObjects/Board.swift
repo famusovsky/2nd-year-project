@@ -4,24 +4,21 @@
 
 import Foundation
 
-enum BoardTile: Codable {
-    case empty,
-         room([Direction: Interactions])
-}
+// TODO: Add json check
 
 struct Board: Codable {
-    public let startCoordinate: Coordinate
-    public let startDirection: Direction
+    // public let startCoordinate: Coordinate
+    // public let startDirection: Direction
     public let width: Int
     public let height: Int
-    private var field: [BoardTile]
+    private let field: [BoardTile]
     
     public init() {
         width = 0
         height = 0
         field = []
-        startCoordinate = Coordinate(x: 0, y: 0)
-        startDirection = Direction.north
+        // startCoordinate = Coordinate(x: 0, y: 0)
+        // startDirection = Direction.north
         print(getJSON())
     }
     

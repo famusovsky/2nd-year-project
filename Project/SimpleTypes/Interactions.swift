@@ -10,6 +10,13 @@ struct Interactions: Codable {
     let onGoRight: [Action]
     let onTap: [ActionLocation:[Action]]
     
+    init() {
+        onGoForward = []
+        onGoLeft = []
+        onGoRight = []
+        onTap = [:]
+    }
+    
     init(onGoForward: [Action], onGoLeft: [Action], onGoRight: [Action], onTap: [ActionLocation:[Action]]) {
         self.onGoForward = onGoForward
         self.onGoLeft = onGoLeft
