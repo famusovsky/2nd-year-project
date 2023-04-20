@@ -97,7 +97,7 @@
 				3F996C7029F1486600B7BFE2 /* Structs */,
 				3F996C6729F147C300B7BFE2 /* Views */,
 				D317CDFD60B51594F2371A50 /* Libraries */,
-				D317C374B1EC3C869F9283B5 /* InGameObjects */,
+				D317C374B1EC3C869F9283B5 /* InGameClasses */,
 				D317C94BC86F6DB3E96BAB66 /* ViewControllers */,
 			);
 			path = Project;
@@ -116,6 +116,7 @@
 		3F996C7029F1486600B7BFE2 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
+				D317C1EFE91BAB35C62198F7 /* Board.swift */,
 				3F996C8029F154BF00B7BFE2 /* Room.swift */,
 				3F996C7E29F1525400B7BFE2 /* BoardTile.swift */,
 				D317CE551F0FE2E36045CEB8 /* Coordinate.swift */,
@@ -137,14 +138,13 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		D317C374B1EC3C869F9283B5 /* InGameObjects */ = {
+		D317C374B1EC3C869F9283B5 /* InGameClasses */ = {
 			isa = PBXGroup;
 			children = (
-				D317C1EFE91BAB35C62198F7 /* Board.swift */,
 				3F996C6E29F1484E00B7BFE2 /* GameLogics.swift */,
 				3F996C7129F148A100B7BFE2 /* Level.swift */,
 			);
-			path = InGameObjects;
+			path = InGameClasses;
 			sourceTree = "<group>";
 		};
 		D317C94BC86F6DB3E96BAB66 /* ViewControllers */ = {

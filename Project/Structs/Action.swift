@@ -12,5 +12,5 @@ enum Action: Codable {
          win,
          lose,
          goToLevel(destination: Int),
-         updateLogics(logics: [String])
+         updateLogics(logics: [String:Int])
 }

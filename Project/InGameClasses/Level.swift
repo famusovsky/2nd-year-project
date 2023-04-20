@@ -88,16 +88,25 @@ class Level {
         }
     }
     
-    public func updateLogic(_ name: String, _ newValue: Int) {
-        logics.updateLogic(name: name, newValue: newValue)
+    private func getCurrentRoom() -> Room {
         let currentTile = board.getTile(currentCoordinate)
         if case let .filled(room) = currentTile {
-            pingAllTileObservers(room)
+            return room
         }
+        return Room()
+    }
+    
+    public func updateLogic(_ name: String, _ newValue: Int) {
+        logics.updateLogic(name: name, newValue: newValue)
+        pingAllTileObservers(getCurrentRoom())
     }
     
     public func setTileObserver(_ observer: TileObserver) {
         tileObservers.append(observer)
+    }
+    
+    public func removeTileObservers() {
+        tileObservers.removeAll(keepingCapacity: false)
     }
     
     private func pingAllTileObservers(_ room: Room) {
@@ -105,5 +114,9 @@ class Level {
         for observer in tileObservers {
             observer.updateByTile(current)
         }
+    }
+    
+    public func pingAllTileObservers() {
+        pingAllTileObservers(getCurrentRoom())
     }
 }

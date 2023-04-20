@@ -35,6 +35,9 @@ struct LogicPropertyArray: Codable, Hashable {
     mutating func updateLogic(name: String, newValue: Int) {
         if let index = array.firstIndex(where: {$0.name == name}) {
             array[index].updateValue(value: newValue)
+        } else {
+            let logic = LogicProperty(name: name, value: newValue)
+            array.append(logic)
         }
     }
 }
