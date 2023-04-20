@@ -8,5 +8,5 @@
 import Foundation
 
 protocol TileObserver {
-    func updateByTile(tile: BoardTile)
+    func updateByTile(_ tileSide: TileSideData)
 }

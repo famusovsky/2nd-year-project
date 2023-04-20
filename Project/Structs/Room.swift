@@ -9,22 +9,22 @@ import Foundation
 
 struct Room: Codable {
     // TODO: Should also contain pictures
-    let data: [Direction: [LogicPropertyArray: Interactions]]
+    let data: [Direction: [LogicPropertyArray: TileSideData]]
     
     init() {
         data = [:]
     }
     
-    init(data: [Direction: [LogicPropertyArray: Interactions]]) {
+    init(data: [Direction: [LogicPropertyArray: TileSideData]]) {
         self.data = data
     }
     
-    func getInteractions(direction: Direction,
-                         logics: LogicPropertyArray) -> Interactions  {
+    func getSideData(direction: Direction,
+                         logics: LogicPropertyArray) -> TileSideData  {
         
         if let set = data[direction], let value = set[logics]  {
             return value
         }
-        return Interactions()
+        return TileSideData()
     }
 }

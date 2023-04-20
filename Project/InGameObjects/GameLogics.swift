@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct GameLogics: Codable {
+    private let levels: [Level]
+}

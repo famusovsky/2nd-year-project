@@ -22,7 +22,7 @@ struct Board: Codable {
         print(getJSON())
     }
     
-    public init(JSON: String) {
+    public init(_ JSON: String) {
         let decoder = JSONDecoder()
         let data = JSON.data(using: .utf8)!
         self = try! decoder.decode(Board.self, from: data)
