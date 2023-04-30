@@ -60,10 +60,12 @@ class Level {
     
     public func turnRight() {
         currentDirection.turnRight()
+        pingAllTileObservers()
     }
     
     public func turnLeft() {
         currentDirection.turnLeft()
+        pingAllTileObservers()
     }
     
     public func goForward() {
