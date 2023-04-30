@@ -43,8 +43,6 @@ final class ViewController: UIViewController {
     }
     
     private func setupGameUIView() {
-        gameUIView.setUp()
-        
         view.addSubview(gameUIView)
         
         gameUIView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)

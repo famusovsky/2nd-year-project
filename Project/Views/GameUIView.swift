@@ -9,9 +9,27 @@ import Foundation
 import UIKit
 
 class GameUIView: UIView, TileObserver {
-    private var currentInteractions: Interactions = Interactions()
+    private var currentInteractions: Interactions
     
-    public func setUp() {
+    override init(frame: CGRect) {
+        currentInteractions = Interactions()
+        
+        super.init(frame: frame)
+        self.backgroundColor = .clear
+        
+        setUp()
+    }
+    
+    required init?(coder: NSCoder) {
+        currentInteractions = Interactions()
+        
+        super.init(coder: coder)
+        self.backgroundColor = UIColor.clear
+        
+        setUp()
+    }
+    
+    private func setUp() {
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(_:)))
         swipeUp.direction = .up
         self.addGestureRecognizer(swipeUp)
