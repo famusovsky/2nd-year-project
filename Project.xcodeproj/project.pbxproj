@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F52606B29FEC36500C45D18 /* ActionExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F52606A29FEC36500C45D18 /* ActionExecutor.swift */; };
 		3F7982762969BA7C00AF6702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7982752969BA7C00AF6702 /* AppDelegate.swift */; };
 		3F7982782969BA7C00AF6702 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7982772969BA7C00AF6702 /* SceneDelegate.swift */; };
 		3F7982802969BA7C00AF6702 /* Project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F79827E2969BA7C00AF6702 /* Project.xcdatamodeld */; };
 		3F7982822969BA7D00AF6702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7982812969BA7D00AF6702 /* Assets.xcassets */; };
-		3F996C6929F147DA00B7BFE2 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C6829F147DA00B7BFE2 /* UIView.swift */; };
+		3F996C6929F147DA00B7BFE2 /* GameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C6829F147DA00B7BFE2 /* GameUIView.swift */; };
 		3F996C6B29F147EE00B7BFE2 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C6A29F147EE00B7BFE2 /* PictureView.swift */; };
 		3F996C6D29F147FE00B7BFE2 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C6C29F147FE00B7BFE2 /* MapView.swift */; };
 		3F996C6F29F1484E00B7BFE2 /* GameLogics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C6E29F1484E00B7BFE2 /* GameLogics.swift */; };
@@ -32,13 +33,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F52606A29FEC36500C45D18 /* ActionExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionExecutor.swift; sourceTree = "<group>"; };
 		3F7982722969BA7C00AF6702 /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7982752969BA7C00AF6702 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F7982772969BA7C00AF6702 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3F79827F2969BA7C00AF6702 /* Project.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Project.xcdatamodel; sourceTree = "<group>"; };
 		3F7982812969BA7D00AF6702 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F7982862969BA7D00AF6702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F996C6829F147DA00B7BFE2 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		3F996C6829F147DA00B7BFE2 /* GameUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIView.swift; sourceTree = "<group>"; };
 		3F996C6A29F147EE00B7BFE2 /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
 		3F996C6C29F147FE00B7BFE2 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		3F996C6E29F1484E00B7BFE2 /* GameLogics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogics.swift; sourceTree = "<group>"; };
@@ -106,7 +108,7 @@
 		3F996C6729F147C300B7BFE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3F996C6829F147DA00B7BFE2 /* UIView.swift */,
+				3F996C6829F147DA00B7BFE2 /* GameUIView.swift */,
 				3F996C6A29F147EE00B7BFE2 /* PictureView.swift */,
 				3F996C6C29F147FE00B7BFE2 /* MapView.swift */,
 			);
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				3F996C7A29F14A5000B7BFE2 /* TileObserver.swift */,
+				3F52606A29FEC36500C45D18 /* ActionExecutor.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -237,9 +240,10 @@
 				3F996C8329F1580E00B7BFE2 /* LogicProperties.swift in Sources */,
 				3F7982782969BA7C00AF6702 /* SceneDelegate.swift in Sources */,
 				3F996C7229F148A100B7BFE2 /* Level.swift in Sources */,
-				3F996C6929F147DA00B7BFE2 /* UIView.swift in Sources */,
+				3F996C6929F147DA00B7BFE2 /* GameUIView.swift in Sources */,
 				3F996C7629F148E000B7BFE2 /* Action.swift in Sources */,
 				3F996C6B29F147EE00B7BFE2 /* PictureView.swift in Sources */,
+				3F52606B29FEC36500C45D18 /* ActionExecutor.swift in Sources */,
 				3F996C7F29F1525400B7BFE2 /* BoardTile.swift in Sources */,
 				3F996C6D29F147FE00B7BFE2 /* MapView.swift in Sources */,
 				3F7982802969BA7C00AF6702 /* Project.xcdatamodeld in Sources */,

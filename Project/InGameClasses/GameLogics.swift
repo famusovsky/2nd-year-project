@@ -7,7 +7,7 @@
 
 import Foundation
 
-class GameLogics {
+class GameLogics: ActionExecutor {
     private let levels: [Level]
     private var currentLevel: Int
     private var tileObservers: [TileObserver] = []
@@ -24,6 +24,12 @@ class GameLogics {
     
     public func lose() {
         // TODO
+    }
+    
+    public func doActions(_ actions: [Action]) {
+        for action in actions {
+            doAction(action)
+        }
     }
     
     public func doAction(_ action: Action) {
