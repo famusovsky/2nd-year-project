@@ -7,7 +7,7 @@ import UIKit
 
 final class ViewController: UIViewController {
     private var board: Board? = nil
-    let mapView = UIView()
+    let mapView = MapView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,16 +15,13 @@ final class ViewController: UIViewController {
         // TODO: load game from file
         let str = """
                 {
-                "startCoordinate":{"x":0,"y":0},
-                "startDirection":0,
                 "width":2,
                 "height":2,
-                "field":[{"empty":{}},{"filled":{"_0":[0,{}]}},{"filled":{"_0":[0,{}]}},{"empty":{}}],
+                "field":[{"empty":{}},{"filled":{"room":{"data":[]}}},{"filled":{"room":{"data":[]}}},{"empty":{}}],
                 }
                 """
-        board = Board(JSON: str)
+        board = Board(str)
         
-        mapView.isHidden = false
         view.addSubview(mapView)
         setupView()
         setupMapView()
@@ -39,6 +36,7 @@ final class ViewController: UIViewController {
     private func setupView() {
         // TODO: setup main view
         view.backgroundColor = .systemBackground
+        setUpMapButton()
     }
     
     private func setupUI() {
@@ -51,45 +49,41 @@ final class ViewController: UIViewController {
         mapView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
         
         if let board = board {
-            var prevTile: UIView? = nil
-            for i in 0..<board.width * board.height {
-                print(i)
-                
-                let tile = UIView()
-                mapView.addSubview(tile)
-                
-                switch board.getTile(i) {
-                case .empty:
-                    tile.backgroundColor = .systemYellow
-                case .filled(_):
-                    tile.backgroundColor = .systemPurple
-                }
-                
-                if i != 0 {
-                    if i % board.width == 0 {
-                        tile.pinTop(to: prevTile!.bottomAnchor)
-                        tile.pinLeft(to: mapView)
-                    } else {
-                        tile.pinTop(to: prevTile!)
-                        tile.pinLeft(to: prevTile!.trailingAnchor)
-                    }
-                } else {
-                    tile.pinTop(to: mapView)
-                    tile.pinLeft(to: mapView)
-                }
-                
-                tile.pinHeight(to: mapView, 1 / CGFloat(board.height))
-                tile.pinWidth(to: mapView, 1 / CGFloat(board.width))
-                
-                prevTile = tile
-            }
+            mapView.update(board)
         }
     }
     
-    public func updateMap(_ board: Board) {
-        self.board = board
-        view.subviews.forEach { $0.removeFromSuperview() }
-        
-        setupMapView()
+    private func setUpMapButton() {
+        let mapButton = UIButton()
+        mapButton.layer.cornerRadius = 12
+        mapButton.backgroundColor = .clear
+        mapButton.setHeight(48)
+        mapButton.setWidth(48)
+        mapButton.setTitle("🗺️", for: .normal)
+        mapButton.addTarget(self, action: #selector(mapButtonPressed), for: .touchUpInside)
+        view.addSubview(mapButton)
+        mapButton.pinTop(to: mapView.topAnchor, 5)
+        mapButton.pinRight(to: mapView, -5)
+        mapButton.isEnabled = true
+    }
+    
+    @objc
+    private func mapButtonPressed() {
+        mapView.isHidden.toggle()
+    }
+}
+
+extension ViewController {
+    public func printCodable(codable: Codable) {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        do {
+            let jsonData = try encoder.encode(codable)
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                print(jsonString)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
