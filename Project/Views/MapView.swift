@@ -66,11 +66,15 @@ class MapView: UIView {
     public func update(_ board: Board) {
         //        self.board = board
         self.subviews.forEach { $0.removeFromSuperview() }
-        
-        // drawingView.clearDrawing()
-        self.addSubview(drawingView)
-        drawingView.pin(to: self)
+        setUpDrawingView()
         
         setUp(board)
+    }
+    
+    private func setUpDrawingView() {
+        drawingView.setUp()
+        
+        self.addSubview(drawingView)
+        drawingView.pin(to: self)
     }
 }

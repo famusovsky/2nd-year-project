@@ -31,6 +31,13 @@ class DrawingView: UIView {
         self.addGestureRecognizer(panGesture)
     }
     
+    public func setUp() {
+        cleanUp()
+        
+        setUpTogglePenButton()
+        setUpCleanUpButton()
+    }
+    
     @objc
     private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         let shapeLayer = CAShapeLayer()
@@ -38,73 +45,87 @@ class DrawingView: UIView {
         let point = gesture.location(in: self)
         
         shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineWidth = 3.5
         
         switch gesture.state {
         case .began:
-            // Start a new path at the touch location
             path = UIBezierPath()
             path.move(to: point)
             
         case .changed:
             if isErasing {
-                // Set the stroke color to clear to erase the existing lines
                 shapeLayer.strokeColor = UIColor.clear.cgColor
                 
-                // Create a new path to erase the lines at the touch location
                 let erasePath = UIBezierPath()
                 erasePath.move(to: point)
                 erasePath.addLine(to: CGPoint(x: point.x + 10, y: point.y))
                 
-                // Update the shape layer's path to reflect the erasure
                 shapeLayer.path = erasePath.cgPath
             } else {
                 shapeLayer.strokeColor = UIColor.black.cgColor
                 
-                // Add a line to the existing path at the touch location
                 path.addLine(to: point)
                 
-                // Update the shape layer's path to reflect the new line
                 shapeLayer.path = path.cgPath
             }
             
         case .ended:
-            // No action needed
             break
             
         default:
             break
         }
     }
-
-
     
+    @objc
+    private func togglePen(_ sender: UIButton) {
+        isErasing.toggle()
+        sender.isSelected.toggle()
+    }
     
-    //    // Method to enable or disable erasing
-    //    func setEraserEnabled(_ enabled: Bool) {
-    //        isErasing = enabled
-    //
-    //        if isErasing {
-    //            // Set the line width to a larger value to make the eraser more visible
-    //            shapeLayer.lineWidth = 20
-    //
-    //            // Set the blend mode to "clear" to erase the existing lines
-    //            shapeLayer.blendMode = .clear
-    //        } else {
-    //            // Reset the line width and blend mode to their default values
-    //            shapeLayer.lineWidth = 1
-    //            shapeLayer.blendMode = .normal
-    //
-    //            // Set the stroke color to black to draw new lines
-    //            shapeLayer.strokeColor = UIColor.black.cgColor
-    //        }
-    //    }
+    private func setUpTogglePenButton() {
+        let togglePenButton = UIButton()
+        
+        togglePenButton.layer.cornerRadius = 12
+        togglePenButton.backgroundColor = .clear
+        togglePenButton.setHeight(48)
+        togglePenButton.setWidth(48)
+        togglePenButton.setTitle("✍🏻", for: .normal)
+        togglePenButton.setTitle("🧽", for: .selected)
+        
+        togglePenButton.addTarget(self, action: #selector(togglePen(_:)), for: .touchUpInside)
+        self.addSubview(togglePenButton)
+        
+        togglePenButton.pinTop(to: self, 5)
+        togglePenButton.pinLeft(to: self, 5)
+        
+        togglePenButton.isEnabled = true
+    }
     
-    // Method to clear all the drawing on the view
-    func clearDrawing() {
-        // Reset the path and shape layer's path
+    @objc
+    public func cleanUp() {
         path.removeAllPoints()
-        self.layer.sublayers?.forEach {
-            $0.removeFromSuperlayer()
+        
+        while self.layer.sublayers?.count ?? 0 > 2 {
+            self.layer.sublayers?.remove(at: 2)
         }
+    }
+    
+    private func setUpCleanUpButton() {
+        let cleanUpButton = UIButton()
+        
+        cleanUpButton.layer.cornerRadius = 12
+        cleanUpButton.backgroundColor = .clear
+        cleanUpButton.setHeight(48)
+        cleanUpButton.setWidth(48)
+        cleanUpButton.setTitle("🧹", for: .normal)
+        
+        cleanUpButton.addTarget(self, action: #selector(cleanUp), for: .touchUpInside)
+        self.addSubview(cleanUpButton)
+        
+        cleanUpButton.pinTop(to: self, 5)
+        cleanUpButton.pinLeft(to: self, 5 + 48 + 5)
+        
+        cleanUpButton.isEnabled = true
     }
 }
