@@ -9,40 +9,58 @@ import Foundation
 import UIKit
 
 class GameUIView: UIView, TileObserver {
+    private var currentInteractions: Interactions = Interactions()
+    
     public func setUp() {
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(_:)))
         swipeUp.direction = .up
         self.addGestureRecognizer(swipeUp)
-
+        
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(_:)))
         swipeDown.direction = .down
         self.addGestureRecognizer(swipeDown)
-
+        
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(_:)))
         swipeLeft.direction = .left
         self.addGestureRecognizer(swipeLeft)
-
+        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(_:)))
         swipeRight.direction = .right
         self.addGestureRecognizer(swipeRight)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
+        self.addGestureRecognizer(tap)
     }
     
     func updateByTile(_ tileSide: TileSideData) {
-        self.subviews.forEach { $0.removeFromSuperview() }
-        
-        
+        currentInteractions = tileSide.interactions
     }
     
     // Handle the swipe gesture
-    @objc func swipeAction(_ gesture: UISwipeGestureRecognizer) {
+    @objc
+    func swipeAction(_ gesture: UISwipeGestureRecognizer) {
+        // TODO: throw action to GameLogics
         if gesture.direction == .up {
-            // Handle swipe up action
+            print("up")
         } else if gesture.direction == .down {
-            // Handle swipe down action
+            print("down")
         } else if gesture.direction == .left {
-            // Handle swipe left action
+            print("left")
         } else if gesture.direction == .right {
-            // Handle swipe right action
+            print("right")
         }
+    }
+    
+    @objc
+    func tapAction(_ gesture: UITapGestureRecognizer) {
+        let tapLocation = Coordinate(x: Int(gesture.location(in: self).x), y: Int(gesture.location(in: self).y))
+        
+        for tapAction in currentInteractions.onTap {
+            if tapAction.key.doesContainCoordinate(tapLocation) {
+                // TODO: throw action to GameLogics
+                print("tap success")
+            }
+        }
+        print("tap unsuccess")
     }
 }

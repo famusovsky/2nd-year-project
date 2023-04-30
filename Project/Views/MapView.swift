@@ -12,8 +12,6 @@ class MapView: UIView {
     private func setUp(_ board: Board) {
         var prevTile: UIView? = nil
         for i in 0..<board.width * board.height {
-            print(i)
-            
             let tile = UIView()
             self.addSubview(tile)
             

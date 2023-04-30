@@ -8,6 +8,7 @@ import UIKit
 final class ViewController: UIViewController {
     private var board: Board? = nil
     let mapView = MapView()
+    let gameUIView = GameUIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +23,10 @@ final class ViewController: UIViewController {
                 """
         board = Board(str)
         
-        view.addSubview(mapView)
-        setupView()
+        setupGameUIView()
         setupMapView()
+        
+        setupView()
     }
     
     /*override func viewWillAppear(_ animated: Bool) {
@@ -36,14 +38,25 @@ final class ViewController: UIViewController {
     private func setupView() {
         // TODO: setup main view
         view.backgroundColor = .systemBackground
+        
         setUpMapButton()
     }
     
-    private func setupUI() {
-        // TODO: setup UI
+    private func setupGameUIView() {
+        gameUIView.setUp()
+        
+        view.addSubview(gameUIView)
+        
+        gameUIView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
+        gameUIView.pin(to: view, [(.left, 15), (.right, -15)])
+        gameUIView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
+        
+        gameUIView.isHidden = false
     }
     
     private func setupMapView() {
+        view.addSubview(mapView)
+        
         mapView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
         mapView.pin(to: view, [(.left, 15), (.right, -15)])
         mapView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
@@ -51,19 +64,25 @@ final class ViewController: UIViewController {
         if let board = board {
             mapView.update(board)
         }
+        
+        mapView.isHidden = true
     }
     
     private func setUpMapButton() {
         let mapButton = UIButton()
+        
         mapButton.layer.cornerRadius = 12
         mapButton.backgroundColor = .clear
         mapButton.setHeight(48)
         mapButton.setWidth(48)
         mapButton.setTitle("🗺️", for: .normal)
+        
         mapButton.addTarget(self, action: #selector(mapButtonPressed), for: .touchUpInside)
         view.addSubview(mapButton)
+        
         mapButton.pinTop(to: mapView.topAnchor, 5)
         mapButton.pinRight(to: mapView, -5)
+        
         mapButton.isEnabled = true
     }
     
