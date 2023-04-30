@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F010DBA29FED17500215260 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F010DB929FED17500215260 /* DrawingView.swift */; };
 		3F7982762969BA7C00AF6702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7982752969BA7C00AF6702 /* AppDelegate.swift */; };
 		3F7982782969BA7C00AF6702 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7982772969BA7C00AF6702 /* SceneDelegate.swift */; };
 		3F7982802969BA7C00AF6702 /* Project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F79827E2969BA7C00AF6702 /* Project.xcdatamodeld */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F010DB929FED17500215260 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		3F7982722969BA7C00AF6702 /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7982752969BA7C00AF6702 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F7982772969BA7C00AF6702 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				3F996C6829F147DA00B7BFE2 /* GameUIView.swift */,
 				3F996C6A29F147EE00B7BFE2 /* PictureView.swift */,
 				3F996C6C29F147FE00B7BFE2 /* MapView.swift */,
+				3F010DB929FED17500215260 /* DrawingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				3F996C7629F148E000B7BFE2 /* Action.swift in Sources */,
 				3F996C6B29F147EE00B7BFE2 /* PictureView.swift in Sources */,
 				3F996C7F29F1525400B7BFE2 /* BoardTile.swift in Sources */,
+				3F010DBA29FED17500215260 /* DrawingView.swift in Sources */,
 				3F996C6D29F147FE00B7BFE2 /* MapView.swift in Sources */,
 				3F7982802969BA7C00AF6702 /* Project.xcdatamodeld in Sources */,
 				D317C0E264A6FCF9D73A8746 /* UIView_Pin.swift in Sources */,

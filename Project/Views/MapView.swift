@@ -9,15 +9,36 @@ import Foundation
 import UIKit
 
 class MapView: UIView {
+    private var drawingView: DrawingView
+    
+    override init(frame: CGRect) {
+        drawingView = DrawingView()
+        
+        super.init(frame: frame)
+        self.backgroundColor = .lightGray
+    }
+    
+    required init?(coder: NSCoder) {
+        drawingView = DrawingView()
+        
+        super.init(coder: coder)
+        self.backgroundColor = .lightGray
+    }
+    
     private func setUp(_ board: Board) {
         var prevTile: UIView? = nil
         for i in 0..<board.width * board.height {
             let tile = UIView()
-            self.addSubview(tile)
+            
+            if let firstSubview = self.subviews.first {
+                self.insertSubview(tile, belowSubview: firstSubview)
+            } else {
+                self.addSubview(tile)
+            }
             
             switch board.getTile(i) {
             case .empty:
-                tile.backgroundColor = .systemYellow
+                tile.backgroundColor = .clear
             case .filled(_):
                 tile.backgroundColor = .systemPurple
             }
@@ -45,6 +66,10 @@ class MapView: UIView {
     public func update(_ board: Board) {
         //        self.board = board
         self.subviews.forEach { $0.removeFromSuperview() }
+        
+        // drawingView.clearDrawing()
+        self.addSubview(drawingView)
+        drawingView.pin(to: self)
         
         setUp(board)
     }
