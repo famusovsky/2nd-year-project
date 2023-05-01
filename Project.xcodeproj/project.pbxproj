@@ -13,6 +13,10 @@
 		3F7982802969BA7C00AF6702 /* Project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F79827E2969BA7C00AF6702 /* Project.xcdatamodeld */; };
 		3F7982822969BA7D00AF6702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7982812969BA7D00AF6702 /* Assets.xcassets */; };
 		3F7EA5CE29FFDB9200694AE4 /* ActionExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EA5CD29FFDB9200694AE4 /* ActionExecutor.swift */; };
+		3F7EA5D029FFDCC100694AE4 /* LevelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EA5CF29FFDCC100694AE4 /* LevelObserver.swift */; };
+		3F7EA5D429FFE8B900694AE4 /* board.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F7EA5D329FFE8B900694AE4 /* board.json */; };
+		3F7EA5D829FFEE5800694AE4 /* level.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F7EA5D729FFEE5800694AE4 /* level.json */; };
+		3F7EA5DA29FFEF0100694AE4 /* Coder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EA5D929FFEF0100694AE4 /* Coder.swift */; };
 		3F996C6929F147DA00B7BFE2 /* GameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C6829F147DA00B7BFE2 /* GameUIView.swift */; };
 		3F996C6B29F147EE00B7BFE2 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C6A29F147EE00B7BFE2 /* PictureView.swift */; };
 		3F996C6D29F147FE00B7BFE2 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C6C29F147FE00B7BFE2 /* MapView.swift */; };
@@ -42,6 +46,10 @@
 		3F7982812969BA7D00AF6702 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F7982862969BA7D00AF6702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F7EA5CD29FFDB9200694AE4 /* ActionExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionExecutor.swift; sourceTree = "<group>"; };
+		3F7EA5CF29FFDCC100694AE4 /* LevelObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelObserver.swift; sourceTree = "<group>"; };
+		3F7EA5D329FFE8B900694AE4 /* board.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = board.json; sourceTree = "<group>"; };
+		3F7EA5D729FFEE5800694AE4 /* level.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = level.json; sourceTree = "<group>"; };
+		3F7EA5D929FFEF0100694AE4 /* Coder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coder.swift; sourceTree = "<group>"; };
 		3F996C6829F147DA00B7BFE2 /* GameUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIView.swift; sourceTree = "<group>"; };
 		3F996C6A29F147EE00B7BFE2 /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
 		3F996C6C29F147FE00B7BFE2 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -97,14 +105,25 @@
 				3F7982812969BA7D00AF6702 /* Assets.xcassets */,
 				3F7982862969BA7D00AF6702 /* Info.plist */,
 				3F79827E2969BA7C00AF6702 /* Project.xcdatamodeld */,
+				3F7EA5CC29FFDA1F00694AE4 /* Data */,
 				3F996C7729F14A2E00B7BFE2 /* Protocols */,
 				3F996C7029F1486600B7BFE2 /* Structs */,
-				3F996C6729F147C300B7BFE2 /* Views */,
-				D317CDFD60B51594F2371A50 /* Libraries */,
 				D317C374B1EC3C869F9283B5 /* InGameClasses */,
+				3F996C6729F147C300B7BFE2 /* Views */,
 				D317C94BC86F6DB3E96BAB66 /* ViewControllers */,
+				D317CDFD60B51594F2371A50 /* Libraries */,
 			);
 			path = Project;
+			sourceTree = "<group>";
+		};
+		3F7EA5CC29FFDA1F00694AE4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3F7EA5D329FFE8B900694AE4 /* board.json */,
+				3F7EA5D729FFEE5800694AE4 /* level.json */,
+				3F7EA5D929FFEF0100694AE4 /* Coder.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		3F996C6729F147C300B7BFE2 /* Views */ = {
@@ -140,6 +159,7 @@
 			children = (
 				3F7EA5CD29FFDB9200694AE4 /* ActionExecutor.swift */,
 				3F996C7A29F14A5000B7BFE2 /* TileObserver.swift */,
+				3F7EA5CF29FFDCC100694AE4 /* LevelObserver.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -227,6 +247,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F7EA5D829FFEE5800694AE4 /* level.json in Resources */,
+				3F7EA5D429FFE8B900694AE4 /* board.json in Resources */,
 				3F7982822969BA7D00AF6702 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,12 +276,14 @@
 				D317C0E264A6FCF9D73A8746 /* UIView_Pin.swift in Sources */,
 				3F996C7B29F14A5000B7BFE2 /* TileObserver.swift in Sources */,
 				D317C31483BB4A3B9CA12821 /* Board.swift in Sources */,
+				3F7EA5DA29FFEF0100694AE4 /* Coder.swift in Sources */,
 				D317CBF2683F2D2DB521D970 /* Coordinate.swift in Sources */,
 				3F996C8129F154BF00B7BFE2 /* Room.swift in Sources */,
 				D317CFA2493B9DE54322688C /* Direction.swift in Sources */,
 				D317C57D1F96F51200B66D97 /* Interactions.swift in Sources */,
 				3F996C8529F1654000B7BFE2 /* TileSideData.swift in Sources */,
 				D317CE373725AD0811E5D779 /* ViewController.swift in Sources */,
+				3F7EA5D029FFDCC100694AE4 /* LevelObserver.swift in Sources */,
 				3F996C7D29F14D7700B7BFE2 /* ActionLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

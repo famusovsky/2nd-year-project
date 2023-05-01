@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MapView: UIView {
+class MapView: UIView, LevelObserver {
     private var drawingView: DrawingView
     
     override init(frame: CGRect) {
@@ -42,6 +42,8 @@ class MapView: UIView {
             case .filled(_):
                 tile.backgroundColor = .systemPurple
             }
+            tile.layer.borderWidth = 1
+            tile.layer.borderColor = UIColor.black.cgColor
             
             if i != 0 {
                 if i % board.width == 0 {
@@ -63,7 +65,11 @@ class MapView: UIView {
         }
     }
     
-    public func update(_ board: Board) {
+    public func updateByLevel(_ level: Level) {
+        update(level.getBoard())
+    }
+    
+    private func update(_ board: Board) {
         //        self.board = board
         self.subviews.forEach { $0.removeFromSuperview() }
         setUpDrawingView()

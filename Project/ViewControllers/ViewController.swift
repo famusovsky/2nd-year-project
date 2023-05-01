@@ -6,34 +6,45 @@ import Foundation
 import UIKit
 
 final class ViewController: UIViewController {
-    private var board: Board? = nil
-    let mapView = MapView()
-    let gameUIView = GameUIView()
+    private let mapView = MapView()
+    private let gameUIView = GameUIView()
+    // private var board: Board? = nil
+    private var game: GameLogics? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var levelModel = LevelModel()
+        
         // TODO: load game from file
-        let str = """
-                {
-                "width":2,
-                "height":2,
-                "field":[{"empty":{}},{"filled":{"room":{"data":[]}}},{"filled":{"room":{"data":[]}}},{"empty":{}}],
-                }
-                """
-        board = Board(str)
+//        if let path = Bundle.main.path(forResource: "level", ofType: "json") {
+//            print("yes")
+//            do {
+//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+//                if let jsonString = String(data: data, encoding: .utf8) {
+//                    levelModel = decodeFromJSON(jsonString, to: LevelModel.self) ?? LevelModel()
+//                }
+//            } catch {
+//                // Handle error
+//                print(error)
+//            }
+//        } else {
+//            print("no")
+//        }
+        
+        let levels: [Level] = [Level(levelModel)]
+        
+        printCodable(codable: levelModel)
+        
+        game = GameLogics(levels)
+        game?.setTileObserver(gameUIView)
+        game?.setLevelObserver(mapView)
         
         setupGameUIView()
         setupMapView()
         
         setupView()
     }
-    
-    /*override func viewWillAppear(_ animated: Bool) {
-     super.viewDidAppear(animated)
-     
-     setupView()
-     }*/
     
     private func setupView() {
         // TODO: setup main view
@@ -49,6 +60,10 @@ final class ViewController: UIViewController {
         gameUIView.pin(to: view, [(.left, 15), (.right, -15)])
         gameUIView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
         
+        if game != nil {
+            gameUIView.setActionExecutor(game!)
+        }
+        
         gameUIView.isHidden = false
     }
     
@@ -58,10 +73,6 @@ final class ViewController: UIViewController {
         mapView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
         mapView.pin(to: view, [(.left, 15), (.right, -15)])
         mapView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
-        
-        if let board = board {
-            mapView.update(board)
-        }
         
         mapView.isHidden = true
     }
