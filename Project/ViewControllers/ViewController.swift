@@ -8,12 +8,14 @@ import UIKit
 final class ViewController: UIViewController {
     private let mapView = MapView()
     private let gameUIView = GameUIView()
+    private let pictureView = PictureView()
     // private var board: Board? = nil
     private var game: GameLogics? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // TODO: load game from file
         var levelModel = LevelModel()
         
         // TODO: load game from file
@@ -33,6 +35,7 @@ final class ViewController: UIViewController {
 //        }
         
         let levels: [Level] = [Level(levelModel)]
+        //
         
         printCodable(codable: levelModel)
         
@@ -40,6 +43,7 @@ final class ViewController: UIViewController {
         game?.setTileObserver(gameUIView)
         game?.setLevelObserver(mapView)
         
+        setupPictureView()
         setupGameUIView()
         setupMapView()
         
@@ -51,6 +55,20 @@ final class ViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         setUpMapButton()
+    }
+    
+    private func setupPictureView() {
+        view.addSubview(pictureView)
+        
+        pictureView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
+        pictureView.pin(to: view, [(.left, 15), (.right, -15)])
+        pictureView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
+        
+        if game != nil {
+            game?.setTileObserver(pictureView)
+        }
+        
+        pictureView.isHidden = false
     }
     
     private func setupGameUIView() {

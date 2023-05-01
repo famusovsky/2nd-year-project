@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class PictureView: UIView {
+class PictureView: UIView, TileObserver {
     private var goForwardOption = false
     private var goLeftOption = false
     private var goRightOption = false
@@ -84,6 +84,15 @@ class PictureView: UIView {
     
     public func redraw() {
         setNeedsDisplay()
+    }
+    
+    // TODO: fix -- have to show road only whrn go<there> possibility exists
+    func updateByTile(_ tileSide: TileSideData) {
+        goForwardOption = !tileSide.interactions.onGoForward.isEmpty
+        goLeftOption = !tileSide.interactions.onGoLeft.isEmpty
+        goRightOption = !tileSide.interactions.onGoRight.isEmpty
+        
+        redraw()
     }
 }
 
