@@ -10,9 +10,11 @@ import UIKit
 
 class GameUIView: UIView, TileObserver {
     private var currentInteractions: Interactions
+    private var actionExecutors: [ActionExecutor]
     
     override init(frame: CGRect) {
         currentInteractions = Interactions()
+        actionExecutors = []
         
         super.init(frame: frame)
         self.backgroundColor = .clear
@@ -22,6 +24,7 @@ class GameUIView: UIView, TileObserver {
     
     required init?(coder: NSCoder) {
         currentInteractions = Interactions()
+        actionExecutors = []
         
         super.init(coder: coder)
         self.backgroundColor = UIColor.clear
@@ -50,35 +53,51 @@ class GameUIView: UIView, TileObserver {
         self.addGestureRecognizer(tap)
     }
     
-    func updateByTile(_ tileSide: TileSideData) {
-        currentInteractions = tileSide.interactions
-    }
-    
     // Handle the swipe gesture
     @objc
-    func swipeAction(_ gesture: UISwipeGestureRecognizer) {
+    private func swipeAction(_ gesture: UISwipeGestureRecognizer) {
         // TODO: throw action to GameLogics
         if gesture.direction == .up {
             print("up")
+            pingAllActionExecutors(currentInteractions.onGoForward)
         } else if gesture.direction == .down {
             print("down")
+            pingAllActionExecutors(currentInteractions.onGoBack)
         } else if gesture.direction == .left {
             print("left")
+            pingAllActionExecutors(currentInteractions.onGoLeft)
         } else if gesture.direction == .right {
             print("right")
+            pingAllActionExecutors(currentInteractions.onGoRight)
         }
     }
     
     @objc
-    func tapAction(_ gesture: UITapGestureRecognizer) {
+    private func tapAction(_ gesture: UITapGestureRecognizer) {
         let tapLocation = Coordinate(x: Int(gesture.location(in: self).x), y: Int(gesture.location(in: self).y))
         
         for tapAction in currentInteractions.onTap {
             if tapAction.key.doesContainCoordinate(tapLocation) {
                 // TODO: throw action to GameLogics
                 print("tap success")
+                pingAllActionExecutors(tapAction.value)
             }
         }
         print("tap unsuccess")
+    }
+    
+    private func pingAllActionExecutors(_ actions: [Action]) {
+        for executor in actionExecutors {
+            executor.doActions(actions)
+        }
+    }
+    
+    public func updateByTile(_ tileSide: TileSideData) {
+        currentInteractions = tileSide.interactions
+    }
+    
+    public func setActionExecutor(_ executor: ActionExecutor) {
+        actionExecutors.append(executor)
+        print("executor is added")
     }
 }

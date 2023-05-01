@@ -8,10 +8,10 @@
 import Foundation
 
 struct LevelModel: Codable {
-    let board: Board
-    let logics: LogicPropertyArray
-    let coordinate: Coordinate
-    let direction: Direction
+    var board: Board
+    var logics: LogicPropertyArray
+    var coordinate: Coordinate
+    var direction: Direction
     
     init() {
         board = Board()
@@ -30,68 +30,63 @@ struct LevelModel: Codable {
 }
 
 class Level {
-    private let board: Board
-    private var logics: LogicPropertyArray
-    private var currentCoordinate: Coordinate
-    private var currentDirection: Direction
+    private var model: LevelModel
     private var tileObservers: [TileObserver] = []
     
     init() {
-        board = Board()
-        logics = LogicPropertyArray()
-        currentCoordinate = Coordinate()
-        currentDirection = Direction.north
+        model = LevelModel(Board(), LogicPropertyArray(), Coordinate(), Direction.north)
     }
     
     init(_ board: Board, _ logics: LogicPropertyArray,
          _ startCoordinate: Coordinate, _ startDirection: Direction) {
-        self.board = board
-        self.logics = logics
-        currentCoordinate = startCoordinate
-        currentDirection = startDirection
+        model = LevelModel(board, logics, startCoordinate, startDirection)
     }
     
     init(_ model: LevelModel) {
-        self.board = model.board
-        self.logics = model.logics
-        currentCoordinate = model.coordinate
-        currentDirection = model.direction
+        self.model = model
+    }
+    
+    public func getBoard() -> Board {
+        return model.board
     }
     
     public func turnRight() {
-        currentDirection.turnRight()
+        model.direction.turnRight()
         pingAllTileObservers()
     }
     
     public func turnLeft() {
-        currentDirection.turnLeft()
+        model.direction.turnLeft()
         pingAllTileObservers()
     }
     
     public func goForward() {
         let newPosition: Coordinate
-        switch currentDirection {
+        switch model.direction {
         case .north:
-            newPosition = Coordinate(x: currentCoordinate.x, y: currentCoordinate.y + 1)
+            newPosition = Coordinate(x: model.coordinate.x, y: model.coordinate.y + 1)
         case .east:
-            newPosition = Coordinate(x: currentCoordinate.x + 1, y: currentCoordinate.y)
+            newPosition = Coordinate(x: model.coordinate.x + 1, y: model.coordinate.y)
         case .south:
-            newPosition = Coordinate(x: currentCoordinate.x, y: currentCoordinate.y - 1)
+            newPosition = Coordinate(x: model.coordinate.x, y: model.coordinate.y - 1)
         case .west:
-            newPosition = Coordinate(x: currentCoordinate.x - 1, y: currentCoordinate.y)
+            newPosition = Coordinate(x: model.coordinate.x - 1, y: model.coordinate.y)
         }
         
-        switch board.getTile(newPosition) {
-        case .empty:
-            break
-        case .filled(let room):
-            currentCoordinate = newPosition
-            pingAllTileObservers(room)
+        if newPosition.x >= 0 && newPosition.y >= 0 &&
+            newPosition.x < model.board.width && newPosition.y < model.board.height {
+            switch model.board.getTile(newPosition) {
+            case .empty:
+                break
+            case .filled(let room):
+                model.coordinate = newPosition
+                pingAllTileObservers(room)
+            }
         }
     }
     
     private func getCurrentRoom() -> Room {
-        let currentTile = board.getTile(currentCoordinate)
+        let currentTile = model.board.getTile(model.coordinate)
         if case let .filled(room) = currentTile {
             return room
         }
@@ -99,7 +94,7 @@ class Level {
     }
     
     public func updateLogic(_ name: String, _ newValue: Int) {
-        logics.updateLogic(name: name, newValue: newValue)
+        model.logics.updateLogic(name: name, newValue: newValue)
         pingAllTileObservers(getCurrentRoom())
     }
     
@@ -107,12 +102,18 @@ class Level {
         tileObservers.append(observer)
     }
     
+    public func setTileObservers(_ observers: [TileObserver]) {
+        for observer in observers {
+            tileObservers.append(observer)
+        }
+    }
+    
     public func removeTileObservers() {
         tileObservers.removeAll(keepingCapacity: false)
     }
     
     private func pingAllTileObservers(_ room: Room) {
-        let current = room.getSideData(direction: currentDirection, logics: logics)
+        let current = room.getSideData(direction: model.direction, logics: model.logics)
         for observer in tileObservers {
             observer.updateByTile(current)
         }
@@ -120,5 +121,11 @@ class Level {
     
     public func pingAllTileObservers() {
         pingAllTileObservers(getCurrentRoom())
+    }
+    
+    public func logInfo() {
+        print((encodeToJSON(model.coordinate) ?? "none Coordinate")
+              + " --- " +
+              (encodeToJSON(model.direction) ?? "none Direction"))
     }
 }

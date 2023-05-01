@@ -11,6 +11,10 @@ enum Action: Codable {
     case nothing,
          win,
          lose,
+         goForward,
+         goBack,
+         turnLeft,
+         turnRight,
          goToLevel(destination: Int),
          updateLogics(logics: [String:Int])
 }

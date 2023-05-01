@@ -19,13 +19,6 @@ struct Board: Codable {
         field = []
         // startCoordinate = Coordinate(x: 0, y: 0)
         // startDirection = Direction.north
-        print(getJSON())
-    }
-    
-    public init(_ JSON: String) {
-        let decoder = JSONDecoder()
-        let data = JSON.data(using: .utf8)!
-        self = try! decoder.decode(Board.self, from: data)
     }
     
     public func getTile(_ x: size_t, _ y: size_t) -> BoardTile {
@@ -44,11 +37,5 @@ struct Board: Codable {
             return BoardTile.empty
         }
         return field[num]
-    }
-    
-    public func getJSON() -> String {
-        let encoder = JSONEncoder()
-        let data = try! encoder.encode(self)
-        return String(data: data, encoding: .utf8)!
     }
 }

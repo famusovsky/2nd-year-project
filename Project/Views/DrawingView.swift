@@ -10,6 +10,7 @@ import UIKit
 
 class DrawingView: UIView {
     // TODO: save the drawing between sessions
+    // TODO: update drwing algotithm
     private var path = UIBezierPath()
     private var isErasing = false
     
