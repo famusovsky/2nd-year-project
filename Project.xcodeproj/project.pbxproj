@@ -11,14 +11,14 @@
 		3F73E6F62A0967FC00303F15 /* Blondie Call Me.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F73E6F42A0967FC00303F15 /* Blondie Call Me.mp3 */; };
 		3F73E6F72A0967FC00303F15 /* Ecstatic Vibrations, Totally Transcendent.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F73E6F52A0967FC00303F15 /* Ecstatic Vibrations, Totally Transcendent.mp3 */; };
 		3F73E6F92A09692B00303F15 /* LevelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F73E6F82A09692B00303F15 /* LevelList.swift */; };
+		3F73E6FB2A0972A900303F15 /* test-level-1.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F73E6FA2A0972A900303F15 /* test-level-1.json */; };
 		3F7982762969BA7C00AF6702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7982752969BA7C00AF6702 /* AppDelegate.swift */; };
 		3F7982782969BA7C00AF6702 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7982772969BA7C00AF6702 /* SceneDelegate.swift */; };
 		3F7982802969BA7C00AF6702 /* Project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F79827E2969BA7C00AF6702 /* Project.xcdatamodeld */; };
 		3F7982822969BA7D00AF6702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7982812969BA7D00AF6702 /* Assets.xcassets */; };
 		3F7EA5CE29FFDB9200694AE4 /* ActionExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EA5CD29FFDB9200694AE4 /* ActionExecutor.swift */; };
 		3F7EA5D029FFDCC100694AE4 /* LevelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EA5CF29FFDCC100694AE4 /* LevelObserver.swift */; };
-		3F7EA5D429FFE8B900694AE4 /* board.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F7EA5D329FFE8B900694AE4 /* board.json */; };
-		3F7EA5D829FFEE5800694AE4 /* level.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F7EA5D729FFEE5800694AE4 /* level.json */; };
+		3F7EA5D829FFEE5800694AE4 /* test-level-0.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F7EA5D729FFEE5800694AE4 /* test-level-0.json */; };
 		3F7EA5DA29FFEF0100694AE4 /* Coder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EA5D929FFEF0100694AE4 /* Coder.swift */; };
 		3F996C6929F147DA00B7BFE2 /* GameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C6829F147DA00B7BFE2 /* GameUIView.swift */; };
 		3F996C6B29F147EE00B7BFE2 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C6A29F147EE00B7BFE2 /* PictureView.swift */; };
@@ -48,6 +48,7 @@
 		3F73E6F42A0967FC00303F15 /* Blondie Call Me.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Blondie Call Me.mp3"; sourceTree = "<group>"; };
 		3F73E6F52A0967FC00303F15 /* Ecstatic Vibrations, Totally Transcendent.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ecstatic Vibrations, Totally Transcendent.mp3"; sourceTree = "<group>"; };
 		3F73E6F82A09692B00303F15 /* LevelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelList.swift; sourceTree = "<group>"; };
+		3F73E6FA2A0972A900303F15 /* test-level-1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "test-level-1.json"; sourceTree = "<group>"; };
 		3F7982722969BA7C00AF6702 /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7982752969BA7C00AF6702 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F7982772969BA7C00AF6702 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,8 +57,7 @@
 		3F7982862969BA7D00AF6702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F7EA5CD29FFDB9200694AE4 /* ActionExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionExecutor.swift; sourceTree = "<group>"; };
 		3F7EA5CF29FFDCC100694AE4 /* LevelObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelObserver.swift; sourceTree = "<group>"; };
-		3F7EA5D329FFE8B900694AE4 /* board.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = board.json; sourceTree = "<group>"; };
-		3F7EA5D729FFEE5800694AE4 /* level.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = level.json; sourceTree = "<group>"; };
+		3F7EA5D729FFEE5800694AE4 /* test-level-0.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "test-level-0.json"; sourceTree = "<group>"; };
 		3F7EA5D929FFEF0100694AE4 /* Coder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coder.swift; sourceTree = "<group>"; };
 		3F996C6829F147DA00B7BFE2 /* GameUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIView.swift; sourceTree = "<group>"; };
 		3F996C6A29F147EE00B7BFE2 /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
@@ -132,8 +132,8 @@
 		3F7EA5CC29FFDA1F00694AE4 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				3F7EA5D329FFE8B900694AE4 /* board.json */,
-				3F7EA5D729FFEE5800694AE4 /* level.json */,
+				3F7EA5D729FFEE5800694AE4 /* test-level-0.json */,
+				3F73E6FA2A0972A900303F15 /* test-level-1.json */,
 				3F7EA5D929FFEF0100694AE4 /* Coder.swift */,
 			);
 			path = Data;
@@ -282,9 +282,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F73E6F62A0967FC00303F15 /* Blondie Call Me.mp3 in Resources */,
-				3F7EA5D829FFEE5800694AE4 /* level.json in Resources */,
+				3F73E6FB2A0972A900303F15 /* test-level-1.json in Resources */,
+				3F7EA5D829FFEE5800694AE4 /* test-level-0.json in Resources */,
 				3F73E6F72A0967FC00303F15 /* Ecstatic Vibrations, Totally Transcendent.mp3 in Resources */,
-				3F7EA5D429FFE8B900694AE4 /* board.json in Resources */,
 				3F7982822969BA7D00AF6702 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

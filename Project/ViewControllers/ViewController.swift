@@ -8,17 +8,18 @@ import UIKit
 final class ViewController: UIViewController {
     private let mapView = MapView()
     private let gameUIView = GameUIView()
-    // private var board: Board? = nil
     private let audio = AudioSpace()
     private var game: GameLogics? = nil
+    private var levelList = LevelList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var levelModel = LevelModel()
-        
         // TODO: load game from file
-        if let path = Bundle.main.path(forResource: "level", ofType: "json") {
+        
+        
+        var levelModel = LevelModel()
+        if let path = Bundle.main.path(forResource: "test-level-0", ofType: "json") {
             print("yes")
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -33,17 +34,35 @@ final class ViewController: UIViewController {
             print("no")
         }
         
-        let levels: [Level] = [Level(levelModel)]
+        levelList.addLevel(levelModel)
         
-        printCodable(codable: levelModel)
+        if let path = Bundle.main.path(forResource: "test-level-1", ofType: "json") {
+            print("yes")
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    levelModel = decodeFromJSON(jsonString, to: LevelModel.self) ?? LevelModel()
+                }
+            } catch {
+                // Handle error
+                print(error)
+            }
+        } else {
+            print("no")
+        }
         
-        game = GameLogics(levels)
+        levelList.addLevel(levelModel)
+        
+        // printCodable(codable: levelModel)
+        
+        game = GameLogics(levelList)
         game?.setTileObserver(gameUIView)
         game?.setLevelObserver(mapView)
         
-        setupPictureView()
         // TODO: change
-        audio.updateByLevel(levels.first!)
+        audio.setLevelList(levelList)
+        audio.updateByLevelIndex(0)
+        
         setupGameUIView()
         setupMapView()
         
