@@ -18,20 +18,20 @@ final class ViewController: UIViewController {
         var levelModel = LevelModel()
         
         // TODO: load game from file
-//        if let path = Bundle.main.path(forResource: "level", ofType: "json") {
-//            print("yes")
-//            do {
-//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-//                if let jsonString = String(data: data, encoding: .utf8) {
-//                    levelModel = decodeFromJSON(jsonString, to: LevelModel.self) ?? LevelModel()
-//                }
-//            } catch {
-//                // Handle error
-//                print(error)
-//            }
-//        } else {
-//            print("no")
-//        }
+        if let path = Bundle.main.path(forResource: "level", ofType: "json") {
+            print("yes")
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    levelModel = decodeFromJSON(jsonString, to: LevelModel.self) ?? LevelModel()
+                }
+            } catch {
+                // Handle error
+                print(error)
+            }
+        } else {
+            print("no")
+        }
         
         let levels: [Level] = [Level(levelModel)]
         
@@ -41,6 +41,7 @@ final class ViewController: UIViewController {
         game?.setTileObserver(gameUIView)
         game?.setLevelObserver(mapView)
         
+        setupPictureView()
         // TODO: change
         audio.updateByLevel(levels.first!)
         setupGameUIView()

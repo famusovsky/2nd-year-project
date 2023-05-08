@@ -48,4 +48,13 @@ struct LogicPropertyArray: Codable, Hashable {
     public func contains(_ logic: LogicProperty) -> Bool {
         return array.contains(where: { $0.name == logic.name && $0.getValue() == logic.getValue() })
     }
+    
+    public func contains(_ logics: LogicPropertyArray) -> Bool {
+        for logic in logics.array {
+            if !contains(logic) {
+                return false
+            }
+        }
+        return true
+    }
 }

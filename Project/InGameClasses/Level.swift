@@ -148,8 +148,22 @@ class Level {
     }
     
     public func logInfo() {
-        print((encodeToJSON(model.coordinate) ?? "none Coordinate")
-              + " --- " +
-              (encodeToJSON(model.direction) ?? "none Direction"))
+        var str = ""
+        
+        str += encodeToJSON(model.coordinate) ?? "Can't get current Coordinate"
+        str += " --- "
+        
+        switch model.direction {
+        case .north:
+            str += "north"
+        case .east:
+            str += "east"
+        case .south:
+            str += "south"
+        case .west:
+            str += "west"
+        }
+        
+        print(str)
     }
 }

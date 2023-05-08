@@ -48,15 +48,6 @@ class AudioSource {
         self.updateVolume()
     }
     
-//    public func applyFrom(_ soundCoordinate: Coordinate, _ width: Int, _ height: Int) {
-//        let x = soundCoordinate.x / width
-//        let y = soundCoordinate.y / height
-//        model.coordinate = Coordinate(x: x, y: y)
-//
-//        self.updateAudioResult()
-//        self.updateVolume()
-//    }
-    
     public func applyNewCoordinate(_ soundCoordinate: Coordinate) {
         model.coordinate = soundCoordinate
         
@@ -64,26 +55,9 @@ class AudioSource {
         self.updateVolume()
     }
     
-    //  ??? DO I NEED IT ???
-//    var getVectorOnCircle: Vector2D {
-//        return Vector2D(
-//            (Double(model.coordinate.x) - 0.5) * 2,
-//            (Double(model.coordinate.y) - 0.5) * 2
-//        )
-//    }
-    
-    //    // DELETED TODO: update corresponding to the player's position on the board
-    //    var userVector: Vector2D {
-    //        var vector = Vector2D(1, 0)
-    //        vector = vector.rotated(by: -self.yaw)
-    //        return vector
-    //    }
-    
     var player: AVAudioPlayer?
     
-    // DONE TODO: считать через coordinate + userCoordinate
     var distance: CGFloat {
-        //        let vector = self.getVectorOnCircle
         return sqrt(CGFloat(model.coordinate.x * model.coordinate.x + model.coordinate.y * model.coordinate.y))
     }
     
@@ -121,9 +95,8 @@ class AudioSource {
         
         self.timer = Timer(timeInterval: 0.3, repeats: true) { _ in
             self.player?.updateMeters()
+            // TODO: what is it?
             let power = self.averagePowerFromAllChannels()
-            let value = (160 + power)
-            // print(value)
         }
         RunLoop.current.add(self.timer!, forMode: .common)
     }
@@ -149,34 +122,33 @@ class AudioSource {
         return power / CGFloat(player.numberOfChannels)
     }
     
-    // DONE? TODO: считать через coordinate и userCoordinate
     func audioResult() -> CGFloat {
         var angle = atan2(Double(model.coordinate.y), Double(model.coordinate.x))
-        
+
         switch userDirection {
-        case .north:
-            angle += Double.pi / 2
         case .east:
-            break
-        case .south:
-            angle += Double.pi / 2 * 3
+            angle += Double.pi / 2
         case .west:
-            angle += Double.pi
+            angle -= Double.pi / 2
+        case .north:
+            angle -= Double.pi
+        case .south:
+            break
         }
-        
-        var deg = angle * CGFloat(180.0 / Double.pi)
-        deg = abs(deg)
-        
+
+        let deg = angle * CGFloat(180.0 / Double.pi)
+        let normDeg = (deg + 360).truncatingRemainder(dividingBy: 360)
+
         let result: CGFloat
-        if deg > 90 {
-            let value = (180 - deg) / 90
-            result = -1 + value
-        } else {
-            let value = deg / 90
+        if normDeg > 270 || normDeg < 90 {
+            let value = (180 - abs(normDeg - 180)) / 90
             result = 1 - value
+        } else {
+            let value = abs(normDeg - 180) / 90
+            result = -1 + value
         }
-        
-        return self.normalizeAudioResultByVolume(result: result)
+
+        return normalizeAudioResultByVolume(result: result)
     }
     
     private func normalizeAudioResultByVolume(result: CGFloat) -> CGFloat {

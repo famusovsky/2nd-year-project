@@ -74,7 +74,7 @@ extension AudioSpace: ActionExecutor {
         }
         
         func moveTo(_ direction: Direction) {
-            let xMovement = direction == .east ? 1 : direction == .west ? -1 : 0
+            let xMovement = direction == .east ? -1 : direction == .west ? 1 : 0
             let yMovement = direction == .south ? 1 : direction == .north ? -1 : 0
             for source in sources {
                 let newCoordinate = Coordinate(x: source.getX() + xMovement, y: source.getY() + yMovement)

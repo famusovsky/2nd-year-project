@@ -26,8 +26,4 @@ struct AudioFile: Codable {
     
     var name: String
     var file: File
-    
-    static var monkey: AudioFile {
-        return AudioFile(name: "monkey", file: .mp3)
-    }
 }

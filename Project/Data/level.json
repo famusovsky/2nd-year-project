@@ -1,25 +1,25 @@
 {
     "audio" : [
       {
-        "name" : "monkey",
+        "name" : "Ecstatic Vibrations, Totally Transcendent",
         "value" : 1
       },
       {
         "audio" : {
-          "name" : "monkey",
+          "name" : "Ecstatic Vibrations, Totally Transcendent",
           "file" : "mp3"
         },
         "coordinate" : {
-          "x" : 3,
-          "y" : 3
+          "x" : 4,
+          "y" : 0
         },
-        "range" : 3
+        "range" : 2
       }
     ],
     "logics" : {
       "array" : [
         {
-          "name" : "monkey",
+          "name" : "Ecstatic Vibrations, Totally Transcendent",
           "value" : 1
         }
       ]
@@ -29,7 +29,8 @@
     "y" : 0
   },
   "board" : {
-    "width" : 2,
+    "width" : 4,
+    "height" : 1,
     "field" : [
       {
         "filled" : {
@@ -751,8 +752,7 @@
           }
         }
       }
-    ],
-    "height" : 2
+    ]
   },
   "direction" : 0
 }
