@@ -1,9 +1,29 @@
 {
-  "logics" : {
-    "array" : [
-
-    ]
-  },
+    "audio" : [
+      {
+        "name" : "monkey",
+        "value" : 1
+      },
+      {
+        "audio" : {
+          "name" : "monkey",
+          "file" : "mp3"
+        },
+        "coordinate" : {
+          "x" : 3,
+          "y" : 3
+        },
+        "range" : 3
+      }
+    ],
+    "logics" : {
+      "array" : [
+        {
+          "name" : "monkey",
+          "value" : 1
+        }
+      ]
+    },
   "coordinate" : {
     "x" : 0,
     "y" : 0

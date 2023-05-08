@@ -29,6 +29,21 @@
 		3F996C8129F154BF00B7BFE2 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C8029F154BF00B7BFE2 /* Room.swift */; };
 		3F996C8329F1580E00B7BFE2 /* LogicProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C8229F1580E00B7BFE2 /* LogicProperties.swift */; };
 		3F996C8529F1654000B7BFE2 /* TileSideData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C8429F1654000B7BFE2 /* TileSideData.swift */; };
+		3FE50D012A013E44000513D4 /* monkey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE50CF62A013E44000513D4 /* monkey.mp3 */; };
+		3FE50D022A013E44000513D4 /* wind.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3FE50CF72A013E44000513D4 /* wind.wav */; };
+		3FE50D032A013E44000513D4 /* drum_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE50CF82A013E44000513D4 /* drum_1.mp3 */; };
+		3FE50D042A013E44000513D4 /* plane.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE50CF92A013E44000513D4 /* plane.mp3 */; };
+		3FE50D052A013E44000513D4 /* guitar_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE50CFA2A013E44000513D4 /* guitar_1.mp3 */; };
+		3FE50D062A013E44000513D4 /* drum_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE50CFB2A013E44000513D4 /* drum_2.mp3 */; };
+		3FE50D072A013E44000513D4 /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE50CFC2A013E44000513D4 /* song.mp3 */; };
+		3FE50D082A013E44000513D4 /* rain.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3FE50CFD2A013E44000513D4 /* rain.wav */; };
+		3FE50D092A013E44000513D4 /* empty.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3FE50CFE2A013E44000513D4 /* empty.wav */; };
+		3FE50D0A2A013E44000513D4 /* tiger.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE50CFF2A013E44000513D4 /* tiger.mp3 */; };
+		3FE50D0B2A013E44000513D4 /* zoo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE50D002A013E44000513D4 /* zoo.mp3 */; };
+		3FE50D0C2A014E46000513D4 /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE50CF12A013D34000513D4 /* AudioFile.swift */; };
+		3FE50D0D2A014E48000513D4 /* AudioSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE50CF22A013D34000513D4 /* AudioSpace.swift */; };
+		3FE50D0E2A014E4C000513D4 /* Vector2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE50CF32A013D34000513D4 /* Vector2D.swift */; };
+		3FE50D0F2A014E4F000513D4 /* AudioSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE50CF42A013D34000513D4 /* AudioSource.swift */; };
 		D317C0E264A6FCF9D73A8746 /* UIView_Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C5BCAE72D820973EF23A /* UIView_Pin.swift */; };
 		D317C31483BB4A3B9CA12821 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C1EFE91BAB35C62198F7 /* Board.swift */; };
 		D317C57D1F96F51200B66D97 /* Interactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317CD69557AC2459ED5350D /* Interactions.swift */; };
@@ -62,6 +77,21 @@
 		3F996C8029F154BF00B7BFE2 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		3F996C8229F1580E00B7BFE2 /* LogicProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicProperties.swift; sourceTree = "<group>"; };
 		3F996C8429F1654000B7BFE2 /* TileSideData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileSideData.swift; sourceTree = "<group>"; };
+		3FE50CF12A013D34000513D4 /* AudioFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
+		3FE50CF22A013D34000513D4 /* AudioSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpace.swift; sourceTree = "<group>"; };
+		3FE50CF32A013D34000513D4 /* Vector2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector2D.swift; sourceTree = "<group>"; };
+		3FE50CF42A013D34000513D4 /* AudioSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSource.swift; sourceTree = "<group>"; };
+		3FE50CF62A013E44000513D4 /* monkey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = monkey.mp3; sourceTree = "<group>"; };
+		3FE50CF72A013E44000513D4 /* wind.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wind.wav; sourceTree = "<group>"; };
+		3FE50CF82A013E44000513D4 /* drum_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drum_1.mp3; sourceTree = "<group>"; };
+		3FE50CF92A013E44000513D4 /* plane.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = plane.mp3; sourceTree = "<group>"; };
+		3FE50CFA2A013E44000513D4 /* guitar_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = guitar_1.mp3; sourceTree = "<group>"; };
+		3FE50CFB2A013E44000513D4 /* drum_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = drum_2.mp3; sourceTree = "<group>"; };
+		3FE50CFC2A013E44000513D4 /* song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song.mp3; sourceTree = "<group>"; };
+		3FE50CFD2A013E44000513D4 /* rain.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rain.wav; sourceTree = "<group>"; };
+		3FE50CFE2A013E44000513D4 /* empty.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = empty.wav; sourceTree = "<group>"; };
+		3FE50CFF2A013E44000513D4 /* tiger.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tiger.mp3; sourceTree = "<group>"; };
+		3FE50D002A013E44000513D4 /* zoo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zoo.mp3; sourceTree = "<group>"; };
 		D317C048D4E8765C428C38FB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D317C1EFE91BAB35C62198F7 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		D317C5BCAE72D820973EF23A /* UIView_Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Pin.swift; sourceTree = "<group>"; };
@@ -111,6 +141,7 @@
 				D317C374B1EC3C869F9283B5 /* InGameClasses */,
 				3F996C6729F147C300B7BFE2 /* Views */,
 				D317C94BC86F6DB3E96BAB66 /* ViewControllers */,
+				3FE50CF02A013D34000513D4 /* AudioLogic */,
 				D317CDFD60B51594F2371A50 /* Libraries */,
 			);
 			path = Project;
@@ -162,6 +193,36 @@
 				3F7EA5CF29FFDCC100694AE4 /* LevelObserver.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3FE50CF02A013D34000513D4 /* AudioLogic */ = {
+			isa = PBXGroup;
+			children = (
+				3FE50CF52A013DDC000513D4 /* Sounds */,
+				3FE50CF12A013D34000513D4 /* AudioFile.swift */,
+				3FE50CF22A013D34000513D4 /* AudioSpace.swift */,
+				3FE50CF32A013D34000513D4 /* Vector2D.swift */,
+				3FE50CF42A013D34000513D4 /* AudioSource.swift */,
+			);
+			path = AudioLogic;
+			sourceTree = "<group>";
+		};
+		3FE50CF52A013DDC000513D4 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				3FE50CF82A013E44000513D4 /* drum_1.mp3 */,
+				3FE50CFB2A013E44000513D4 /* drum_2.mp3 */,
+				3FE50CFE2A013E44000513D4 /* empty.wav */,
+				3FE50CFA2A013E44000513D4 /* guitar_1.mp3 */,
+				3FE50CF62A013E44000513D4 /* monkey.mp3 */,
+				3FE50CF92A013E44000513D4 /* plane.mp3 */,
+				3FE50CFD2A013E44000513D4 /* rain.wav */,
+				3FE50CFC2A013E44000513D4 /* song.mp3 */,
+				3FE50CFF2A013E44000513D4 /* tiger.mp3 */,
+				3FE50CF72A013E44000513D4 /* wind.wav */,
+				3FE50D002A013E44000513D4 /* zoo.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		D317C374B1EC3C869F9283B5 /* InGameClasses */ = {
@@ -247,9 +308,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE50D062A013E44000513D4 /* drum_2.mp3 in Resources */,
+				3FE50D0B2A013E44000513D4 /* zoo.mp3 in Resources */,
+				3FE50D072A013E44000513D4 /* song.mp3 in Resources */,
+				3FE50D022A013E44000513D4 /* wind.wav in Resources */,
 				3F7EA5D829FFEE5800694AE4 /* level.json in Resources */,
+				3FE50D042A013E44000513D4 /* plane.mp3 in Resources */,
 				3F7EA5D429FFE8B900694AE4 /* board.json in Resources */,
 				3F7982822969BA7D00AF6702 /* Assets.xcassets in Resources */,
+				3FE50D032A013E44000513D4 /* drum_1.mp3 in Resources */,
+				3FE50D092A013E44000513D4 /* empty.wav in Resources */,
+				3FE50D082A013E44000513D4 /* rain.wav in Resources */,
+				3FE50D0A2A013E44000513D4 /* tiger.mp3 in Resources */,
+				3FE50D052A013E44000513D4 /* guitar_1.mp3 in Resources */,
+				3FE50D012A013E44000513D4 /* monkey.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,15 +341,19 @@
 				3F996C7629F148E000B7BFE2 /* Action.swift in Sources */,
 				3F996C6B29F147EE00B7BFE2 /* PictureView.swift in Sources */,
 				3F7EA5CE29FFDB9200694AE4 /* ActionExecutor.swift in Sources */,
+				3FE50D0E2A014E4C000513D4 /* Vector2D.swift in Sources */,
+				3FE50D0D2A014E48000513D4 /* AudioSpace.swift in Sources */,
 				3F996C7F29F1525400B7BFE2 /* BoardTile.swift in Sources */,
 				3F010DBA29FED17500215260 /* DrawingView.swift in Sources */,
 				3F996C6D29F147FE00B7BFE2 /* MapView.swift in Sources */,
 				3F7982802969BA7C00AF6702 /* Project.xcdatamodeld in Sources */,
 				D317C0E264A6FCF9D73A8746 /* UIView_Pin.swift in Sources */,
 				3F996C7B29F14A5000B7BFE2 /* TileObserver.swift in Sources */,
+				3FE50D0F2A014E4F000513D4 /* AudioSource.swift in Sources */,
 				D317C31483BB4A3B9CA12821 /* Board.swift in Sources */,
 				3F7EA5DA29FFEF0100694AE4 /* Coder.swift in Sources */,
 				D317CBF2683F2D2DB521D970 /* Coordinate.swift in Sources */,
+				3FE50D0C2A014E46000513D4 /* AudioFile.swift in Sources */,
 				3F996C8129F154BF00B7BFE2 /* Room.swift in Sources */,
 				D317CFA2493B9DE54322688C /* Direction.swift in Sources */,
 				D317C57D1F96F51200B66D97 /* Interactions.swift in Sources */,

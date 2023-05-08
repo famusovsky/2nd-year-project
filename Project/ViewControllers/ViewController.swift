@@ -9,6 +9,7 @@ final class ViewController: UIViewController {
     private let mapView = MapView()
     private let gameUIView = GameUIView()
     // private var board: Board? = nil
+    private let audio = AudioSpace()
     private var game: GameLogics? = nil
     
     override func viewDidLoad() {
@@ -40,6 +41,8 @@ final class ViewController: UIViewController {
         game?.setTileObserver(gameUIView)
         game?.setLevelObserver(mapView)
         
+        // TODO: change
+        audio.updateByLevel(levels.first!)
         setupGameUIView()
         setupMapView()
         
@@ -63,6 +66,7 @@ final class ViewController: UIViewController {
         if game != nil {
             gameUIView.setActionExecutor(game!)
         }
+        gameUIView.setActionExecutor(audio)
         
         gameUIView.isHidden = false
     }
