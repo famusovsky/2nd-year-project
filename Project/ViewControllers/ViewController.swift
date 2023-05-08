@@ -4,6 +4,7 @@
 
 import Foundation
 import UIKit
+import CoreMotion
 
 final class ViewController: UIViewController {
     private let mapView = MapView()
@@ -11,6 +12,7 @@ final class ViewController: UIViewController {
     private let audio = AudioSpace()
     private var game: GameLogics? = nil
     private var levelList = LevelList()
+    private let motion = CMHeadphoneMotionManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,10 +65,26 @@ final class ViewController: UIViewController {
         audio.setLevelList(levelList)
         audio.updateByLevelIndex(0)
         
+        guard self.motion.isDeviceMotionAvailable else { return }
+
+        self.motion.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: {
+            [weak self] motion, error  in
+            guard let motion = motion, error == nil else { return }
+            self?.processData(motion)
+        })
+        
         setupGameUIView()
         setupMapView()
         
         setupView()
+    }
+    
+    private func processData(_ data: CMDeviceMotion) {
+        let angle = CGFloat(data.attitude.yaw)
+        audio.userAngle = angle
+//
+//        let deg = angle * CGFloat(180.0 / Double.pi)
+//        print(deg)
     }
     
     private func setupView() {

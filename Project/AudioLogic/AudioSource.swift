@@ -23,6 +23,12 @@ class AudioSource {
         }
     }
     
+    public var userAngle: CGFloat = 0 {
+        didSet {
+            self.updateAudio()
+        }
+    }
+    
     public func getX() -> Int {
         return model.coordinate.x
     }
@@ -126,10 +132,12 @@ class AudioSource {
         case .west:
             angle -= Double.pi / 2
         case .north:
-            angle -= Double.pi
-        case .south:
             break
+        case .south:
+            angle -= Double.pi
         }
+        
+        angle -= userAngle
 
         let normDeg = (angle * CGFloat(180.0 / Double.pi) + 360).truncatingRemainder(dividingBy: 360)
         let result: CGFloat

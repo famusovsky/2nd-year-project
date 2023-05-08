@@ -22,6 +22,12 @@ class AudioSpace {
         }
     }
     
+    public var userAngle: CGFloat = 0 {
+        didSet {
+            sources.forEach({ $0.userAngle = self.userAngle })
+        }
+    }
+    
     private func addSource(_ audioSource: AudioSource) {
         sources.append(audioSource)
     }
