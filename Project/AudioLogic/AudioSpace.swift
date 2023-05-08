@@ -5,9 +5,16 @@
 //  Created by Алексей Степанов on 07.05.2023.
 //
 
+import Foundation
+
 class AudioSpace {
     private var sources: [AudioSource] = []
     
+    private var levelList: LevelList?
+    
+    public func setLevelList(_ levelList: LevelList) {
+        self.levelList = levelList
+    }
     
     private var userDirection: Direction = .north {
         didSet {
@@ -32,11 +39,19 @@ class AudioSpace {
             sources.removeFirst()
         }
         
+        let w = Double(level.getBoard().width)
+        let h = Double(level.getBoard().height)
+        let maxDistance = sqrt(w * w + h * h)
+        
         for sourceModel in level.getAudioSources() {
-            addSource(AudioSource(sourceModel))
+            addSource(AudioSource(sourceModel, maxDistance))
         }
         
         userDirection = level.getDirection()
+    }
+    
+    public func updateByLevelIndex(_ index: Int) {
+        updateByLevel(levelList?.getLevel(index) ?? Level())
     }
 }
 
@@ -51,22 +66,19 @@ extension AudioSpace: ActionExecutor {
         switch action {
         case .goForward:
             moveTo(userDirection)
-            break
         case .goBack:
             moveTo(userDirection.opposite())
-            break
         case .turnLeft:
             userDirection.turnLeft()
-            break
         case .turnRight:
             userDirection.turnRight()
-            break
         case .win:
             break
         case .lose:
             break
-        case .goToLevel(_):
-            break
+        case .goToLevel(let destination):
+            updateByLevelIndex(destination)
+        // TODO: audio space should update when logics change
         case .updateLogics(_):
             break
         case .nothing:

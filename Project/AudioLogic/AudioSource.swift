@@ -15,10 +15,11 @@ struct AudioSourceModel: Codable {
 
 class AudioSource {
     private var model: AudioSourceModel
+    private let maxDistance: Double?
     
     public var userDirection: Direction = .north {
         didSet {
-            self.updateAudioResult()
+            self.updateAudio()
         }
     }
     
@@ -30,50 +31,65 @@ class AudioSource {
         return model.coordinate.y
     }
     
-    public init(_ audio: AudioFile, _ point: Coordinate, _ range: Double, _ addAnimation: Bool = true) {
-        model = AudioSourceModel(audio: audio, coordinate: point, range: range /*, addAnimation: addAnimation */)
+    public init(_ audio: AudioFile, _ point: Coordinate, _ range: Double, _ maxDistance: Double? = nil) {
+        self.model = AudioSourceModel(audio: audio, coordinate: point, range: range)
+        self.maxDistance = maxDistance
         
         self.runAudio()
         
-        self.updateAudioResult()
-        self.updateVolume()
+        self.updateAudio()
     }
     
-    public init(_ model: AudioSourceModel) {
+    public init(_ model: AudioSourceModel, _ maxDistance: Double? = nil) {
         self.model = model
+        self.maxDistance = maxDistance
         
         self.runAudio()
         
-        self.updateAudioResult()
-        self.updateVolume()
+        self.updateAudio()
     }
     
     public func applyNewCoordinate(_ soundCoordinate: Coordinate) {
         model.coordinate = soundCoordinate
         
-        self.updateAudioResult()
-        self.updateVolume()
+        self.updateAudio()
+    }
+    
+    var distance: Double {
+        if model.coordinate.x == model.coordinate.y && model.coordinate.x == 0 {
+            return 0
+        }
+        
+        var xRelativeToTheUser = Double(model.coordinate.x)
+        var yRelativeToTheUser = Double(model.coordinate.y)
+        
+        switch userDirection {
+        case .north:
+            yRelativeToTheUser -= 0.25
+        case .east:
+            xRelativeToTheUser -= 0.25
+        case .south:
+            yRelativeToTheUser += 0.25
+        case .west:
+            xRelativeToTheUser += 0.25
+        }
+        
+        return sqrt(xRelativeToTheUser * xRelativeToTheUser + yRelativeToTheUser * yRelativeToTheUser)
+    }
+    
+    var volume: Double {
+        if let maxDistance = maxDistance {
+            let distance = self.distance
+            if distance > maxDistance {
+                return maxDistance / distance * 0.05
+            }
+            return max(1 - distance / maxDistance, 0.05)
+        }
+        return 1
     }
     
     var player: AVAudioPlayer?
-    
-    var distance: CGFloat {
-        return sqrt(CGFloat(model.coordinate.x * model.coordinate.x + model.coordinate.y * model.coordinate.y))
-    }
-    
-    var volume: CGFloat {
-        let distance = self.distance
-        var volumeValue = max((1 - (max(distance, 0.2) - 0.2)), 0)
-        volumeValue = max(volumeValue, 0.05)
-        return volumeValue
-    }
-    
     var timer: Timer?
-    
-    func stopAudio() {
-        self.player?.stop()
-        self.timer?.invalidate()
-    }
     
     func runAudio() {
         guard let url = Bundle.main.url(forResource: model.audio.name, withExtension: model.audio.file.rawValue) else { return }
@@ -92,38 +108,17 @@ class AudioSource {
         } catch let error {
             print(error.localizedDescription)
         }
-        
-        self.timer = Timer(timeInterval: 0.3, repeats: true) { _ in
-            self.player?.updateMeters()
-            // TODO: what is it?
-            let power = self.averagePowerFromAllChannels()
-        }
-        RunLoop.current.add(self.timer!, forMode: .common)
     }
     
-    func updateVolume() {
-        player?.volume = Float(self.volume)
+    func stopAudio() {
+        self.player?.stop()
+        self.timer?.invalidate()
     }
     
     // DONE? TODO: change
-    func updateAudioResult() {
-        player?.pan = Float(audioResult())
-    }
-    
-    private func averagePowerFromAllChannels() -> CGFloat {
-        guard let player = self.player else {
-            return 0
-        }
-        
-        var power: CGFloat = 0.0
-        (0..<player.numberOfChannels).forEach { (index) in
-            power = power + CGFloat(player.averagePower(forChannel: index))
-        }
-        return power / CGFloat(player.numberOfChannels)
-    }
-    
-    func audioResult() -> CGFloat {
+    func updateAudio() {
         var angle = atan2(Double(model.coordinate.y), Double(model.coordinate.x))
+        let volume = self.volume
 
         switch userDirection {
         case .east:
@@ -136,10 +131,9 @@ class AudioSource {
             break
         }
 
-        let deg = angle * CGFloat(180.0 / Double.pi)
-        let normDeg = (deg + 360).truncatingRemainder(dividingBy: 360)
-
+        let normDeg = (angle * CGFloat(180.0 / Double.pi) + 360).truncatingRemainder(dividingBy: 360)
         let result: CGFloat
+        
         if normDeg > 270 || normDeg < 90 {
             let value = (180 - abs(normDeg - 180)) / 90
             result = 1 - value
@@ -147,13 +141,9 @@ class AudioSource {
             let value = abs(normDeg - 180) / 90
             result = -1 + value
         }
-
-        return normalizeAudioResultByVolume(result: result)
-    }
-    
-    private func normalizeAudioResultByVolume(result: CGFloat) -> CGFloat {
-        let volume = self.volume
-        return result - result * pow(volume, 3)
+        
+        player?.pan = Float(result - result * pow(volume, 3))
+        player?.volume = Float(volume)
     }
 }
 
