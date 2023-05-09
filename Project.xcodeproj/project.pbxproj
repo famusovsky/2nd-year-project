@@ -8,14 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		3F010DBA29FED17500215260 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F010DB929FED17500215260 /* DrawingView.swift */; };
+		3F73E6F62A0967FC00303F15 /* Blondie Call Me.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F73E6F42A0967FC00303F15 /* Blondie Call Me.mp3 */; };
+		3F73E6F72A0967FC00303F15 /* Ecstatic Vibrations, Totally Transcendent.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F73E6F52A0967FC00303F15 /* Ecstatic Vibrations, Totally Transcendent.mp3 */; };
+		3F73E6F92A09692B00303F15 /* LevelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F73E6F82A09692B00303F15 /* LevelList.swift */; };
+		3F73E6FB2A0972A900303F15 /* test-level-1.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F73E6FA2A0972A900303F15 /* test-level-1.json */; };
 		3F7982762969BA7C00AF6702 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7982752969BA7C00AF6702 /* AppDelegate.swift */; };
 		3F7982782969BA7C00AF6702 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7982772969BA7C00AF6702 /* SceneDelegate.swift */; };
 		3F7982802969BA7C00AF6702 /* Project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F79827E2969BA7C00AF6702 /* Project.xcdatamodeld */; };
 		3F7982822969BA7D00AF6702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7982812969BA7D00AF6702 /* Assets.xcassets */; };
 		3F7EA5CE29FFDB9200694AE4 /* ActionExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EA5CD29FFDB9200694AE4 /* ActionExecutor.swift */; };
 		3F7EA5D029FFDCC100694AE4 /* LevelObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EA5CF29FFDCC100694AE4 /* LevelObserver.swift */; };
-		3F7EA5D429FFE8B900694AE4 /* board.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F7EA5D329FFE8B900694AE4 /* board.json */; };
-		3F7EA5D829FFEE5800694AE4 /* level.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F7EA5D729FFEE5800694AE4 /* level.json */; };
+		3F7EA5D829FFEE5800694AE4 /* test-level-0.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F7EA5D729FFEE5800694AE4 /* test-level-0.json */; };
 		3F7EA5DA29FFEF0100694AE4 /* Coder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7EA5D929FFEF0100694AE4 /* Coder.swift */; };
 		3F996C6929F147DA00B7BFE2 /* GameUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C6829F147DA00B7BFE2 /* GameUIView.swift */; };
 		3F996C6B29F147EE00B7BFE2 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C6A29F147EE00B7BFE2 /* PictureView.swift */; };
@@ -29,6 +32,9 @@
 		3F996C8129F154BF00B7BFE2 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C8029F154BF00B7BFE2 /* Room.swift */; };
 		3F996C8329F1580E00B7BFE2 /* LogicProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C8229F1580E00B7BFE2 /* LogicProperties.swift */; };
 		3F996C8529F1654000B7BFE2 /* TileSideData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F996C8429F1654000B7BFE2 /* TileSideData.swift */; };
+		3FE50D0C2A014E46000513D4 /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE50CF12A013D34000513D4 /* AudioFile.swift */; };
+		3FE50D0D2A014E48000513D4 /* AudioSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE50CF22A013D34000513D4 /* AudioSpace.swift */; };
+		3FE50D0F2A014E4F000513D4 /* AudioSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE50CF42A013D34000513D4 /* AudioSource.swift */; };
 		D317C0E264A6FCF9D73A8746 /* UIView_Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C5BCAE72D820973EF23A /* UIView_Pin.swift */; };
 		D317C31483BB4A3B9CA12821 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317C1EFE91BAB35C62198F7 /* Board.swift */; };
 		D317C57D1F96F51200B66D97 /* Interactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317CD69557AC2459ED5350D /* Interactions.swift */; };
@@ -39,6 +45,10 @@
 
 /* Begin PBXFileReference section */
 		3F010DB929FED17500215260 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		3F73E6F42A0967FC00303F15 /* Blondie Call Me.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Blondie Call Me.mp3"; sourceTree = "<group>"; };
+		3F73E6F52A0967FC00303F15 /* Ecstatic Vibrations, Totally Transcendent.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ecstatic Vibrations, Totally Transcendent.mp3"; sourceTree = "<group>"; };
+		3F73E6F82A09692B00303F15 /* LevelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelList.swift; sourceTree = "<group>"; };
+		3F73E6FA2A0972A900303F15 /* test-level-1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "test-level-1.json"; sourceTree = "<group>"; };
 		3F7982722969BA7C00AF6702 /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7982752969BA7C00AF6702 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F7982772969BA7C00AF6702 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,8 +57,7 @@
 		3F7982862969BA7D00AF6702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F7EA5CD29FFDB9200694AE4 /* ActionExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionExecutor.swift; sourceTree = "<group>"; };
 		3F7EA5CF29FFDCC100694AE4 /* LevelObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelObserver.swift; sourceTree = "<group>"; };
-		3F7EA5D329FFE8B900694AE4 /* board.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = board.json; sourceTree = "<group>"; };
-		3F7EA5D729FFEE5800694AE4 /* level.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = level.json; sourceTree = "<group>"; };
+		3F7EA5D729FFEE5800694AE4 /* test-level-0.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "test-level-0.json"; sourceTree = "<group>"; };
 		3F7EA5D929FFEF0100694AE4 /* Coder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coder.swift; sourceTree = "<group>"; };
 		3F996C6829F147DA00B7BFE2 /* GameUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameUIView.swift; sourceTree = "<group>"; };
 		3F996C6A29F147EE00B7BFE2 /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
@@ -62,6 +71,9 @@
 		3F996C8029F154BF00B7BFE2 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		3F996C8229F1580E00B7BFE2 /* LogicProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicProperties.swift; sourceTree = "<group>"; };
 		3F996C8429F1654000B7BFE2 /* TileSideData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileSideData.swift; sourceTree = "<group>"; };
+		3FE50CF12A013D34000513D4 /* AudioFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
+		3FE50CF22A013D34000513D4 /* AudioSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpace.swift; sourceTree = "<group>"; };
+		3FE50CF42A013D34000513D4 /* AudioSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSource.swift; sourceTree = "<group>"; };
 		D317C048D4E8765C428C38FB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D317C1EFE91BAB35C62198F7 /* Board.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		D317C5BCAE72D820973EF23A /* UIView_Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView_Pin.swift; sourceTree = "<group>"; };
@@ -111,6 +123,7 @@
 				D317C374B1EC3C869F9283B5 /* InGameClasses */,
 				3F996C6729F147C300B7BFE2 /* Views */,
 				D317C94BC86F6DB3E96BAB66 /* ViewControllers */,
+				3FE50CF02A013D34000513D4 /* AudioLogic */,
 				D317CDFD60B51594F2371A50 /* Libraries */,
 			);
 			path = Project;
@@ -119,8 +132,8 @@
 		3F7EA5CC29FFDA1F00694AE4 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				3F7EA5D329FFE8B900694AE4 /* board.json */,
-				3F7EA5D729FFEE5800694AE4 /* level.json */,
+				3F7EA5D729FFEE5800694AE4 /* test-level-0.json */,
+				3F73E6FA2A0972A900303F15 /* test-level-1.json */,
 				3F7EA5D929FFEF0100694AE4 /* Coder.swift */,
 			);
 			path = Data;
@@ -164,11 +177,32 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		3FE50CF02A013D34000513D4 /* AudioLogic */ = {
+			isa = PBXGroup;
+			children = (
+				3FE50CF52A013DDC000513D4 /* Sounds */,
+				3FE50CF12A013D34000513D4 /* AudioFile.swift */,
+				3FE50CF22A013D34000513D4 /* AudioSpace.swift */,
+				3FE50CF42A013D34000513D4 /* AudioSource.swift */,
+			);
+			path = AudioLogic;
+			sourceTree = "<group>";
+		};
+		3FE50CF52A013DDC000513D4 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				3F73E6F42A0967FC00303F15 /* Blondie Call Me.mp3 */,
+				3F73E6F52A0967FC00303F15 /* Ecstatic Vibrations, Totally Transcendent.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		D317C374B1EC3C869F9283B5 /* InGameClasses */ = {
 			isa = PBXGroup;
 			children = (
 				3F996C6E29F1484E00B7BFE2 /* GameLogics.swift */,
 				3F996C7129F148A100B7BFE2 /* Level.swift */,
+				3F73E6F82A09692B00303F15 /* LevelList.swift */,
 			);
 			path = InGameClasses;
 			sourceTree = "<group>";
@@ -247,8 +281,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F7EA5D829FFEE5800694AE4 /* level.json in Resources */,
-				3F7EA5D429FFE8B900694AE4 /* board.json in Resources */,
+				3F73E6F62A0967FC00303F15 /* Blondie Call Me.mp3 in Resources */,
+				3F73E6FB2A0972A900303F15 /* test-level-1.json in Resources */,
+				3F7EA5D829FFEE5800694AE4 /* test-level-0.json in Resources */,
+				3F73E6F72A0967FC00303F15 /* Ecstatic Vibrations, Totally Transcendent.mp3 in Resources */,
 				3F7982822969BA7D00AF6702 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,19 +305,23 @@
 				3F996C7629F148E000B7BFE2 /* Action.swift in Sources */,
 				3F996C6B29F147EE00B7BFE2 /* PictureView.swift in Sources */,
 				3F7EA5CE29FFDB9200694AE4 /* ActionExecutor.swift in Sources */,
+				3FE50D0D2A014E48000513D4 /* AudioSpace.swift in Sources */,
 				3F996C7F29F1525400B7BFE2 /* BoardTile.swift in Sources */,
 				3F010DBA29FED17500215260 /* DrawingView.swift in Sources */,
 				3F996C6D29F147FE00B7BFE2 /* MapView.swift in Sources */,
 				3F7982802969BA7C00AF6702 /* Project.xcdatamodeld in Sources */,
 				D317C0E264A6FCF9D73A8746 /* UIView_Pin.swift in Sources */,
 				3F996C7B29F14A5000B7BFE2 /* TileObserver.swift in Sources */,
+				3FE50D0F2A014E4F000513D4 /* AudioSource.swift in Sources */,
 				D317C31483BB4A3B9CA12821 /* Board.swift in Sources */,
 				3F7EA5DA29FFEF0100694AE4 /* Coder.swift in Sources */,
 				D317CBF2683F2D2DB521D970 /* Coordinate.swift in Sources */,
+				3FE50D0C2A014E46000513D4 /* AudioFile.swift in Sources */,
 				3F996C8129F154BF00B7BFE2 /* Room.swift in Sources */,
 				D317CFA2493B9DE54322688C /* Direction.swift in Sources */,
 				D317C57D1F96F51200B66D97 /* Interactions.swift in Sources */,
 				3F996C8529F1654000B7BFE2 /* TileSideData.swift in Sources */,
+				3F73E6F92A09692B00303F15 /* LevelList.swift in Sources */,
 				D317CE373725AD0811E5D779 /* ViewController.swift in Sources */,
 				3F7EA5D029FFDCC100694AE4 /* LevelObserver.swift in Sources */,
 				3F996C7D29F14D7700B7BFE2 /* ActionLocation.swift in Sources */,
@@ -410,6 +450,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L3S5H274HV;
@@ -419,13 +460,17 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.Project;
+				PRODUCT_BUNDLE_IDENTIFIER = bebra.Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -437,6 +482,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L3S5H274HV;
@@ -446,13 +492,17 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.Project;
+				PRODUCT_BUNDLE_IDENTIFIER = bebra.Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

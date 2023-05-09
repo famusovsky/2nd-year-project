@@ -11,13 +11,17 @@ struct LogicProperty: Codable, Hashable {
     let name: String
     private var value: Int
     
-    init(name: String, value: Int) {
+    init(_ name: String, _ value: Int) {
         self.name = name
         self.value = value
     }
     
-    mutating func updateValue(value: Int) {
+    mutating func updateValue(_ value: Int) {
         self.value = value
+    }
+    
+    public func getValue() -> Int {
+        return value
     }
 }
 
@@ -34,10 +38,23 @@ struct LogicPropertyArray: Codable, Hashable {
     
     mutating func updateLogic(name: String, newValue: Int) {
         if let index = array.firstIndex(where: {$0.name == name}) {
-            array[index].updateValue(value: newValue)
+            array[index].updateValue(newValue)
         } else {
-            let logic = LogicProperty(name: name, value: newValue)
+            let logic = LogicProperty(name, newValue)
             array.append(logic)
         }
+    }
+    
+    public func contains(_ logic: LogicProperty) -> Bool {
+        return array.contains(where: { $0.name == logic.name && $0.getValue() == logic.getValue() })
+    }
+    
+    public func contains(_ logics: LogicPropertyArray) -> Bool {
+        for logic in logics.array {
+            if !contains(logic) {
+                return false
+            }
+        }
+        return true
     }
 }

@@ -65,10 +65,10 @@ class GameUIView: UIView, TileObserver {
             pingAllActionExecutors(currentInteractions.onGoBack)
         } else if gesture.direction == .left {
             print("left")
-            pingAllActionExecutors(currentInteractions.onGoLeft)
+            pingAllActionExecutors(currentInteractions.onGoRight)
         } else if gesture.direction == .right {
             print("right")
-            pingAllActionExecutors(currentInteractions.onGoRight)
+            pingAllActionExecutors(currentInteractions.onGoLeft)
         }
     }
     

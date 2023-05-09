@@ -17,4 +17,8 @@ enum Direction: Int, Codable {
     mutating func turnLeft() {
         self = Direction(rawValue: (rawValue + 3) % 4)!
     }
+    
+    func opposite() -> Direction {
+        return Direction(rawValue: (rawValue + 2) % 4)!
+    }
 }

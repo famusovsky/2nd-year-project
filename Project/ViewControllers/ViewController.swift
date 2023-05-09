@@ -4,55 +4,89 @@
 
 import Foundation
 import UIKit
+import AVFoundation
+import CoreMotion
 
 final class ViewController: UIViewController {
     private let mapView = MapView()
     private let gameUIView = GameUIView()
     private let pictureView = PictureView()
-    // private var board: Board? = nil
+    private let audio = AudioSpace()
     private var game: GameLogics? = nil
+    private var levelList = LevelList()
+    private let headphoneMotionManager = CMHeadphoneMotionManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // TODO: load game from file
         var levelModel = LevelModel()
+        if let path = Bundle.main.path(forResource: "test-level-0", ofType: "json") {
+            print("yes")
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    levelModel = decodeFromJSON(jsonString, to: LevelModel.self) ?? LevelModel()
+                }
+            } catch {
+                // Handle error
+                print(error)
+            }
+        } else {
+            print("no")
+        }
         
-        // TODO: load game from file
-//        if let path = Bundle.main.path(forResource: "level", ofType: "json") {
-//            print("yes")
-//            do {
-//                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-//                if let jsonString = String(data: data, encoding: .utf8) {
-//                    levelModel = decodeFromJSON(jsonString, to: LevelModel.self) ?? LevelModel()
-//                }
-//            } catch {
-//                // Handle error
-//                print(error)
-//            }
-//        } else {
-//            print("no")
-//        }
+        levelList.addLevel(levelModel)
         
-        let levels: [Level] = [Level(levelModel)]
-        //
+        if let path = Bundle.main.path(forResource: "test-level-1", ofType: "json") {
+            print("yes")
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    levelModel = decodeFromJSON(jsonString, to: LevelModel.self) ?? LevelModel()
+                }
+            } catch {
+                // Handle error
+                print(error)
+            }
+        } else {
+            print("no")
+        }
         
-        printCodable(codable: levelModel)
+        levelList.addLevel(levelModel)
         
-        game = GameLogics(levels)
+        game = GameLogics(levelList)
         game?.setTileObserver(gameUIView)
         game?.setLevelObserver(mapView)
+        
+        // TODO: change
+        audio.setLevelList(levelList)
+        audio.updateByLevelIndex(0)
         
         setupPictureView()
         setupGameUIView()
         setupMapView()
-        
         setupView()
+        
+        if headphoneMotionManager.isDeviceMotionAvailable {
+            NotificationCenter.default.addObserver(self, selector: #selector(handleRouteChange), name: AVAudioSession.routeChangeNotification, object: nil)
+            
+            headphoneMotionManagerTryConnect()
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: AVAudioSession.routeChangeNotification, object: nil)
+    }
+    
+    private func processData(_ data: CMDeviceMotion) {
+        let angle = CGFloat(data.attitude.yaw)
+        audio.userAngle = angle
     }
     
     private func setupView() {
         // TODO: setup main view
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .black
         
         setUpMapButton()
     }
@@ -81,6 +115,7 @@ final class ViewController: UIViewController {
         if game != nil {
             gameUIView.setActionExecutor(game!)
         }
+        gameUIView.setActionExecutor(audio)
         
         gameUIView.isHidden = false
     }
@@ -120,16 +155,51 @@ final class ViewController: UIViewController {
 }
 
 extension ViewController {
-    public func printCodable(codable: Codable) {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        do {
-            let jsonData = try encoder.encode(codable)
-            if let jsonString = String(data: jsonData, encoding: .utf8) {
-                print(jsonString)
+    @objc
+    func handleRouteChange(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let reasonValue = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt,
+              let reason = AVAudioSession.RouteChangeReason(rawValue: reasonValue) else {
+            return
+        }
+        
+        switch reason {
+        case .newDeviceAvailable:
+            headphoneMotionManagerTryConnect()
+        case .oldDeviceUnavailable:
+            headphoneMotionManagerDisconnect()
+        default:
+            break
+        }
+    }
+    
+    func headphoneMotionManagerTryConnect() {
+        if headphoneMotionManager.isDeviceMotionAvailable {
+            let audioSession = AVAudioSession.sharedInstance()
+            let outputs = audioSession.currentRoute.outputs
+            var isSpatialAudioAvialible = false
+            for output in outputs {
+                if output.portType == AVAudioSession.Port.bluetoothA2DP {
+                    isSpatialAudioAvialible = true
+                    break
+                }
             }
-        } catch {
-            print(error.localizedDescription)
+            
+            if isSpatialAudioAvialible {
+                headphoneMotionManager.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: {
+                    [weak self] motion, error  in
+                    guard let motion = motion, error == nil else { return }
+                    self?.processData(motion)
+                })
+            }
+        }
+    }
+    
+    func headphoneMotionManagerDisconnect() {
+        if headphoneMotionManager.isDeviceMotionActive {
+            headphoneMotionManager.stopDeviceMotionUpdates()
+            
+            audio.userAngle = 0
         }
     }
 }

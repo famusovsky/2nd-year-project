@@ -22,8 +22,10 @@ struct Room: Codable {
     func getSideData(direction: Direction,
                          logics: LogicPropertyArray) -> TileSideData  {
         
-        if let set = data[direction], let value = set[logics]  {
-            return value
+        if let set = data[direction]  {
+            if let index = set.firstIndex(where: {logics.contains($0.key)} ){
+                return set[index].value
+            }
         }
         return TileSideData()
     }

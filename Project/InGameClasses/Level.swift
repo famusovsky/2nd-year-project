@@ -12,38 +12,50 @@ struct LevelModel: Codable {
     var logics: LogicPropertyArray
     var coordinate: Coordinate
     var direction: Direction
+    var audio: [LogicProperty:AudioSourceModel]
     
     init() {
         board = Board()
         logics = LogicPropertyArray()
         coordinate = Coordinate()
         direction = Direction.north
+        audio = [:]
     }
     
     init(_ board: Board, _ logics: LogicPropertyArray,
-         _ startCoordinate: Coordinate, _ startDirection: Direction) {
+         _ coordinate: Coordinate, _ direction: Direction, _ audio: [LogicProperty:AudioSourceModel]) {
         self.board = board
         self.logics = logics
-        coordinate = startCoordinate
-        direction = startDirection
+        self.coordinate = coordinate
+        self.direction = direction
+        self.audio = audio
     }
 }
 
 class Level {
-    private var model: LevelModel
+    private var model: LevelModel {
+        didSet {
+            print(model.coordinate)
+            print(model.direction)
+        }
+    }
     private var tileObservers: [TileObserver] = []
     
     init() {
-        model = LevelModel(Board(), LogicPropertyArray(), Coordinate(), Direction.north)
+        model = LevelModel()
     }
     
     init(_ board: Board, _ logics: LogicPropertyArray,
-         _ startCoordinate: Coordinate, _ startDirection: Direction) {
-        model = LevelModel(board, logics, startCoordinate, startDirection)
+         _ startCoordinate: Coordinate, _ startDirection: Direction, _ audio: [LogicProperty:AudioSourceModel]) {
+        model = LevelModel(board, logics, startCoordinate, startDirection, audio)
     }
     
     init(_ model: LevelModel) {
         self.model = model
+    }
+    
+    public func getDirection() -> Direction {
+        return model.direction
     }
     
     public func getBoard() -> Board {
@@ -123,9 +135,35 @@ class Level {
         pingAllTileObservers(getCurrentRoom())
     }
     
+    public func getAudioSources() -> [AudioSourceModel] {
+        var result: [AudioSourceModel] = []
+        
+        for audio in model.audio {
+            if model.logics.contains(audio.key) {
+                result.append(audio.value)
+            }
+        }
+        
+        return result
+    }
+    
     public func logInfo() {
-        print((encodeToJSON(model.coordinate) ?? "none Coordinate")
-              + " --- " +
-              (encodeToJSON(model.direction) ?? "none Direction"))
+        var str = ""
+        
+        str += encodeToJSON(model.coordinate) ?? "Can't get current Coordinate"
+        str += " --- "
+        
+        switch model.direction {
+        case .north:
+            str += "north"
+        case .east:
+            str += "east"
+        case .south:
+            str += "south"
+        case .west:
+            str += "west"
+        }
+        
+        print(str)
     }
 }
