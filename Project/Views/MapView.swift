@@ -78,7 +78,7 @@ class MapView: UIView, LevelObserver {
     }
     
     private func setUpDrawingView() {
-        drawingView.setUp()
+        drawingView.cleanUp()
         
         self.addSubview(drawingView)
         drawingView.pin(to: self)

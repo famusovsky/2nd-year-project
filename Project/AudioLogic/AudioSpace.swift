@@ -84,7 +84,6 @@ extension AudioSpace: ActionExecutor {
             break
         case .goToLevel(let destination):
             updateByLevelIndex(destination)
-        // TODO: audio space should update when logics change
         case .updateLogics(_):
             break
         case .nothing:

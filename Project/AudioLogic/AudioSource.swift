@@ -121,7 +121,6 @@ class AudioSource {
         self.timer?.invalidate()
     }
     
-    // DONE? TODO: change
     func updateAudio() {
         var angle = atan2(Double(model.coordinate.y), Double(model.coordinate.x))
         let volume = self.volume
