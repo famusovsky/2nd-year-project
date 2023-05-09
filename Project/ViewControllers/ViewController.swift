@@ -14,6 +14,7 @@ final class ViewController: UIViewController {
     private var game: GameLogics? = nil
     private var levelList = LevelList()
     private let headphoneMotionManager = CMHeadphoneMotionManager()
+    private let deviceMotionManager = CMMotionManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +69,7 @@ final class ViewController: UIViewController {
         setupMapView()
         setupView()
         
-        if headphoneMotionManager.isDeviceMotionAvailable {
+        if headphoneMotionManager.isDeviceMotionAvailable && deviceMotionManager.isDeviceMotionAvailable {
             NotificationCenter.default.addObserver(self, selector: #selector(handleRouteChange), name: AVAudioSession.routeChangeNotification, object: nil)
             
             headphoneMotionManagerTryConnect()
@@ -77,11 +78,6 @@ final class ViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: AVAudioSession.routeChangeNotification, object: nil)
-    }
-    
-    private func processData(_ data: CMDeviceMotion) {
-        let angle = CGFloat(data.attitude.yaw)
-        audio.userAngle = angle
     }
     
     private func setupView() {
@@ -160,7 +156,19 @@ extension ViewController {
     }
     
     func headphoneMotionManagerTryConnect() {
-        if headphoneMotionManager.isDeviceMotionAvailable {
+        func processHeadphonesData(_ data: CMDeviceMotion) {
+            let angle = CGFloat(data.attitude.yaw)
+            audio.userAngle = angle
+        }
+        
+        func processDeviceData(_ data: CMDeviceMotion) {
+            let angle = CGFloat(data.attitude.yaw)
+            
+            print(angle * 180 / .pi)
+            audio.deviceAngle = -1 * angle
+        }
+        
+        if headphoneMotionManager.isDeviceMotionAvailable && deviceMotionManager.isDeviceMotionAvailable {
             let audioSession = AVAudioSession.sharedInstance()
             let outputs = audioSession.currentRoute.outputs
             var isSpatialAudioAvialible = false
@@ -173,9 +181,15 @@ extension ViewController {
             
             if isSpatialAudioAvialible {
                 headphoneMotionManager.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: {
-                    [weak self] motion, error  in
+                    motion, error  in
                     guard let motion = motion, error == nil else { return }
-                    self?.processData(motion)
+                    processHeadphonesData(motion)
+                })
+                
+                deviceMotionManager.startDeviceMotionUpdates(to: OperationQueue.main, withHandler: {
+                    motion, error  in
+                    guard let motion = motion, error == nil else { return }
+                    processDeviceData(motion)
                 })
             }
         }
@@ -186,6 +200,7 @@ extension ViewController {
             headphoneMotionManager.stopDeviceMotionUpdates()
             
             audio.userAngle = 0
+            audio.deviceAngle = 0
         }
     }
 }
