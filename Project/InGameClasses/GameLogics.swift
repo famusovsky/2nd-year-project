@@ -8,14 +8,14 @@
 import Foundation
 
 class GameLogics: ActionExecutor {
-    private let levels: LevelList
+    private let levelList: LevelList
     private var currentLevel: Int
     private var tileObservers: [TileObserver] = []
     private var levelObservers: [LevelObserver] = []
     // TODO: array of pictures
     
     init(_ levels: LevelList, _ currentLevel: Int = 0) {
-        self.levels = levels
+        self.levelList = levels
         self.currentLevel = currentLevel
     }
     
@@ -46,55 +46,52 @@ class GameLogics: ActionExecutor {
             lose()
             break
         case .goForward:
-            levels.getLevel(currentLevel)?.goForward()
+            levelList.getLevel(currentLevel)?.goForward()
             break
         case .goBack:
             break
         case .turnLeft:
-            levels.getLevel(currentLevel)?.turnLeft()
+            levelList.getLevel(currentLevel)?.turnLeft()
             break
         case .turnRight:
-            levels.getLevel(currentLevel)?.turnRight()
+            levelList.getLevel(currentLevel)?.turnRight()
             break
         case .goToLevel(let destination):
-            levels.getLevel(currentLevel)?.removeTileObservers()
+            levelList.getLevel(currentLevel)?.removeTileObservers()
             currentLevel = destination
             
             // TODO: update Views
-            levels.getLevel(currentLevel)?.setTileObservers(tileObservers)
-            levels.getLevel(currentLevel)?.pingAllTileObservers()
+            levelList.getLevel(currentLevel)?.setTileObservers(tileObservers)
+            levelList.getLevel(currentLevel)?.pingAllTileObservers()
             pingAllLevelObservers()
             break
         case .updateLogics(let logics):
             for logic in logics {
-                levels.getLevel(currentLevel)?.updateLogic(logic.key, logic.value)
+                levelList.getLevel(currentLevel)?.updateLogic(logic.key, logic.value)
             }
-            levels.getLevel(currentLevel)?.pingAllTileObservers()
+            levelList.getLevel(currentLevel)?.pingAllTileObservers()
             break
         case .nothing:
             break
         }
-        
-        // TODO: remove log
-        levels.getLevel(currentLevel)?.logInfo()
     }
     
     public func setTileObserver(_ observer: TileObserver) {
         tileObservers.append(observer)
         
-        levels.getLevel(currentLevel)?.setTileObserver(observer)
-        levels.getLevel(currentLevel)?.pingAllTileObservers()
+        levelList.getLevel(currentLevel)?.setTileObserver(observer)
+        levelList.getLevel(currentLevel)?.pingAllTileObservers()
     }
     
     public func setLevelObserver(_ observer: LevelObserver) {
         levelObservers.append(observer)
         
-        observer.updateByLevel(levels.getLevel(currentLevel) ?? Level())
+        observer.updateByLevel(levelList.getLevel(currentLevel) ?? Level())
     }
     
     private func pingAllLevelObservers() {
         for observer in levelObservers {
-            observer.updateByLevel(levels.getLevel(currentLevel) ?? Level())
+            observer.updateByLevel(levelList.getLevel(currentLevel) ?? Level())
         }
     }
 }

@@ -11,6 +11,7 @@ class AudioSpace {
     private var sources: [AudioSource] = []
     
     private var levelList: LevelList?
+    private var currentLevel: Int?
     
     public func setLevelList(_ levelList: LevelList) {
         self.levelList = levelList
@@ -25,17 +26,6 @@ class AudioSpace {
     public var userAngle: CGFloat = 0 {
         didSet {
             sources.forEach({ $0.userAngle = self.userAngle })
-        }
-    }
-    
-    private func addSource(_ audioSource: AudioSource) {
-        sources.append(audioSource)
-    }
-    
-    private func removeSource(_ audioSource: AudioSource) {
-        if let index = sources.firstIndex(where: { $0 === audioSource }) {
-            audioSource.stopAudio()
-            sources.remove(at: index)
         }
     }
     
@@ -57,7 +47,23 @@ class AudioSpace {
     }
     
     public func updateByLevelIndex(_ index: Int) {
+        currentLevel = index
         updateByLevel(levelList?.getLevel(index) ?? Level())
+    }
+    
+    public func update() {
+        updateByLevel(levelList?.getLevel(currentLevel ?? 0) ?? Level())
+    }
+    
+    private func addSource(_ audioSource: AudioSource) {
+        sources.append(audioSource)
+    }
+    
+    private func removeSource(_ audioSource: AudioSource) {
+        if let index = sources.firstIndex(where: { $0 === audioSource }) {
+            audioSource.stopAudio()
+            sources.remove(at: index)
+        }
     }
 }
 
@@ -84,8 +90,11 @@ extension AudioSpace: ActionExecutor {
             break
         case .goToLevel(let destination):
             updateByLevelIndex(destination)
-        // TODO: audio space should update when logics change
-        case .updateLogics(_):
+        case .updateLogics(let logics):
+            for logic in logics {
+                levelList?.getLevel(currentLevel ?? 0)?.updateLogic(logic.key, logic.value)
+            }
+            update()
             break
         case .nothing:
             break

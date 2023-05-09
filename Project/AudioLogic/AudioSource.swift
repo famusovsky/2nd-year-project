@@ -110,6 +110,7 @@ class AudioSource {
             guard let player = self.player else { return }
             
             player.numberOfLoops = -1
+            player.volume = 0
             player.play()
         } catch let error {
             print(error.localizedDescription)
@@ -121,7 +122,6 @@ class AudioSource {
         self.timer?.invalidate()
     }
     
-    // DONE? TODO: change
     func updateAudio() {
         var angle = atan2(Double(model.coordinate.y), Double(model.coordinate.x))
         let volume = self.volume
@@ -151,7 +151,7 @@ class AudioSource {
         }
         
         player?.pan = Float(result - result * pow(volume, 3))
-        player?.volume = Float(volume)
+        player?.setVolume(Float(volume), fadeDuration: 1)
     }
 }
 

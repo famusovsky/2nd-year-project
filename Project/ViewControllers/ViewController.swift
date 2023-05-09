@@ -28,7 +28,6 @@ final class ViewController: UIViewController {
                     levelModel = decodeFromJSON(jsonString, to: LevelModel.self) ?? LevelModel()
                 }
             } catch {
-                // Handle error
                 print(error)
             }
         } else {
@@ -45,7 +44,6 @@ final class ViewController: UIViewController {
                     levelModel = decodeFromJSON(jsonString, to: LevelModel.self) ?? LevelModel()
                 }
             } catch {
-                // Handle error
                 print(error)
             }
         } else {

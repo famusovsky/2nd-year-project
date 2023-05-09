@@ -14,6 +14,21 @@
                 "y" : 0
             },
             "range" : 2
+        },
+        {
+            "name" : "Blondie Call Me",
+            "value" : 1
+        },
+        {
+            "audio" : {
+                "name" : "Blondie Call Me",
+                "file" : "mp3"
+            },
+            "coordinate" : {
+                "x" : -1,
+                "y" : 0
+            },
+            "range" : 2
         }
     ],
     "logics" : {
@@ -128,7 +143,15 @@
                                 {
                                     "interactions" : {
                                         "onGoLeft" : [ { "turnLeft" : {} } ],
-                                        "onGoForward" : [ { "goForward" : {} } ],
+                                        "onGoForward" : [
+                                            { "goForward" : {} },
+                                            { "updateLogics" :
+                                                { "logics" : {
+                                                    "Ecstatic Vibrations, Totally Transcendent" : 0,
+                                                    "Blondie Call Me" : 1 }
+                                                }
+                                            }
+                                        ],
                                         "onGoRight" : [ { "turnRight" : {} } ],
                                         "onGoBack" : [],
                                         "onTap" : []
