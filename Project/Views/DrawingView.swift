@@ -17,6 +17,7 @@ class DrawingView: UIView, PKCanvasViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.overrideUserInterfaceStyle = .light
         self.backgroundColor = .clear
         
         setUpCanvasView()
@@ -37,6 +38,7 @@ class DrawingView: UIView, PKCanvasViewDelegate {
     private func setUpCanvasView() {
         canvasView.backgroundColor = .clear
         canvasView.delegate = self
+        canvasView.drawingPolicy = .anyInput
         self.addSubview(canvasView)
         
         canvasView.pin(to: self)
@@ -51,7 +53,7 @@ class DrawingView: UIView, PKCanvasViewDelegate {
         isErasing.toggle()
         sender.isSelected.toggle()
         
-        canvasView.tool = isErasing ? PKEraserTool(.bitmap) : PKInkingTool(.pen, color: .black, width: 2)
+        canvasView.tool = isErasing ? PKEraserTool(.bitmap) : PKInkingTool(.pen)
     }
     
     @objc
