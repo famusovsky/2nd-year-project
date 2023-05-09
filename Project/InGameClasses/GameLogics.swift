@@ -60,7 +60,6 @@ class GameLogics: ActionExecutor {
             levels.getLevel(currentLevel)?.removeTileObservers()
             currentLevel = destination
             
-            // TODO: update Views
             levels.getLevel(currentLevel)?.setTileObservers(tileObservers)
             levels.getLevel(currentLevel)?.pingAllTileObservers()
             pingAllLevelObservers()
@@ -75,7 +74,7 @@ class GameLogics: ActionExecutor {
             break
         }
         
-        // TODO: remove log
+        // XXX: remove log
         levels.getLevel(currentLevel)?.logInfo()
     }
     

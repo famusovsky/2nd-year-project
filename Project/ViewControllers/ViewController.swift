@@ -7,6 +7,8 @@ import UIKit
 import AVFoundation
 import CoreMotion
 
+// TODO: create a menu viewcontroller
+
 final class ViewController: UIViewController {
     private let mapView = MapView()
     private let gameUIView = GameUIView()
@@ -85,7 +87,6 @@ final class ViewController: UIViewController {
     }
     
     private func setupView() {
-        // TODO: setup main view
         view.backgroundColor = .black
         
         setUpMapButton()

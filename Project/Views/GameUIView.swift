@@ -56,7 +56,6 @@ class GameUIView: UIView, TileObserver {
     // Handle the swipe gesture
     @objc
     private func swipeAction(_ gesture: UISwipeGestureRecognizer) {
-        // TODO: throw action to GameLogics
         if gesture.direction == .up {
             print("up")
             pingAllActionExecutors(currentInteractions.onGoForward)
@@ -78,7 +77,6 @@ class GameUIView: UIView, TileObserver {
         
         for tapAction in currentInteractions.onTap {
             if tapAction.key.doesContainCoordinate(tapLocation) {
-                // TODO: throw action to GameLogics
                 print("tap success")
                 pingAllActionExecutors(tapAction.value)
             }

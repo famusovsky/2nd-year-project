@@ -44,7 +44,7 @@ class PictureView: UIView, TileObserver {
         
         if goLeftOption {
             let firstPoint = CGPoint(x: 0.0 - 10.0, y: bounds.maxY - bounds.midY / 8)
-            let secondPoint = CGPoint(x: 0.0 - 10.0, y: bounds.midY)
+            let secondPoint = CGPoint(x: 0.0 - 10.0, y: bounds.maxY - bounds.midY / 4)
             let thirdPoint = CGPoint(x: bounds.midX - bounds.width / 3, y: bounds.maxY - bounds.midY / 8)
             
             createQuadPath(firstPoint, secondPoint, thirdPoint, firstPoint, context)
@@ -52,7 +52,7 @@ class PictureView: UIView, TileObserver {
         
         if goRightOption {
             let firstPoint = CGPoint(x: bounds.maxX + 10.0, y: bounds.maxY - bounds.midY / 8)
-            let secondPoint = CGPoint(x: bounds.maxX + 10.0, y: bounds.midY)
+            let secondPoint = CGPoint(x: bounds.maxX + 10.0, y: bounds.maxY - bounds.midY / 4)
             let thirdPoint = CGPoint(x: bounds.midX + bounds.width / 3, y: bounds.maxY - bounds.midY / 8)
             
             createQuadPath(firstPoint, secondPoint, thirdPoint, firstPoint, context)
@@ -86,7 +86,7 @@ class PictureView: UIView, TileObserver {
         setNeedsDisplay()
     }
     
-    // TODO: fix -- have to show road only whrn go<there> possibility exists
+    // NOT NOW TODO: fix -- have to show road only whrn go<there> possibility exists
     func updateByTile(_ tileSide: TileSideData) {
         goForwardOption = !tileSide.interactions.onGoForward.isEmpty
         goLeftOption = !tileSide.interactions.onGoLeft.isEmpty

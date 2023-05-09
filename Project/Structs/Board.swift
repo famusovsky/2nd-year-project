@@ -4,11 +4,7 @@
 
 import Foundation
 
-// TODO: Add json check
-
 struct Board: Codable {
-    // public let startCoordinate: Coordinate
-    // public let startDirection: Direction
     public let width: Int
     public let height: Int
     private let field: [BoardTile]
@@ -17,8 +13,6 @@ struct Board: Codable {
         width = 0
         height = 0
         field = []
-        // startCoordinate = Coordinate(x: 0, y: 0)
-        // startDirection = Direction.north
     }
     
     public func getTile(_ x: size_t, _ y: size_t) -> BoardTile {

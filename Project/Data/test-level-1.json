@@ -14,6 +14,21 @@
                 "y" : 0
             },
             "range" : 2
+        },
+        {
+            "name" : "Ecstatic Vibrations, Totally Transcendent",
+            "value" : 1
+        },
+        {
+            "audio" : {
+                "name" : "Ecstatic Vibrations, Totally Transcendent",
+                "file" : "mp3"
+            },
+            "coordinate" : {
+                "x" : 0,
+                "y" : 0
+            },
+            "range" : 2
         }
     ],
     "logics" : {
@@ -196,7 +211,10 @@
                                 {
                                     "interactions" : {
                                         "onGoLeft" : [ { "turnLeft" : {} } ],
-                                        "onGoForward" : [ { "goForward" : {} } ],
+                                        "onGoForward" : [
+                                            { "goForward" : {} },
+                                            { "updateLogics" : { "logics" : { "Ecstatic Vibrations, Totally Transcendent" : 1, "Blondie Call Me" : 0 } } }
+                                        ],
                                         "onGoRight" : [ { "turnRight" : {} } ],
                                         "onGoBack" : [],
                                         "onTap" : []
