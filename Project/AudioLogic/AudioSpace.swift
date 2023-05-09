@@ -13,6 +13,9 @@ class AudioSpace {
     private var levelList: LevelList?
     private var currentLevel: Int?
     
+    private var currentXMove = 0
+    private var currentYMove = 0
+    
     public func setLevelList(_ levelList: LevelList) {
         self.levelList = levelList
     }
@@ -44,6 +47,8 @@ class AudioSpace {
         }
         
         userDirection = level.getDirection()
+        currentXMove = 0
+        currentYMove = 0
     }
     
     public func updateByLevelIndex(_ index: Int) {
@@ -57,6 +62,9 @@ class AudioSpace {
     
     private func addSource(_ audioSource: AudioSource) {
         sources.append(audioSource)
+        
+        let newCoordinate = Coordinate(x: audioSource.getX() + currentXMove, y: audioSource.getY() + currentYMove)
+        audioSource.applyNewCoordinate(newCoordinate)
     }
     
     private func removeSource(_ audioSource: AudioSource) {
@@ -94,6 +102,8 @@ extension AudioSpace: ActionExecutor {
             for logic in logics {
                 levelList?.getLevel(currentLevel ?? 0)?.updateLogic(logic.key, logic.value)
             }
+            
+            // TODO: not restart sources which are stay turn on
             update()
             break
         case .nothing:
@@ -103,6 +113,10 @@ extension AudioSpace: ActionExecutor {
         func moveTo(_ direction: Direction) {
             let xMovement = direction == .east ? -1 : direction == .west ? 1 : 0
             let yMovement = direction == .south ? 1 : direction == .north ? -1 : 0
+            
+            currentXMove += xMovement
+            currentYMove += yMovement
+            
             for source in sources {
                 let newCoordinate = Coordinate(x: source.getX() + xMovement, y: source.getY() + yMovement)
                 source.applyNewCoordinate(newCoordinate)
