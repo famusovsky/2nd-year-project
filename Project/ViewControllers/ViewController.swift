@@ -7,9 +7,12 @@ import UIKit
 import AVFoundation
 import CoreMotion
 
+// TODO: create a menu viewcontroller
+
 final class ViewController: UIViewController {
     private let mapView = MapView()
     private let gameUIView = GameUIView()
+    private let pictureView = PictureView()
     private let audio = AudioSpace()
     private var game: GameLogics? = nil
     private var levelList = LevelList()
@@ -52,8 +55,6 @@ final class ViewController: UIViewController {
         
         levelList.addLevel(levelModel)
         
-        // printCodable(codable: levelModel)
-        
         game = GameLogics(levelList)
         game?.setTileObserver(gameUIView)
         game?.setLevelObserver(mapView)
@@ -62,6 +63,7 @@ final class ViewController: UIViewController {
         audio.setLevelList(levelList)
         audio.updateByLevelIndex(0)
         
+        setupPictureView()
         setupGameUIView()
         setupMapView()
         setupView()
@@ -83,10 +85,23 @@ final class ViewController: UIViewController {
     }
     
     private func setupView() {
-        // TODO: setup main view
         view.backgroundColor = .black
         
         setUpMapButton()
+    }
+    
+    private func setupPictureView() {
+        view.addSubview(pictureView)
+        
+        pictureView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
+        pictureView.pin(to: view, [(.left, 15), (.right, -15)])
+        pictureView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
+        
+        if game != nil {
+            game?.setTileObserver(pictureView)
+        }
+        
+        pictureView.isHidden = false
     }
     
     private func setupGameUIView() {

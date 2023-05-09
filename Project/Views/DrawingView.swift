@@ -7,11 +7,11 @@
 
 import Foundation
 import UIKit
+import PencilKit
 
-class DrawingView: UIView {
+class DrawingView: UIView, PKCanvasViewDelegate {
     // TODO: save the drawing between sessions
-    // TODO: update drwing algotithm
-    private var path = UIBezierPath()
+    private let canvasView = PKCanvasView()
     private var isErasing = false
     
     override init(frame: CGRect) {
@@ -19,8 +19,9 @@ class DrawingView: UIView {
         
         self.backgroundColor = .clear
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        self.addGestureRecognizer(panGesture)
+        setUpCanvasView()
+        setUpTogglePenButton()
+        setUpCleanUpButton()
     }
     
     required init?(coder: NSCoder) {
@@ -28,60 +29,34 @@ class DrawingView: UIView {
         
         self.backgroundColor = .clear
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        self.addGestureRecognizer(panGesture)
-    }
-    
-    public func setUp() {
-        cleanUp()
-        
+        setUpCanvasView()
         setUpTogglePenButton()
         setUpCleanUpButton()
     }
     
-    @objc
-    private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
-        let shapeLayer = CAShapeLayer()
-        self.layer.addSublayer(shapeLayer)
-        let point = gesture.location(in: self)
+    private func setUpCanvasView() {
+        canvasView.backgroundColor = .clear
+        canvasView.delegate = self
+        self.addSubview(canvasView)
         
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.lineWidth = 3.5
-        
-        switch gesture.state {
-        case .began:
-            path = UIBezierPath()
-            path.move(to: point)
-            
-        case .changed:
-            if isErasing {
-                shapeLayer.strokeColor = UIColor.clear.cgColor
-                
-                let erasePath = UIBezierPath()
-                erasePath.move(to: point)
-                erasePath.addLine(to: CGPoint(x: point.x + 10, y: point.y))
-                
-                shapeLayer.path = erasePath.cgPath
-            } else {
-                shapeLayer.strokeColor = UIColor.black.cgColor
-                
-                path.addLine(to: point)
-                
-                shapeLayer.path = path.cgPath
-            }
-            
-        case .ended:
-            break
-            
-        default:
-            break
-        }
+        canvasView.pin(to: self)
+    }
+    
+    func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
+        setNeedsDisplay()
     }
     
     @objc
     private func togglePen(_ sender: UIButton) {
         isErasing.toggle()
         sender.isSelected.toggle()
+        
+        canvasView.tool = isErasing ? PKEraserTool(.bitmap) : PKInkingTool(.pen, color: .black, width: 2)
+    }
+    
+    @objc
+    public func cleanUp() {
+        canvasView.drawing = PKDrawing()
     }
     
     private func setUpTogglePenButton() {
@@ -101,15 +76,6 @@ class DrawingView: UIView {
         togglePenButton.pinLeft(to: self, 5)
         
         togglePenButton.isEnabled = true
-    }
-    
-    @objc
-    public func cleanUp() {
-        path.removeAllPoints()
-        
-        while self.layer.sublayers?.count ?? 0 > 2 {
-            self.layer.sublayers?.remove(at: 2)
-        }
     }
     
     private func setUpCleanUpButton() {

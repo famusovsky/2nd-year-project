@@ -13,7 +13,22 @@
                 "x" : 4,
                 "y" : 0
             },
-            "range" : 2
+            "range" : 1
+        },
+        {
+            "name" : "Ecstatic Vibrations, Totally Transcendent",
+            "value" : 1
+        },
+        {
+            "audio" : {
+                "name" : "Ecstatic Vibrations, Totally Transcendent",
+                "file" : "mp3"
+            },
+            "coordinate" : {
+                "x" : 0,
+                "y" : 0
+            },
+            "range" : 1
         }
     ],
     "logics" : {
@@ -21,6 +36,10 @@
             {
                 "name" : "Blondie Call Me",
                 "value" : 1
+            },
+            {
+                "name" : "Songs changed",
+                "value" : 0
             }
         ]
     },
@@ -191,12 +210,35 @@
                             1,
                             [
                                 {
-                                    "array" : []
+                                    "array" : [{
+                                        "name" : "Songs changed",
+                                        "value" : 0
+                                    }]
                                 },
                                 {
                                     "interactions" : {
                                         "onGoLeft" : [ { "turnLeft" : {} } ],
-                                        "onGoForward" : [ { "goForward" : {} } ],
+                                        "onGoForward" : [
+                                            { "goForward" : {} },
+                                            { "updateLogics" : { "logics" : { "Ecstatic Vibrations, Totally Transcendent" : 1, "Songs changed" : 1 } } }
+                                        ],
+                                        "onGoRight" : [ { "turnRight" : {} } ],
+                                        "onGoBack" : [],
+                                        "onTap" : []
+                                    }
+                                },
+                                {
+                                    "array" : [{
+                                        "name" : "Songs changed",
+                                        "value" : 1
+                                    }]
+                                },
+                                {
+                                    "interactions" : {
+                                        "onGoLeft" : [ { "turnLeft" : {} } ],
+                                        "onGoForward" : [
+                                            { "goForward" : {} }
+                                        ],
                                         "onGoRight" : [ { "turnRight" : {} } ],
                                         "onGoBack" : [],
                                         "onTap" : []

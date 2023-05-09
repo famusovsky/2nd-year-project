@@ -37,6 +37,10 @@ class AudioSource {
         return model.coordinate.y
     }
     
+    public func getName() -> String {
+        return model.audio.name
+    }
+    
     public init(_ audio: AudioFile, _ point: Coordinate, _ range: Double, _ maxDistance: Double? = nil) {
         self.model = AudioSourceModel(audio: audio, coordinate: point, range: range)
         self.maxDistance = maxDistance

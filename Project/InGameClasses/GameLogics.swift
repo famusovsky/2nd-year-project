@@ -60,7 +60,6 @@ class GameLogics: ActionExecutor {
             levelList.getLevel(currentLevel)?.removeTileObservers()
             currentLevel = destination
             
-            // TODO: update Views
             levelList.getLevel(currentLevel)?.setTileObservers(tileObservers)
             levelList.getLevel(currentLevel)?.pingAllTileObservers()
             pingAllLevelObservers()
@@ -74,6 +73,9 @@ class GameLogics: ActionExecutor {
         case .nothing:
             break
         }
+        
+        // XXX: remove log
+        levelList.getLevel(currentLevel)?.logInfo()
     }
     
     public func setTileObserver(_ observer: TileObserver) {
