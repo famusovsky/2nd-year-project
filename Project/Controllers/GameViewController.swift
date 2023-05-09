@@ -9,59 +9,35 @@ import CoreMotion
 
 // TODO: create a menu viewcontroller
 
-final class ViewController: UIViewController {
+final class GameViewController: UIViewController {
     private let mapView = MapView()
     private let gameUIView = GameUIView()
     private let pictureView = PictureView()
     private let audio = AudioSpace()
+    private let headphoneMotionManager = CMHeadphoneMotionManager()
     private var game: GameLogics? = nil
     private var levelList = LevelList()
-    private let headphoneMotionManager = CMHeadphoneMotionManager()
+    private var firstLevel = 0
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    convenience init(levelList: LevelList = LevelList(), firstLevel: Int = 0) {
+        self.init()
         
-        // TODO: load game from file
-        var levelModel = LevelModel()
-        if let path = Bundle.main.path(forResource: "test-level-0", ofType: "json") {
-            print("yes")
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    levelModel = decodeFromJSON(jsonString, to: LevelModel.self) ?? LevelModel()
-                }
-            } catch {
-                print(error)
-            }
-        } else {
-            print("no")
-        }
-        
-        levelList.addLevel(levelModel)
-        
-        if let path = Bundle.main.path(forResource: "test-level-1", ofType: "json") {
-            print("yes")
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    levelModel = decodeFromJSON(jsonString, to: LevelModel.self) ?? LevelModel()
-                }
-            } catch {
-                print(error)
-            }
-        } else {
-            print("no")
-        }
-        
-        levelList.addLevel(levelModel)
+        self.levelList = levelList
+        self.firstLevel = firstLevel
         
         game = GameLogics(levelList)
         game?.setTileObserver(gameUIView)
         game?.setLevelObserver(mapView)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.hidesBackButton = true
         
         // TODO: change
         audio.setLevelList(levelList)
-        audio.updateByLevelIndex(0)
+        audio.updateByLevelIndex(firstLevel)
         
         setupPictureView()
         setupGameUIView()
@@ -153,7 +129,7 @@ final class ViewController: UIViewController {
     }
 }
 
-extension ViewController {
+extension GameViewController {
     @objc
     func handleRouteChange(notification: Notification) {
         guard let userInfo = notification.userInfo,

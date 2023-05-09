@@ -26,6 +26,15 @@ class LevelList {
         newLevelModels.forEach({levels.append(Level($0))})
     }
     
+    public func addLevel(_ newLevelModel: LevelModel, _ index: Int) {
+        if index > 0 {
+            while index >= levels.count {
+                levels.append(Level())
+            }
+            levels.insert(Level(newLevelModel), at: index)
+        }
+    }
+    
     public func removeLevel(_ index: Int) {
         if index > 0 && index < levels.count {
             levels.remove(at: index)
