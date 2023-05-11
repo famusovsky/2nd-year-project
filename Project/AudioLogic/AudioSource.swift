@@ -22,6 +22,12 @@ class AudioSource {
         }
     }
     
+    public var deviceAngle: CGFloat = 0 {
+        didSet {
+            self.updateAudio()
+        }
+    }
+    
     public var userAngle: CGFloat = 0 {
         didSet {
             self.updateAudio()
@@ -135,7 +141,7 @@ class AudioSource {
             angle -= Double.pi
         }
         
-        angle -= userAngle
+        angle -= userAngle + deviceAngle
 
         let normDeg = (angle * CGFloat(180.0 / Double.pi) + 360).truncatingRemainder(dividingBy: 360)
         let result: CGFloat

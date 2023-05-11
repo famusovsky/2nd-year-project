@@ -26,6 +26,12 @@ class AudioSpace {
         }
     }
     
+    public var deviceAngle: CGFloat = 0 {
+        didSet {
+            sources.forEach({ $0.deviceAngle = self.deviceAngle })
+        }
+    }
+    
     public var userAngle: CGFloat = 0 {
         didSet {
             sources.forEach({ $0.userAngle = self.userAngle })
