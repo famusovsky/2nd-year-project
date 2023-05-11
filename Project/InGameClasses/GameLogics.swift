@@ -97,3 +97,18 @@ class GameLogics: ActionExecutor {
         }
     }
 }
+
+extension GameLogics: SaveDelegate {
+    public func save() {
+        
+        let defaults = UserDefaults.standard
+        var savedGames = defaults.stringArray(forKey: "savedGames") ?? []
+        
+        var currentGame = GameData(index: currentLevel, levels: levelList.getLevelModelList())
+        
+        if let currentGameJSON = encodeToJSON(currentGame) {
+            savedGames.append(currentGameJSON)
+            defaults.set(savedGames, forKey: "savedGames")
+        }
+    }
+}

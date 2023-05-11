@@ -15,7 +15,6 @@ struct AudioSourceModel: Codable {
 
 class AudioSource {
     private var model: AudioSourceModel
-    private let maxDistance: Double?
     
     public var userDirection: Direction = .north {
         didSet {
@@ -41,18 +40,16 @@ class AudioSource {
         return model.audio.name
     }
     
-    public init(_ audio: AudioFile, _ point: Coordinate, _ range: Double, _ maxDistance: Double? = nil) {
+    public init(_ audio: AudioFile, _ point: Coordinate, _ range: Double) {
         self.model = AudioSourceModel(audio: audio, coordinate: point, range: range)
-        self.maxDistance = maxDistance
         
         self.runAudio()
         
         self.updateAudio()
     }
     
-    public init(_ model: AudioSourceModel, _ maxDistance: Double? = nil) {
+    public init(_ model: AudioSourceModel) {
         self.model = model
-        self.maxDistance = maxDistance
         
         self.runAudio()
         
@@ -88,14 +85,11 @@ class AudioSource {
     }
     
     var volume: Double {
-        if let maxDistance = maxDistance {
-            let distance = self.distance
-            if distance > maxDistance {
-                return maxDistance / distance * 0.05
-            }
-            return max(1 - distance / maxDistance, 0.05)
+        let distance = self.distance
+        if distance > model.range {
+            return model.range / distance * 0.05
         }
-        return 1
+        return max(1 - distance / model.range, 0.05)
     }
     
     var player: AVAudioPlayer?
@@ -136,7 +130,7 @@ class AudioSource {
         case .west:
             angle -= Double.pi / 2
         case .north:
-            break
+            angle += 2 * Double.pi
         case .south:
             angle -= Double.pi
         }

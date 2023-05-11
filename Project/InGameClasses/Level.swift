@@ -33,12 +33,7 @@ struct LevelModel: Codable {
 }
 
 class Level {
-    private var model: LevelModel {
-        didSet {
-            print(model.coordinate)
-            print(model.direction)
-        }
-    }
+    private var model: LevelModel
     private var tileObservers: [TileObserver] = []
     
     init() {
@@ -52,6 +47,10 @@ class Level {
     
     init(_ model: LevelModel) {
         self.model = model
+    }
+    
+    public func getCoordinate() -> Coordinate {
+        return model.coordinate
     }
     
     public func getDirection() -> Direction {
@@ -146,7 +145,9 @@ class Level {
         
         return result
     }
-    
+}
+
+extension Level {
     public func logInfo() {
         var str = ""
         
@@ -165,5 +166,9 @@ class Level {
         }
         
         print(str)
+    }
+    
+    public func getLevelModel() -> LevelModel {
+        return model
     }
 }

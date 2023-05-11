@@ -38,17 +38,14 @@ class AudioSpace {
             sources.removeFirst()
         }
         
-        let w = Double(level.getBoard().width)
-        let h = Double(level.getBoard().height)
-        let maxDistance = sqrt(w * w + h * h)
+        currentXMove = -1 * level.getCoordinate().x
+        currentYMove = -1 * level.getCoordinate().y
         
         for sourceModel in level.getAudioSources() {
-            addSource(AudioSource(sourceModel, maxDistance))
+            addSource(AudioSource(sourceModel))
         }
         
         userDirection = level.getDirection()
-        currentXMove = 0
-        currentYMove = 0
     }
     
     public func updateByLevelIndex(_ index: Int) {
@@ -103,7 +100,7 @@ extension AudioSpace: ActionExecutor {
                 levelList?.getLevel(currentLevel ?? 0)?.updateLogic(logic.key, logic.value)
             }
             
-            // TODO: not restart sources which are stay turn on
+            // TODO: not restart sources which are stay turned on
             update()
             break
         case .nothing:

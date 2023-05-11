@@ -35,6 +35,11 @@
 		3FACD7BE2A0AC8AA00ACEE70 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FACD7BD2A0AC8AA00ACEE70 /* MenuViewController.swift */; };
 		3FACD7C22A0ADC1200ACEE70 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FACD7C12A0ADC1200ACEE70 /* CustomNavigationController.swift */; };
 		3FACD7C42A0ADF6100ACEE70 /* LevelChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FACD7C32A0ADF6100ACEE70 /* LevelChooseView.swift */; };
+		3FACD7C62A0AE53100ACEE70 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FACD7C52A0AE53100ACEE70 /* SettingsView.swift */; };
+		3FACD7C82A0C3B4100ACEE70 /* GameResultsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FACD7C72A0C3B4100ACEE70 /* GameResultsObserver.swift */; };
+		3FACD7CA2A0C44EF00ACEE70 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FACD7C92A0C44EF00ACEE70 /* GameData.swift */; };
+		3FACD7CC2A0C4EC600ACEE70 /* IntegerChoiceObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FACD7CB2A0C4EC600ACEE70 /* IntegerChoiceObserver.swift */; };
+		3FACD7CE2A0C57CA00ACEE70 /* SaveDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FACD7CD2A0C57CA00ACEE70 /* SaveDelegate.swift */; };
 		3FE50D0C2A014E46000513D4 /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE50CF12A013D34000513D4 /* AudioFile.swift */; };
 		3FE50D0D2A014E48000513D4 /* AudioSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE50CF22A013D34000513D4 /* AudioSpace.swift */; };
 		3FE50D0F2A014E4F000513D4 /* AudioSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE50CF42A013D34000513D4 /* AudioSource.swift */; };
@@ -77,6 +82,11 @@
 		3FACD7BD2A0AC8AA00ACEE70 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		3FACD7C12A0ADC1200ACEE70 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		3FACD7C32A0ADF6100ACEE70 /* LevelChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelChooseView.swift; sourceTree = "<group>"; };
+		3FACD7C52A0AE53100ACEE70 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3FACD7C72A0C3B4100ACEE70 /* GameResultsObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultsObserver.swift; sourceTree = "<group>"; };
+		3FACD7C92A0C44EF00ACEE70 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		3FACD7CB2A0C4EC600ACEE70 /* IntegerChoiceObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerChoiceObserver.swift; sourceTree = "<group>"; };
+		3FACD7CD2A0C57CA00ACEE70 /* SaveDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDelegate.swift; sourceTree = "<group>"; };
 		3FE50CF12A013D34000513D4 /* AudioFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
 		3FE50CF22A013D34000513D4 /* AudioSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpace.swift; sourceTree = "<group>"; };
 		3FE50CF42A013D34000513D4 /* AudioSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSource.swift; sourceTree = "<group>"; };
@@ -153,6 +163,7 @@
 				3F996C6C29F147FE00B7BFE2 /* MapView.swift */,
 				3F010DB929FED17500215260 /* DrawingView.swift */,
 				3FACD7C32A0ADF6100ACEE70 /* LevelChooseView.swift */,
+				3FACD7C52A0AE53100ACEE70 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -160,6 +171,7 @@
 		3F996C7029F1486600B7BFE2 /* Structs */ = {
 			isa = PBXGroup;
 			children = (
+				3FE50CF12A013D34000513D4 /* AudioFile.swift */,
 				D317C1EFE91BAB35C62198F7 /* Board.swift */,
 				3F996C8029F154BF00B7BFE2 /* Room.swift */,
 				3F996C7E29F1525400B7BFE2 /* BoardTile.swift */,
@@ -170,6 +182,7 @@
 				3F996C7C29F14D7700B7BFE2 /* ActionLocation.swift */,
 				3F996C8229F1580E00B7BFE2 /* LogicProperties.swift */,
 				3F996C8429F1654000B7BFE2 /* TileSideData.swift */,
+				3FACD7C92A0C44EF00ACEE70 /* GameData.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -180,6 +193,9 @@
 				3F7EA5CD29FFDB9200694AE4 /* ActionExecutor.swift */,
 				3F996C7A29F14A5000B7BFE2 /* TileObserver.swift */,
 				3F7EA5CF29FFDCC100694AE4 /* LevelObserver.swift */,
+				3FACD7C72A0C3B4100ACEE70 /* GameResultsObserver.swift */,
+				3FACD7CB2A0C4EC600ACEE70 /* IntegerChoiceObserver.swift */,
+				3FACD7CD2A0C57CA00ACEE70 /* SaveDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -188,7 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				3FE50CF52A013DDC000513D4 /* Sounds */,
-				3FE50CF12A013D34000513D4 /* AudioFile.swift */,
 				3FE50CF22A013D34000513D4 /* AudioSpace.swift */,
 				3FE50CF42A013D34000513D4 /* AudioSource.swift */,
 			);
@@ -310,11 +325,13 @@
 				3F7982762969BA7C00AF6702 /* AppDelegate.swift in Sources */,
 				3F996C8329F1580E00B7BFE2 /* LogicProperties.swift in Sources */,
 				3FACD7C42A0ADF6100ACEE70 /* LevelChooseView.swift in Sources */,
+				3FACD7C82A0C3B4100ACEE70 /* GameResultsObserver.swift in Sources */,
 				3F7982782969BA7C00AF6702 /* SceneDelegate.swift in Sources */,
 				3F996C7229F148A100B7BFE2 /* Level.swift in Sources */,
 				3F996C6929F147DA00B7BFE2 /* GameUIView.swift in Sources */,
 				3F996C7629F148E000B7BFE2 /* Action.swift in Sources */,
 				3F996C6B29F147EE00B7BFE2 /* PictureView.swift in Sources */,
+				3FACD7CA2A0C44EF00ACEE70 /* GameData.swift in Sources */,
 				3F7EA5CE29FFDB9200694AE4 /* ActionExecutor.swift in Sources */,
 				3FE50D0D2A014E48000513D4 /* AudioSpace.swift in Sources */,
 				3F996C7F29F1525400B7BFE2 /* BoardTile.swift in Sources */,
@@ -326,6 +343,8 @@
 				3FACD7C22A0ADC1200ACEE70 /* CustomNavigationController.swift in Sources */,
 				3FE50D0F2A014E4F000513D4 /* AudioSource.swift in Sources */,
 				D317C31483BB4A3B9CA12821 /* Board.swift in Sources */,
+				3FACD7C62A0AE53100ACEE70 /* SettingsView.swift in Sources */,
+				3FACD7CE2A0C57CA00ACEE70 /* SaveDelegate.swift in Sources */,
 				3F7EA5DA29FFEF0100694AE4 /* Coder.swift in Sources */,
 				D317CBF2683F2D2DB521D970 /* Coordinate.swift in Sources */,
 				3FE50D0C2A014E46000513D4 /* AudioFile.swift in Sources */,
@@ -337,6 +356,7 @@
 				D317CE373725AD0811E5D779 /* GameViewController.swift in Sources */,
 				3F7EA5D029FFDCC100694AE4 /* LevelObserver.swift in Sources */,
 				3F996C7D29F14D7700B7BFE2 /* ActionLocation.swift in Sources */,
+				3FACD7CC2A0C4EC600ACEE70 /* IntegerChoiceObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,11 +488,13 @@
 				DEVELOPMENT_TEAM = L3S5H274HV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Project/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = "This game uses your device's motion sensors to create a spatial audio experience. We require access to your device's motion data to provide this feature. Your motion data is only used to create the audio experience and is not shared with third parties.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = G;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -500,11 +522,13 @@
 				DEVELOPMENT_TEAM = L3S5H274HV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Project/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = "This game uses your device's motion sensors to create a spatial audio experience. We require access to your device's motion data to provide this feature. Your motion data is only used to create the audio experience and is not shared with third parties.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = G;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -7,27 +7,39 @@ import UIKit
 import AVFoundation
 import CoreMotion
 
-// TODO: create a menu viewcontroller
-
-final class GameViewController: UIViewController {
+final class GameViewController: UIViewController, GameResultsObserver {
     private let mapView = MapView()
     private let gameUIView = GameUIView()
     private let pictureView = PictureView()
-    private let audio = AudioSpace()
+    private let settingsView = SettingsView()
+    private var audio = AudioSpace()
     private let headphoneMotionManager = CMHeadphoneMotionManager()
     private var game: GameLogics? = nil
     private var levelList = LevelList()
     private var firstLevel = 0
     
-    convenience init(levelList: LevelList = LevelList(), firstLevel: Int = 0) {
+    convenience init(levelList: LevelList, firstLevel: Int) {
         self.init()
         
         self.levelList = levelList
         self.firstLevel = firstLevel
         
         game = GameLogics(levelList)
-        game?.setTileObserver(gameUIView)
-        game?.setLevelObserver(mapView)
+        
+        audio.setLevelList(levelList)
+        audio.updateByLevelIndex(firstLevel)
+    }
+    
+    convenience init(gameData: GameData) {
+        self.init()
+        
+        self.levelList.installGameData(gameData)
+        self.firstLevel = gameData.index
+        
+        game = GameLogics(levelList)
+        
+        audio.setLevelList(levelList)
+        audio.updateByLevelIndex(firstLevel)
     }
     
     override func viewDidLoad() {
@@ -35,14 +47,14 @@ final class GameViewController: UIViewController {
         
         navigationItem.hidesBackButton = true
         
-        // TODO: change
-        audio.setLevelList(levelList)
-        audio.updateByLevelIndex(firstLevel)
-        
         setupPictureView()
         setupGameUIView()
         setupMapView()
+        setupSettingsView()
         setupView()
+        
+        game?.setTileObserver(gameUIView)
+        game?.setLevelObserver(mapView)
         
         if headphoneMotionManager.isDeviceMotionAvailable {
             NotificationCenter.default.addObserver(self, selector: #selector(handleRouteChange), name: AVAudioSession.routeChangeNotification, object: nil)
@@ -64,6 +76,7 @@ final class GameViewController: UIViewController {
         view.backgroundColor = .black
         
         setUpMapButton()
+        setUpSettingsButton()
     }
     
     private func setupPictureView() {
@@ -105,6 +118,18 @@ final class GameViewController: UIViewController {
         mapView.isHidden = true
     }
     
+    private func setupSettingsView() {
+        settingsView.setSaveDelegate(game!)
+        settingsView.setEndDelegate(self)
+        view.addSubview(settingsView)
+        
+        settingsView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
+        settingsView.pin(to: view, [(.left, 15), (.right, -15)])
+        settingsView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
+        
+        settingsView.isHidden = true
+    }
+    
     private func setUpMapButton() {
         let mapButton = UIButton()
         
@@ -115,17 +140,42 @@ final class GameViewController: UIViewController {
         mapButton.setTitle("🗺️", for: .normal)
         
         mapButton.addTarget(self, action: #selector(mapButtonPressed), for: .touchUpInside)
-        view.addSubview(mapButton)
         
+        view.addSubview(mapButton)
         mapButton.pinTop(to: mapView.topAnchor, 5)
         mapButton.pinRight(to: mapView, -5)
-        
-        mapButton.isEnabled = true
     }
     
     @objc
     private func mapButtonPressed() {
         mapView.isHidden.toggle()
+    }
+    
+    private func setUpSettingsButton() {
+        let settingsButton = UIButton()
+        
+        settingsButton.layer.cornerRadius = 12
+        settingsButton.backgroundColor = .clear
+        settingsButton.setHeight(48)
+        settingsButton.setWidth(48)
+        settingsButton.setTitle("⚙️", for: .normal)
+        
+        settingsButton.addAction(UIAction(handler: { _ in
+            self.settingsView.isHidden.toggle()
+        }), for: .touchUpInside)
+        
+        view.addSubview(settingsButton)
+        settingsButton.pinTop(to: settingsView.topAnchor, 5)
+        settingsButton.pinRight(to: settingsView, -30)
+    }
+    
+    func reactToGameResult(_ gameResult: GameResult) {
+        if let controller = navigationController as? CustomNavigationController {
+            controller.shouldAllowBack = true
+        }
+        
+        audio.updateByLevel(Level()) // TODO: totally close view controller^ not just hide it
+        navigationController?.popViewController(animated: true)
     }
 }
 

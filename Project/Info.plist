@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<true/>
+		<key>UIImageName</key>
+		<string>Gradient</string>
+	</dict>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -20,6 +27,6 @@
 		</dict>
 	</dict>
 	<key>NSMotionUsageDescription</key>
-	<string>This game uses your device's motion sensors to create a spatial audio experience. We require access to your device's motion data to provide this feature. Your motion data is only used to create the audio experience and is not shared with third parties.</string>
+	<string>This game uses your device&apos;s motion sensors to create a spatial audio experience. We require access to your device&apos;s motion data to provide this feature. Your motion data is only used to create the audio experience and is not shared with third parties.</string>
 </dict>
 </plist>

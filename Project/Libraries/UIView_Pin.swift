@@ -177,6 +177,7 @@ extension UIView {
     @discardableResult
     func pinHeight(to size: NSLayoutDimension, _ mult: Double = 1) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
+        
         let constraint = heightAnchor.constraint(equalTo: size, multiplier: CGFloat(mult))
         constraint.isActive = true
 
@@ -185,6 +186,16 @@ extension UIView {
 
     @discardableResult
     func setHeight(_ const: Int) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        for constraint in self.constraints {
+            if constraint.firstAttribute == .height && constraint.relation == .equal {
+                constraint.constant = CGFloat(const)
+                self.layoutIfNeeded()
+                return constraint
+            }
+        }
+        
         let constraint = heightAnchor.constraint(equalToConstant: CGFloat(const))
         constraint.isActive = true
         return constraint
@@ -192,6 +203,16 @@ extension UIView {
 
     @discardableResult
     func setWidth(_ const: Int) -> NSLayoutConstraint {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        for constraint in self.constraints {
+            if constraint.firstAttribute == .width && constraint.relation == .equal {
+                constraint.constant = CGFloat(const)
+                self.layoutIfNeeded()
+                return constraint
+            }
+        }
+        
         let constraint = widthAnchor.constraint(equalToConstant: CGFloat(const))
         constraint.isActive = true
         return constraint

@@ -91,6 +91,7 @@ class PictureView: UIView, TileObserver {
         goForwardOption = !tileSide.interactions.onGoForward.isEmpty
         goLeftOption = !tileSide.interactions.onGoLeft.isEmpty
         goRightOption = !tileSide.interactions.onGoRight.isEmpty
+        // TODO: add tap actions
         
         redraw()
     }

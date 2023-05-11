@@ -10,6 +10,7 @@ import UIKit
 
 class MapView: UIView, LevelObserver {
     private var drawingView: DrawingView
+    private var tilesView = UIView()
     
     override init(frame: CGRect) {
         drawingView = DrawingView()
@@ -26,21 +27,20 @@ class MapView: UIView, LevelObserver {
     }
     
     private func setUp(_ board: Board) {
+        tilesView.pin(to: self)
+        
         var prevTile: UIView? = nil
+        
         for i in 0..<board.width * board.height {
             let tile = UIView()
             
-            if let firstSubview = self.subviews.first {
-                self.insertSubview(tile, belowSubview: firstSubview)
-            } else {
-                self.addSubview(tile)
-            }
+            tilesView.addSubview(tile)
             
             switch board.getTile(i) {
             case .empty:
                 tile.backgroundColor = .clear
             case .filled(_):
-                tile.backgroundColor = .systemPurple
+                tile.backgroundColor = .darkGray
             }
             tile.layer.borderWidth = 1
             tile.layer.borderColor = UIColor.black.cgColor
@@ -70,11 +70,19 @@ class MapView: UIView, LevelObserver {
     }
     
     private func update(_ board: Board) {
-        //        self.board = board
         self.subviews.forEach { $0.removeFromSuperview() }
+        setUpTilesView()
         setUpDrawingView()
         
         setUp(board)
+    }
+    
+    private func setUpTilesView() {
+        tilesView = UIView()
+        
+        // TODO: make tiles square
+        self.addSubview(tilesView)
+        tilesView.pin(to: self)
     }
     
     private func setUpDrawingView() {

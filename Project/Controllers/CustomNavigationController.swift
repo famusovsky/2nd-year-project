@@ -9,7 +9,14 @@ import Foundation
 import UIKit
 
 class CustomNavigationController: UINavigationController {
+    public var shouldAllowBack = false
+    
     override func popViewController(animated: Bool) -> UIViewController? {
-        return nil
+        if shouldAllowBack {
+            shouldAllowBack = false
+            return super.popViewController(animated: animated)
+        } else {
+            return nil
+        }
     }
 }

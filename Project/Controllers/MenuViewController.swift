@@ -8,11 +8,12 @@
 import Foundation
 import UIKit
 
-final class MenuViewController: UIViewController {
+final class MenuViewController: UIViewController, IntegerChoiceObserver {
     private let label = UILabel()
     private let newGameButton = UIButton()
     private let continueGameButton = UIButton()
-    private var levelList = LevelList()
+    private let levelChooseButton = UIButton()
+    private let levelChooseView = LevelChooseView()
     
     private var gameViewController: GameViewController? = nil
     
@@ -27,12 +28,12 @@ final class MenuViewController: UIViewController {
     private func setUp() {
         view.backgroundColor = .black
         
-        // TODO: load game from file
-        getGameData()
-        
         setUpLabel()
         setUpNewGameButton()
         setUpContinueGameButton()
+        setUpLevelChooseButton()
+        
+        setUpLevelChooseView()
     }
     
     private func setUpLabel() {
@@ -61,7 +62,6 @@ final class MenuViewController: UIViewController {
         continueGameButton.isEnabled = true
     }
     
-    // TODO: check if there is a game to continue
     private func setUpContinueGameButton() {
         continueGameButton.backgroundColor = .darkGray
         continueGameButton.setTitle("Continue Game", for: .normal)
@@ -77,10 +77,38 @@ final class MenuViewController: UIViewController {
         continueGameButton.isEnabled = true
     }
     
+    private func setUpLevelChooseView() {
+        view.addSubview(levelChooseView)
+        
+        levelChooseView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
+        levelChooseView.pin(to: view, [.left, .right])
+        levelChooseView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
+        levelChooseView.isHidden = true
+        
+        levelChooseView.setObserver(self)
+    }
+    
+    private func setUpLevelChooseButton() {
+        levelChooseButton.backgroundColor = .darkGray
+        levelChooseButton.setTitle("Choose Game", for: .normal)
+        levelChooseButton.setTitleColor(.white, for: .normal)
+        levelChooseButton.titleLabel?.font = .systemFont(ofSize: 28)
+        levelChooseButton.addAction(UIAction(handler: { _ in
+            self.levelChooseView.update()
+            self.levelChooseView.isHidden = false
+        }), for: .touchUpInside)
+        
+        view.addSubview(levelChooseButton)
+        levelChooseButton.pin(to: view, [.right, .left])
+        levelChooseButton.pinCenterX(to: view.centerXAnchor)
+        levelChooseButton.pinTop(to: continueGameButton.bottomAnchor, 28)
+        levelChooseButton.setHeight(Int(view.bounds.midY) / 8)
+        levelChooseButton.isEnabled = true
+    }
     
     @objc
     private func newGame() {
-        print("amogus")
+        let levelList = getNewGameData()
         
         gameViewController = GameViewController(levelList: levelList, firstLevel: 0)
         
@@ -90,10 +118,34 @@ final class MenuViewController: UIViewController {
     
     @objc
     private func continueGame() {
+        let defaults = UserDefaults.standard
         
+        if let savedGames = defaults.stringArray(forKey: "savedGames") {
+            loadGame(savedGames.count - 1)
+        }
     }
     
-    private func getGameData() {
+    private func loadGame(_ index: Int) {
+        let defaults = UserDefaults.standard
+        
+        if let savedGames = defaults.stringArray(forKey: "savedGames") {
+            if index >= 0 && index <= savedGames.count {
+                if let game = decodeFromJSON(savedGames[index], to: GameData.self) {
+                    gameViewController = GameViewController(gameData: game)
+                    
+                    navigationController?.pushViewController(gameViewController!, animated: true)
+                }
+            }
+        }
+    }
+    
+    func updateByChoice(_ choice: Int) {
+        loadGame(choice)
+    }
+    
+    private func getNewGameData() -> LevelList {
+        let levelList = LevelList()
+        
         let fileManager = FileManager.default
         let bundleURL = Bundle.main.bundleURL
         
@@ -123,6 +175,8 @@ final class MenuViewController: UIViewController {
         } catch {
             print("Error while enumerating files \(bundleURL): \(error.localizedDescription)")
         }
+        
+        return levelList
     }
 }
 
