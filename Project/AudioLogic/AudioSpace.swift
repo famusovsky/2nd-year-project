@@ -41,11 +41,11 @@ class AudioSpace {
         currentXMove = -1 * level.getCoordinate().x
         currentYMove = -1 * level.getCoordinate().y
         
+        userDirection = level.getDirection()
+        
         for sourceModel in level.getAudioSources() {
             addSource(AudioSource(sourceModel))
         }
-        
-        userDirection = level.getDirection()
     }
     
     public func updateByLevelIndex(_ index: Int) {
@@ -62,6 +62,8 @@ class AudioSpace {
         
         let newCoordinate = Coordinate(x: audioSource.getX() + currentXMove, y: audioSource.getY() + currentYMove)
         audioSource.applyNewCoordinate(newCoordinate)
+        
+        audioSource.userDirection = userDirection
     }
     
     private func removeSource(_ audioSource: AudioSource) {

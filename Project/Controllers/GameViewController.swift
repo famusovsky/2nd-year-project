@@ -24,7 +24,7 @@ final class GameViewController: UIViewController, GameResultsObserver {
         self.levelList = levelList
         self.firstLevel = firstLevel
         
-        game = GameLogics(levelList)
+        game = GameLogics(levelList, firstLevel)
         
         audio.setLevelList(levelList)
         audio.updateByLevelIndex(firstLevel)
@@ -36,7 +36,7 @@ final class GameViewController: UIViewController, GameResultsObserver {
         self.levelList.installGameData(gameData)
         self.firstLevel = gameData.index
         
-        game = GameLogics(levelList)
+        game = GameLogics(levelList, firstLevel)
         
         audio.setLevelList(levelList)
         audio.updateByLevelIndex(firstLevel)

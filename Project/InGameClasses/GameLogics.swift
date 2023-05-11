@@ -104,7 +104,7 @@ extension GameLogics: SaveDelegate {
         let defaults = UserDefaults.standard
         var savedGames = defaults.stringArray(forKey: "savedGames") ?? []
         
-        var currentGame = GameData(index: currentLevel, levels: levelList.getLevelModelList())
+        let currentGame = GameData(index: currentLevel, levels: levelList.getLevelModelList())
         
         if let currentGameJSON = encodeToJSON(currentGame) {
             savedGames.append(currentGameJSON)
