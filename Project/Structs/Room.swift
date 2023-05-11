@@ -8,7 +8,7 @@
 import Foundation
 
 struct Room: Codable {
-    // TODO: Should also contain pictures
+    // TODO: MINOR Should also contain pictures
     let data: [Direction: [LogicPropertyArray: TileSideData]]
     
     init() {

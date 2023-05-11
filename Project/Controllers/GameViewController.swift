@@ -7,6 +7,8 @@ import UIKit
 import AVFoundation
 import CoreMotion
 
+// TODO: MAJOR implement TipView -- on a picture view?
+
 final class GameViewController: UIViewController, GameResultsObserver {
     private let mapView = MapView()
     private let gameUIView = GameUIView()
@@ -174,7 +176,7 @@ final class GameViewController: UIViewController, GameResultsObserver {
             controller.shouldAllowBack = true
         }
         
-        audio.updateByLevel(Level()) // TODO: totally close view controller^ not just hide it
+        audio.updateByLevel(Level()) // TODO: MINOR totally close view controller not just hide it
         navigationController?.popViewController(animated: true)
     }
 }

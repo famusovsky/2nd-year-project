@@ -12,7 +12,7 @@ class GameLogics: ActionExecutor {
     private var currentLevel: Int
     private var tileObservers: [TileObserver] = []
     private var levelObservers: [LevelObserver] = []
-    // TODO: array of pictures
+    // TODO: MINOR Should also contain array of pictures
     
     init(_ levels: LevelList, _ currentLevel: Int = 0) {
         self.levelList = levels
@@ -20,12 +20,12 @@ class GameLogics: ActionExecutor {
     }
     
     public func win() {
-        // TODO: implement
+        // TODO: MAJOR implement
         print("win")
     }
     
     public func lose() {
-        // TODO: implement
+        // TODO: MAJOR implement
         print("lose")
     }
     

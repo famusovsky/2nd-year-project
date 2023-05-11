@@ -9,7 +9,7 @@ import Foundation
 
 struct TileSideData: Codable {
     let interactions: Interactions
-    // TODO: Picture
+    // TODO: MINOR Should also contain pictures
     
     init() {
         interactions = Interactions()

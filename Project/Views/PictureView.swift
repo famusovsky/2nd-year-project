@@ -86,12 +86,12 @@ class PictureView: UIView, TileObserver {
         setNeedsDisplay()
     }
     
-    // NOT NOW TODO: fix -- have to show road only whrn go<there> possibility exists
+    // TODO: MINOR fix -- have to show road only when go<there> possibility exists
     func updateByTile(_ tileSide: TileSideData) {
         goForwardOption = !tileSide.interactions.onGoForward.isEmpty
         goLeftOption = !tileSide.interactions.onGoLeft.isEmpty
         goRightOption = !tileSide.interactions.onGoRight.isEmpty
-        // TODO: add tap actions
+        // TODO: MAJOR add tap actions
         
         redraw()
     }

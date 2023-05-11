@@ -133,6 +133,7 @@
 				3F7982812969BA7D00AF6702 /* Assets.xcassets */,
 				3F7982862969BA7D00AF6702 /* Info.plist */,
 				3F79827E2969BA7C00AF6702 /* Project.xcdatamodeld */,
+				3FACD7C12A0ADC1200ACEE70 /* CustomNavigationController.swift */,
 				3F7EA5CC29FFDA1F00694AE4 /* Data */,
 				3F996C7729F14A2E00B7BFE2 /* Protocols */,
 				3F996C7029F1486600B7BFE2 /* Structs */,
@@ -234,7 +235,6 @@
 			children = (
 				D317C048D4E8765C428C38FB /* GameViewController.swift */,
 				3FACD7BD2A0AC8AA00ACEE70 /* MenuViewController.swift */,
-				3FACD7C12A0ADC1200ACEE70 /* CustomNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

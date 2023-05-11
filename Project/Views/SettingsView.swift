@@ -13,6 +13,10 @@ class SettingsView: UIView {
     private var saveDalegate: SaveDelegate?
     private var endDelegate: GameResultsObserver?
     
+//    private var levelChooseButton = UIButton()
+    private var saveButton = UIButton()
+    private var mainMenuButton = UIButton()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .black
@@ -37,44 +41,60 @@ class SettingsView: UIView {
     
     private func setUp() {
         setUpSaveButton()
-        
+//        setUpLevelChooseButton()
         setUpMainMenuButton()
     }
     
     private func setUpSaveButton() {
-        let button = UIButton()
-        button.backgroundColor = .darkGray
-        button.setTitle("Save current game", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 28)
+        saveButton.backgroundColor = .darkGray
+        saveButton.setTitle("Save current game", for: .normal)
+        saveButton.setTitleColor(.white, for: .normal)
+        saveButton.titleLabel?.font = .systemFont(ofSize: 28)
         
-        button.addAction(UIAction(handler: { _ in
+        saveButton.addAction(UIAction(handler: { _ in
             self.saveDalegate?.save()
         }), for: .touchUpInside)
         
-        self.addSubview(button)
-        button.pin(to: self, [.right, .left])
-        button.pinCenter(to: self)
-        button.pinHeight(to: self, 1 / 8)
-        button.isEnabled = true
+        self.addSubview(saveButton)
+        saveButton.pin(to: self, [.right, .left])
+        saveButton.pinCenter(to: self)
+        saveButton.pinHeight(to: self, 1 / 8)
     }
     
     private func setUpMainMenuButton() {
-        let button = UIButton()
-        button.setTitle("Back to Main Menu", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16)
+        mainMenuButton.setTitle("Back to Main Menu", for: .normal)
+        mainMenuButton.setTitleColor(.white, for: .normal)
+        mainMenuButton.titleLabel?.font = .systemFont(ofSize: 16)
         
-        button.addAction(UIAction(handler: { _ in
+        mainMenuButton.addAction(UIAction(handler: { _ in
             self.isHidden = true
             
             self.endDelegate?.reactToGameResult(.end)
         }), for: .touchUpInside)
         
-        self.addSubview(button)
-        button.pin(to: self, [.right, .left])
-        button.pinTop(to: self)
-        button.pinHeight(to: self, 1 / 8)
+        self.addSubview(mainMenuButton)
+        mainMenuButton.pin(to: self, [.right, .left])
+        mainMenuButton.pinTop(to: self)
+        mainMenuButton.pinHeight(to: self, 1 / 8)
     }
+//
+//    private func setUpLevelChooseButton() {
+//        levelChooseButton.isHidden = true
+//
+//        levelChooseButton.backgroundColor = .darkGray
+//        levelChooseButton.setTitle("Choose Game", for: .normal)
+//        levelChooseButton.setTitleColor(.white, for: .normal)
+//        levelChooseButton.titleLabel?.font = .systemFont(ofSize: 28)
+//        levelChooseButton.addAction(UIAction(handler: { _ in
+//            self.isHidden = true
+//
+//            self.endDelegate?.reactToGameResult(.change)
+//        }), for: .touchUpInside)
+//
+//        addSubview(levelChooseButton)
+//        levelChooseButton.pin(to: self, [.right, .left])
+//        levelChooseButton.pinCenterX(to: self)
+//        levelChooseButton.pinTop(to: saveButton.bottomAnchor, 25)
+//        levelChooseButton.pinHeight(to: self, 1 / 8)
+//    }
 }
-

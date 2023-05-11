@@ -80,7 +80,7 @@ class MapView: UIView, LevelObserver {
     private func setUpTilesView() {
         tilesView = UIView()
         
-        // TODO: make tiles square
+        // TODO: MINOR make tiles square
         self.addSubview(tilesView)
         tilesView.pin(to: self)
     }

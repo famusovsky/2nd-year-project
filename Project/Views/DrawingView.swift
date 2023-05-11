@@ -10,7 +10,7 @@ import UIKit
 import PencilKit
 
 class DrawingView: UIView, PKCanvasViewDelegate {
-    // TODO: save the drawing between sessions
+    // TODO: MAJOR save the drawing between sessions
     private let canvasView = PKCanvasView()
     private var isErasing = false
     
