@@ -104,7 +104,11 @@ extension GameLogics: SaveDelegate {
         let defaults = UserDefaults.standard
         var savedGames = defaults.stringArray(forKey: "savedGames") ?? []
         
-        let currentGame = GameData(index: currentLevel, levels: levelList.getLevelModelList())
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "[dd-MM-yyyy HH:mm:ss]"
+        let dateString = dateFormatter.string(from: Date())
+        
+        let currentGame = GameData(name: dateString, index: currentLevel, levels: levelList.getLevelModelList())
         
         if let currentGameJSON = encodeToJSON(currentGame) {
             savedGames.append(currentGameJSON)

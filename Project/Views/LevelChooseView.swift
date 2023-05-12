@@ -107,8 +107,10 @@ class LevelChooseView: UIView {
                 deleteAll.setHeight(45)
                 
                 for i in 0...(savedGames.count - 1) {
+                    let name = decodeFromJSON(savedGames[i], to: GameData.self)?.name
+                    
                     let chooseSavedGame = UIButton()
-                    chooseSavedGame.setTitle("Choose saved game №\(i)", for: .normal)
+                    chooseSavedGame.setTitle("Choose saved game \(name ?? "№\(i)")", for: .normal)
                     chooseSavedGame.setTitleColor(.white, for: .normal)
                     chooseSavedGame.backgroundColor = .darkGray
                     chooseSavedGame.addAction(UIAction(handler: { _ in

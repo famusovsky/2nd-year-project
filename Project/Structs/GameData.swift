@@ -8,6 +8,8 @@
 import Foundation
 
 struct GameData: Codable {
+    let name: String
+    
     let index: Int
     let levels: [Int : LevelModel]
 }
