@@ -108,11 +108,12 @@ final class MenuViewController: UIViewController, IntegerChoiceObserver {
     
     @objc
     private func newGame() {
-        let levelList = getNewGameData()
+        let levelList = getNewLevelList()
         
-        gameViewController = GameViewController(levelList: levelList, firstLevel: 0)
+        gameViewController?.stopAll()
+        gameViewController = GameViewController(levelList: levelList, firstLevel: 0, self)
         
-        navigationController?.pushViewController(gameViewController!, animated: true)
+        navigationController?.pushViewController(gameViewController!, animated: false)
         // present(gameViewController!, animated: true, completion: nil)
     }
     
@@ -131,9 +132,11 @@ final class MenuViewController: UIViewController, IntegerChoiceObserver {
         if let savedGames = defaults.stringArray(forKey: "savedGames") {
             if index >= 0 && index <= savedGames.count {
                 if let game = decodeFromJSON(savedGames[index], to: GameData.self) {
-                    gameViewController = GameViewController(gameData: game)
+                    gameViewController?.stopAll()
+                    gameViewController = GameViewController(gameData: game, self)
                     
-                    navigationController?.pushViewController(gameViewController!, animated: true)
+                    navigationController?.popToRootViewController(animated: false)
+                    navigationController?.pushViewController(gameViewController!, animated: false)
                 }
             }
         }
@@ -143,7 +146,7 @@ final class MenuViewController: UIViewController, IntegerChoiceObserver {
         loadGame(choice)
     }
     
-    private func getNewGameData() -> LevelList {
+    private func getNewLevelList() -> LevelList {
         let levelList = LevelList()
         
         let fileManager = FileManager.default

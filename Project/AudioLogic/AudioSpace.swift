@@ -72,6 +72,12 @@ class AudioSpace {
             sources.remove(at: index)
         }
     }
+    
+    public func removeAllSources() {
+        while !sources.isEmpty {
+            sources.remove(at: 0)
+        }
+    }
 }
 
 extension AudioSpace: ActionExecutor {

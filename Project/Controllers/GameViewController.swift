@@ -14,29 +14,34 @@ final class GameViewController: UIViewController, GameResultsObserver {
     private let settingsView = SettingsView()
     private let tipView = TipView()
     private let gameOverView = GameOverView()
+    
     private var audio = AudioSpace()
     private let headphoneMotionManager = CMHeadphoneMotionManager()
     private var game: GameLogics? = nil
     private var levelList = LevelList()
     
-    convenience init(levelList: LevelList, firstLevel: Int) {
+    public var loadGameSessionObserver: IntegerChoiceObserver?
+    
+    convenience init(levelList: LevelList, firstLevel: Int, _ loadGameSessionObserver: IntegerChoiceObserver? = nil) {
         self.init()
         
         self.levelList = levelList
         
         game = GameLogics(levelList, firstLevel)
+        self.loadGameSessionObserver = loadGameSessionObserver
         
         audio.setLevelList(levelList)
         audio.updateByLevelIndex(firstLevel)
     }
     
-    convenience init(gameData: GameData) {
+    convenience init(gameData: GameData, _ loadGameSessionObserver: IntegerChoiceObserver? = nil) {
         self.init()
         
         self.levelList.installGameData(gameData)
         let firstLevel = gameData.index
         
         game = GameLogics(levelList, firstLevel)
+        self.loadGameSessionObserver = loadGameSessionObserver
         
         audio.setLevelList(levelList)
         audio.updateByLevelIndex(firstLevel)
@@ -78,17 +83,12 @@ final class GameViewController: UIViewController, GameResultsObserver {
         view.backgroundColor = .black
         
         setUpMapButton()
-        // setUpSettingsButton()
     }
     
     private func setupPictureView() {
         view.addSubview(pictureView)
         
         pictureView.pin(to: view)
-        
-//        pictureView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
-//        pictureView.pin(to: view, [(.left, 15), (.right, -15)])
-//        pictureView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
         
         if game != nil {
             game?.setTileObserver(pictureView)
@@ -167,6 +167,11 @@ final class GameViewController: UIViewController, GameResultsObserver {
     private func setupSettingsView() {
         settingsView.setSaveDelegate(game!)
         settingsView.setEndDelegate(self)
+        
+        if loadGameSessionObserver != nil {
+            settingsView.setLoadGameSessionObserver(loadGameSessionObserver!)
+        }
+        
         view.addSubview(settingsView)
         
         settingsView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
@@ -197,12 +202,28 @@ final class GameViewController: UIViewController, GameResultsObserver {
     }
     
     func reactToGameResult(_ gameResult: GameResult) {
-        if let controller = navigationController as? CustomNavigationController {
-            controller.shouldAllowBack = true
+        switch gameResult {
+        case .end:
+            if let controller = navigationController as? CustomNavigationController {
+                controller.shouldAllowBack = true
+            }
+            
+            audio.removeAllSources() // TODO: MINOR totally close view controller not just hide it
+            navigationController?.popToRootViewController(animated: false)
+        default:
+            break
         }
+    }
+    
+    public func stopAll() {
+        audio.removeAllSources()
         
-        audio.updateByLevel(Level()) // TODO: MINOR totally close view controller not just hide it
-        navigationController?.popViewController(animated: true)
+        NotificationCenter.default.removeObserver(self, name: AVAudioSession.routeChangeNotification, object: nil)
+    }
+    
+    
+    public func setLoadGameSessionObserver(_ observer: IntegerChoiceObserver) {
+        loadGameSessionObserver = observer
     }
 }
 

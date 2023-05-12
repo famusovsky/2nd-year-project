@@ -12,9 +12,10 @@ class SettingsView: UIView {
     private var saveDalegate: SaveDelegate?
     private var endDelegate: GameResultsObserver?
     
-//    private var levelChooseButton = UIButton()
-    private var saveButton = UIButton()
-    private var mainMenuButton = UIButton()
+    private let levelChooseView = LevelChooseView()
+    private let saveButton = UIButton()
+    private let mainMenuButton = UIButton()
+    private let levelChooseButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,6 +31,10 @@ class SettingsView: UIView {
         setUp()
     }
     
+    public func setLoadGameSessionObserver(_ observer: IntegerChoiceObserver) {
+        levelChooseView.setObserver(observer)
+    }
+    
     public func setEndDelegate(_ delegate: GameResultsObserver) {
         endDelegate = delegate
     }
@@ -40,8 +45,10 @@ class SettingsView: UIView {
     
     private func setUp() {
         setUpSaveButton()
-//        setUpLevelChooseButton()
+        setUpLevelChooseButton()
         setUpMainMenuButton()
+        
+        setUpLevelChooseView()
     }
     
     private func setUpSaveButton() {
@@ -58,6 +65,30 @@ class SettingsView: UIView {
         saveButton.pin(to: self, [.right, .left])
         saveButton.pinCenter(to: self)
         saveButton.pinHeight(to: self, 1 / 8)
+    }
+    
+    private func setUpLevelChooseView() {
+        self.addSubview(levelChooseView)
+        
+        levelChooseView.isHidden = true
+        levelChooseView.pin(to: self)
+    }
+    
+    private func setUpLevelChooseButton() {
+        levelChooseButton.backgroundColor = .darkGray
+        levelChooseButton.setTitle("Choose saved game", for: .normal)
+        levelChooseButton.setTitleColor(.white, for: .normal)
+        levelChooseButton.titleLabel?.font = .systemFont(ofSize: 28)
+        
+        levelChooseButton.addAction(UIAction(handler: { _ in
+            self.levelChooseView.update()
+            self.levelChooseView.isHidden = false
+        }), for: .touchUpInside)
+        
+        self.addSubview(levelChooseButton)
+        levelChooseButton.pin(to: self, [.right, .left])
+        levelChooseButton.pinTop(to: saveButton.bottomAnchor, 25)
+        levelChooseButton.pinHeight(to: self, 1 / 8)
     }
     
     private func setUpMainMenuButton() {

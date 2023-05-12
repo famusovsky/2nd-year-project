@@ -30,7 +30,6 @@ class LevelChooseView: UIView {
     private func setUp() {
         backgroundColor = .black
         
-        
         setUpScrollView()
         setUpContentView()
         setUpCloseButton()
@@ -110,7 +109,7 @@ class LevelChooseView: UIView {
                     let name = decodeFromJSON(savedGames[i], to: GameData.self)?.name
                     
                     let chooseSavedGame = UIButton()
-                    chooseSavedGame.setTitle("Choose saved game \(name ?? "№\(i)")", for: .normal)
+                    chooseSavedGame.setTitle("Saved game \(name ?? "№\(i)")", for: .normal)
                     chooseSavedGame.setTitleColor(.white, for: .normal)
                     chooseSavedGame.backgroundColor = .darkGray
                     chooseSavedGame.addAction(UIAction(handler: { _ in
