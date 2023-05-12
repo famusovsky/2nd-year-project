@@ -16,5 +16,6 @@ enum Action: Codable {
          turnLeft,
          turnRight,
          goToLevel(destination: Int),
-         updateLogics(logics: [String:Int])
+         updateLogics(logics: [String:Int]),
+         showTips(tips: [String])
 }

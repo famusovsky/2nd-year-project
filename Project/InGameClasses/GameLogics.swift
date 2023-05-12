@@ -12,6 +12,7 @@ class GameLogics: ActionExecutor {
     private var currentLevel: Int
     private var tileObservers: [TileObserver] = []
     private var levelObservers: [LevelObserver] = []
+    private var stringsPresenter: StringsPresenterDelegate?
     // TODO: MINOR Should also contain array of pictures
     
     init(_ levels: LevelList, _ currentLevel: Int = 0) {
@@ -37,25 +38,17 @@ class GameLogics: ActionExecutor {
     }
     
     public func doAction(_ action: Action) {
-        print("do action")
         switch action {
         case .win:
             win()
-            break
         case .lose:
             lose()
-            break
         case .goForward:
             levelList.getLevel(currentLevel)?.goForward()
-            break
-        case .goBack:
-            break
         case .turnLeft:
             levelList.getLevel(currentLevel)?.turnLeft()
-            break
         case .turnRight:
             levelList.getLevel(currentLevel)?.turnRight()
-            break
         case .goToLevel(let destination):
             levelList.getLevel(currentLevel)?.removeTileObservers()
             currentLevel = destination
@@ -63,14 +56,14 @@ class GameLogics: ActionExecutor {
             levelList.getLevel(currentLevel)?.setTileObservers(tileObservers)
             levelList.getLevel(currentLevel)?.pingAllTileObservers()
             pingAllLevelObservers()
-            break
         case .updateLogics(let logics):
             for logic in logics {
                 levelList.getLevel(currentLevel)?.updateLogic(logic.key, logic.value)
             }
             levelList.getLevel(currentLevel)?.pingAllTileObservers()
-            break
-        case .nothing:
+        case .showTips(let tips):
+            stringsPresenter?.presentStrings(tips)
+        case .nothing, .goBack:
             break
         }
         
@@ -89,6 +82,10 @@ class GameLogics: ActionExecutor {
         levelObservers.append(observer)
         
         observer.updateByLevel(levelList.getLevel(currentLevel) ?? Level())
+    }
+    
+    public func setStringsPresenterDelegate(_ delegate: StringsPresenterDelegate) {
+        stringsPresenter = delegate
     }
     
     private func pingAllLevelObservers() {

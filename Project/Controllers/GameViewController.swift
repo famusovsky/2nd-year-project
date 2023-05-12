@@ -14,6 +14,7 @@ final class GameViewController: UIViewController, GameResultsObserver {
     private let gameUIView = GameUIView()
     private let pictureView = PictureView()
     private let settingsView = SettingsView()
+    private let tipView = TipView()
     private var audio = AudioSpace()
     private let headphoneMotionManager = CMHeadphoneMotionManager()
     private var game: GameLogics? = nil
@@ -53,6 +54,7 @@ final class GameViewController: UIViewController, GameResultsObserver {
         setupMapView()
         setupView()
         setupSettingsView()
+        setUpTipView()
         
         game?.setTileObserver(gameUIView)
         game?.setLevelObserver(mapView)
@@ -109,6 +111,16 @@ final class GameViewController: UIViewController, GameResultsObserver {
         gameUIView.setActionExecutor(audio)
         
         gameUIView.isHidden = false
+    }
+    
+    private func setUpTipView() {
+        view.addSubview(tipView)
+        
+        tipView.pin(to: view)
+        
+        tipView.isHidden = true
+        
+        game?.setStringsPresenterDelegate(tipView)
     }
     
     private func setupMapView() {

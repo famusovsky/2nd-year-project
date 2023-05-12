@@ -72,7 +72,11 @@
                                 {
                                     "interactions" : {
                                         "onGoLeft" : [ { "turnLeft" : {} } ],
-                                        "onGoForward" : [ { "goForward" : {} } ],
+                                        "onGoForward" : [
+                                            { "goForward" : {} },
+                                            { "showTips" : { "tips" : [ "Hello, my name is Alexey, I'm this project's developer",
+                                                                        "That's just a test tip, never mind" ] } }
+                                        ],
                                         "onGoRight" : [ { "turnRight" : {} } ],
                                         "onGoBack" : [],
                                         "onTap" : []

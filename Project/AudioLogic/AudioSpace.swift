@@ -91,10 +91,6 @@ extension AudioSpace: ActionExecutor {
             userDirection.turnLeft()
         case .turnRight:
             userDirection.turnRight()
-        case .win:
-            break
-        case .lose:
-            break
         case .goToLevel(let destination):
             updateByLevelIndex(destination)
         case .updateLogics(let logics):
@@ -105,7 +101,7 @@ extension AudioSpace: ActionExecutor {
             // TODO: MINOR not restart sources which are stay turned on
             update()
             break
-        case .nothing:
+        case .nothing, .showTips(_:), .win, .lose:
             break
         }
         
