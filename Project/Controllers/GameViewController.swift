@@ -52,8 +52,8 @@ final class GameViewController: UIViewController, GameResultsObserver {
         setupMapView()
         setupView()
         setupSettingsView()
-        setUpTipView()
         setUpGameOverView()
+        setUpTipView()
         
         game?.setTileObserver(gameUIView)
         game?.setLevelObserver(mapView)

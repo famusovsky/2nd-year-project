@@ -37,7 +37,7 @@ class GameLogics: ActionExecutor {
         case .win(let text):
             gameResultsObserver?.reactToGameResult(GameResult.win(text: text))
         case .lose(let text):
-            gameResultsObserver?.reactToGameResult(GameResult.win(text: text))
+            gameResultsObserver?.reactToGameResult(GameResult.lose(text: text))
         case .goForward:
             levelList.getLevel(currentLevel)?.goForward()
         case .turnLeft:
