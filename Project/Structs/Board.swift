@@ -19,7 +19,7 @@ struct Board: Codable {
         if (x >= width || y >= height) {
             return BoardTile.empty
         }
-        return field[width * y + x]
+        return field[width * (height - y - 1) + x]
     }
     
     public func getTile(_ coordinate: Coordinate) -> BoardTile {

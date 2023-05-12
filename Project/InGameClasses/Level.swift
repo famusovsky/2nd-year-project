@@ -83,7 +83,6 @@ class Level {
         case .west:
             newPosition = Coordinate(x: model.coordinate.x - 1, y: model.coordinate.y)
         }
-        
         if newPosition.x >= 0 && newPosition.y >= 0 &&
             newPosition.x < model.board.width && newPosition.y < model.board.height {
             switch model.board.getTile(newPosition) {

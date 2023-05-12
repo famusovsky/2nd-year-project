@@ -9,13 +9,13 @@ import Foundation
 
 enum Action: Codable {
     case nothing,
-         win,
-         lose,
          goForward,
          goBack,
          turnLeft,
          turnRight,
          goToLevel(destination: Int),
          updateLogics(logics: [String:Int]),
-         showTips(tips: [String])
+         showTips(tips: [String]),
+         win(text: String),
+         lose(text: String)
 }

@@ -7,12 +7,6 @@
 
 import Foundation
 
-enum GameResult {
-    case win,
-         lose,
-         end
-}
-
 protocol GameResultsObserver {
     func reactToGameResult(_ gameResult: GameResult)
 }

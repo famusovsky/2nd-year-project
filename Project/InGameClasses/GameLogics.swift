@@ -13,6 +13,7 @@ class GameLogics: ActionExecutor {
     private var tileObservers: [TileObserver] = []
     private var levelObservers: [LevelObserver] = []
     private var stringsPresenter: StringsPresenterDelegate?
+    private var gameResultsObserver: GameResultsObserver?
     // TODO: MINOR Should also contain array of pictures
     
     init(_ levels: LevelList, _ currentLevel: Int = 0) {
@@ -20,14 +21,8 @@ class GameLogics: ActionExecutor {
         self.currentLevel = currentLevel
     }
     
-    public func win() {
-        // TODO: MAJOR implement
-        print("win")
-    }
-    
-    public func lose() {
-        // TODO: MAJOR implement
-        print("lose")
+    public func setGameResultsObserver(_ observer: GameResultsObserver) {
+        gameResultsObserver = observer
     }
     
     public func doActions(_ actions: [Action]) {
@@ -39,10 +34,10 @@ class GameLogics: ActionExecutor {
     
     public func doAction(_ action: Action) {
         switch action {
-        case .win:
-            win()
-        case .lose:
-            lose()
+        case .win(let text):
+            gameResultsObserver?.reactToGameResult(GameResult.win(text: text))
+        case .lose(let text):
+            gameResultsObserver?.reactToGameResult(GameResult.win(text: text))
         case .goForward:
             levelList.getLevel(currentLevel)?.goForward()
         case .turnLeft:

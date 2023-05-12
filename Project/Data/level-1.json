@@ -306,8 +306,9 @@
                                 {
                                     "interactions" : {
                                         "onGoLeft" : [ { "turnLeft" : {} } ],
-                                        "onGoForward" : [],
-                                        "onGoRight" : [ { "turnRight" : {} } ],
+                                        "onGoForward" : [ {"goForward" : {} },
+                                        { "win" : { "text": "That's a test message, I hope you had fun)))" } } ],
+                                        "onGoRight" : [ { "lose" : { "text": "That's a test message, I hope you had fun)))" } } ],
                                         "onGoBack" : [],
                                         "onTap" : []
                                     }

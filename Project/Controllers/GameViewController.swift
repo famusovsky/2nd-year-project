@@ -7,19 +7,17 @@ import UIKit
 import AVFoundation
 import CoreMotion
 
-// TODO: MAJOR implement TipView -- on a picture view?
-
 final class GameViewController: UIViewController, GameResultsObserver {
     private let mapView = MapView()
     private let gameUIView = GameUIView()
     private let pictureView = PictureView()
     private let settingsView = SettingsView()
     private let tipView = TipView()
+    private let gameOverView = GameOverView()
     private var audio = AudioSpace()
     private let headphoneMotionManager = CMHeadphoneMotionManager()
     private var game: GameLogics? = nil
     private var levelList = LevelList()
-    // private var firstLevel = 0 // TODO: DO I NEED IT? CHECK
     
     convenience init(levelList: LevelList, firstLevel: Int) {
         self.init()
@@ -55,6 +53,7 @@ final class GameViewController: UIViewController, GameResultsObserver {
         setupView()
         setupSettingsView()
         setUpTipView()
+        setUpGameOverView()
         
         game?.setTileObserver(gameUIView)
         game?.setLevelObserver(mapView)
@@ -121,6 +120,17 @@ final class GameViewController: UIViewController, GameResultsObserver {
         tipView.isHidden = true
         
         game?.setStringsPresenterDelegate(tipView)
+    }
+    
+    private func setUpGameOverView() {
+        view.addSubview(gameOverView)
+        
+        gameOverView.pin(to: view)
+        
+        gameOverView.isHidden = true
+        
+        gameOverView.setGameResultsObserver(self)
+        game?.setGameResultsObserver(gameOverView)
     }
     
     private func setupMapView() {
