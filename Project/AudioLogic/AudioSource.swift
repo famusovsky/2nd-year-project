@@ -84,7 +84,7 @@ class AudioSource {
         return sqrt(xRelativeToTheUser * xRelativeToTheUser + yRelativeToTheUser * yRelativeToTheUser)
     }
     
-    var volume: Double {
+    private var volume: Double {
         let distance = self.distance
         if distance > model.range {
             return model.range / distance * 0.05
@@ -92,10 +92,10 @@ class AudioSource {
         return max(1 - distance / model.range, 0.05)
     }
     
-    var player: AVAudioPlayer?
-    var timer: Timer?
+    private var player: AVAudioPlayer?
+    private var timer: Timer?
     
-    func runAudio() {
+    private func runAudio() {
         guard let url = Bundle.main.url(forResource: model.audio.name, withExtension: model.audio.file.rawValue) else { return }
         
         do {
@@ -115,12 +115,12 @@ class AudioSource {
         }
     }
     
-    func stopAudio() {
+    public func stopAudio() {
         self.player?.stop()
         self.timer?.invalidate()
     }
     
-    func updateAudio() {
+    private func updateAudio() {
         var angle = atan2(Double(model.coordinate.y), Double(model.coordinate.x))
         let volume = self.volume
 

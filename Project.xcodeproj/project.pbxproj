@@ -488,6 +488,8 @@
 				DEVELOPMENT_TEAM = L3S5H274HV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Project/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Stereo;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSMotionUsageDescription = "This game uses your device's motion sensors to create a spatial audio experience. We require access to your device's motion data to provide this feature. Your motion data is only used to create the audio experience and is not shared with third parties.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = G;
@@ -522,6 +524,8 @@
 				DEVELOPMENT_TEAM = L3S5H274HV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Project/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Stereo;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSMotionUsageDescription = "This game uses your device's motion sensors to create a spatial audio experience. We require access to your device's motion data to provide this feature. Your motion data is only used to create the audio experience and is not shared with third parties.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = G;

@@ -37,6 +37,7 @@ class DrawingView: UIView, PKCanvasViewDelegate {
     
     private func setUpCanvasView() {
         canvasView.backgroundColor = .clear
+        canvasView.tool = PKInkingTool(PKInkingTool.InkType.pen, color: .white)
         canvasView.delegate = self
         canvasView.drawingPolicy = .anyInput
         self.addSubview(canvasView)
@@ -53,7 +54,7 @@ class DrawingView: UIView, PKCanvasViewDelegate {
         isErasing.toggle()
         sender.isSelected.toggle()
         
-        canvasView.tool = isErasing ? PKEraserTool(.bitmap) : PKInkingTool(.pen)
+        canvasView.tool = isErasing ? PKEraserTool(.bitmap) : PKInkingTool(PKInkingTool.InkType.pen, color: .white)
     }
     
     @objc

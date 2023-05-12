@@ -18,13 +18,12 @@ final class GameViewController: UIViewController, GameResultsObserver {
     private let headphoneMotionManager = CMHeadphoneMotionManager()
     private var game: GameLogics? = nil
     private var levelList = LevelList()
-    private var firstLevel = 0
+    // private var firstLevel = 0 // TODO: DO I NEED IT? CHECK
     
     convenience init(levelList: LevelList, firstLevel: Int) {
         self.init()
         
         self.levelList = levelList
-        self.firstLevel = firstLevel
         
         game = GameLogics(levelList, firstLevel)
         
@@ -36,7 +35,7 @@ final class GameViewController: UIViewController, GameResultsObserver {
         self.init()
         
         self.levelList.installGameData(gameData)
-        self.firstLevel = gameData.index
+        let firstLevel = gameData.index
         
         game = GameLogics(levelList, firstLevel)
         
@@ -52,8 +51,8 @@ final class GameViewController: UIViewController, GameResultsObserver {
         setupPictureView()
         setupGameUIView()
         setupMapView()
-        setupSettingsView()
         setupView()
+        setupSettingsView()
         
         game?.setTileObserver(gameUIView)
         game?.setLevelObserver(mapView)
@@ -78,15 +77,17 @@ final class GameViewController: UIViewController, GameResultsObserver {
         view.backgroundColor = .black
         
         setUpMapButton()
-        setUpSettingsButton()
+        // setUpSettingsButton()
     }
     
     private func setupPictureView() {
         view.addSubview(pictureView)
         
-        pictureView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
-        pictureView.pin(to: view, [(.left, 15), (.right, -15)])
-        pictureView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
+        pictureView.pin(to: view)
+        
+//        pictureView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
+//        pictureView.pin(to: view, [(.left, 15), (.right, -15)])
+//        pictureView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
         
         if game != nil {
             game?.setTileObserver(pictureView)
@@ -114,22 +115,10 @@ final class GameViewController: UIViewController, GameResultsObserver {
         view.addSubview(mapView)
         
         mapView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
-        mapView.pin(to: view, [(.left, 15), (.right, -15)])
-        mapView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
+        mapView.pin(to: view, [.left, .right])
+        mapView.pinBottom(to: view)
         
         mapView.isHidden = true
-    }
-    
-    private func setupSettingsView() {
-        settingsView.setSaveDelegate(game!)
-        settingsView.setEndDelegate(self)
-        view.addSubview(settingsView)
-        
-        settingsView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
-        settingsView.pin(to: view, [(.left, 15), (.right, -15)])
-        settingsView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
-        
-        settingsView.isHidden = true
     }
     
     private func setUpMapButton() {
@@ -151,6 +140,20 @@ final class GameViewController: UIViewController, GameResultsObserver {
     @objc
     private func mapButtonPressed() {
         mapView.isHidden.toggle()
+    }
+    
+    private func setupSettingsView() {
+        settingsView.setSaveDelegate(game!)
+        settingsView.setEndDelegate(self)
+        view.addSubview(settingsView)
+        
+        settingsView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
+        settingsView.pin(to: view, [.left, .right])
+        settingsView.pinBottom(to: view)
+        
+        settingsView.isHidden = true
+        
+        setUpSettingsButton()
     }
     
     private func setUpSettingsButton() {

@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class SettingsView: UIView {
-    private let label = UILabel()
     private var saveDalegate: SaveDelegate?
     private var endDelegate: GameResultsObserver?
     
@@ -73,9 +72,10 @@ class SettingsView: UIView {
         }), for: .touchUpInside)
         
         self.addSubview(mainMenuButton)
-        mainMenuButton.pin(to: self, [.right, .left])
+        mainMenuButton.pinCenterX(to: self)
         mainMenuButton.pinTop(to: self)
         mainMenuButton.pinHeight(to: self, 1 / 8)
+        mainMenuButton.pinWidth(to: self, 1 / 2)
     }
 //
 //    private func setUpLevelChooseButton() {

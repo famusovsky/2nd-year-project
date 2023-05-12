@@ -9,6 +9,9 @@ import Foundation
 import AVFoundation
 import UIKit
 
+// TODO: MAJOR add more sounds in the sounds folder
+// TODO: MINOR make some normal demo level
+
 struct AudioFile: Codable {
     enum File: String, Codable {
         case mp3
