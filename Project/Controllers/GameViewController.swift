@@ -100,9 +100,7 @@ final class GameViewController: UIViewController, GameResultsObserver {
     private func setupGameUIView() {
         view.addSubview(gameUIView)
         
-        gameUIView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
-        gameUIView.pin(to: view, [(.left, 15), (.right, -15)])
-        gameUIView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
+        gameUIView.pin(to: view)
         
         if game != nil {
             gameUIView.setActionExecutor(game!)
@@ -208,7 +206,8 @@ final class GameViewController: UIViewController, GameResultsObserver {
                 controller.shouldAllowBack = true
             }
             
-            audio.removeAllSources() // TODO: MINOR totally close view controller not just hide it
+            // TODO: MINOR totally close view controller not just hide it
+            audio.removeAllSources()
             navigationController?.popToRootViewController(animated: false)
         default:
             break

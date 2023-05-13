@@ -60,7 +60,9 @@
                                         "onGoForward" : [],
                                         "onGoRight" : [ { "turnRight" : {} } ],
                                         "onGoBack" : [],
-                                        "onTap" : []
+                                        "onTap" : [
+                                            { "heightMultiplier" : 1, "coordinate" : { "x" : 200 , "y" : 200 }, "widthMultiplier" : 1, "radius" : 20 }, [ {"win":{"text":")" } } ]
+                                        ]
                                     }
                                 }
                             ],

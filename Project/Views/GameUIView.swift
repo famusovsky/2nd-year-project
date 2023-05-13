@@ -74,7 +74,9 @@ class GameUIView: UIView, TileObserver {
     private func tapAction(_ gesture: UITapGestureRecognizer) {
         let tapLocation = Coordinate(x: Int(gesture.location(in: self).x), y: Int(gesture.location(in: self).y))
         
+        print(tapLocation)
         for tapAction in currentInteractions.onTap {
+            print(tapAction.key)
             if tapAction.key.doesContainCoordinate(tapLocation) {
                 print("tap success")
                 pingAllActionExecutors(tapAction.value)

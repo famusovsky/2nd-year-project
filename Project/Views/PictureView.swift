@@ -12,6 +12,7 @@ class PictureView: UIView, TileObserver {
     private var goForwardOption = false
     private var goLeftOption = false
     private var goRightOption = false
+    private var tapOptions: [ActionLocation] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,6 +25,8 @@ class PictureView: UIView, TileObserver {
     }
     
     override func draw(_ rect: CGRect) {
+        self.subviews.forEach( { $0.removeFromSuperview() } )
+        
         let context = UIGraphicsGetCurrentContext()!
         
         context.setStrokeColor(UIColor.black.cgColor)
@@ -59,6 +62,19 @@ class PictureView: UIView, TileObserver {
             createQuadPath(firstPoint, secondPoint, thirdPoint, firstPoint, context)
         }
         
+        for option in tapOptions {
+            let round = UIView()
+            round.setWidth(Int(option.radius) * 2)
+            round.setHeight(Int(option.radius) * 2)
+            round.layer.cornerRadius = option.radius
+            round.backgroundColor = .orange
+            round.alpha = 0.2
+
+            self.addSubview(round)
+            round.pinCenterX(to: self.leadingAnchor, option.coordinate.x)
+            round.pinCenterY(to: self.topAnchor, option.coordinate.y)
+        }
+        
         context.addRect(CGRect(x: 0.0, y: 0.0, width: bounds.width, height: bounds.midY + 10.0))
         context.setFillColor(UIColor.black.cgColor)
         context.fillPath()
@@ -92,7 +108,9 @@ class PictureView: UIView, TileObserver {
         goForwardOption = !tileSide.interactions.onGoForward.isEmpty
         goLeftOption = !tileSide.interactions.onGoLeft.isEmpty
         goRightOption = !tileSide.interactions.onGoRight.isEmpty
-        // TODO: MAJOR add tap actions -- just round UIViews
+        
+        tapOptions = []
+        tileSide.interactions.onTap.forEach( {tapOptions.append($0.key)} )
         
         redraw()
     }
