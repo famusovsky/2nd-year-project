@@ -53,7 +53,6 @@ class GameUIView: UIView, TileObserver {
         self.addGestureRecognizer(tap)
     }
     
-    // Handle the swipe gesture
     @objc
     private func swipeAction(_ gesture: UISwipeGestureRecognizer) {
         if gesture.direction == .up {

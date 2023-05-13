@@ -114,7 +114,6 @@ final class MenuViewController: UIViewController, IntegerChoiceObserver {
         gameViewController = GameViewController(levelList: levelList, firstLevel: 0, self)
         
         navigationController?.pushViewController(gameViewController!, animated: false)
-        // present(gameViewController!, animated: true, completion: nil)
     }
     
     @objc

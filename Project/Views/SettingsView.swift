@@ -108,24 +108,4 @@ class SettingsView: UIView {
         mainMenuButton.pinHeight(to: self, 1 / 8)
         mainMenuButton.pinWidth(to: self, 1 / 2)
     }
-//
-//    private func setUpLevelChooseButton() {
-//        levelChooseButton.isHidden = true
-//
-//        levelChooseButton.backgroundColor = .darkGray
-//        levelChooseButton.setTitle("Choose Game", for: .normal)
-//        levelChooseButton.setTitleColor(.white, for: .normal)
-//        levelChooseButton.titleLabel?.font = .systemFont(ofSize: 28)
-//        levelChooseButton.addAction(UIAction(handler: { _ in
-//            self.isHidden = true
-//
-//            self.endDelegate?.reactToGameResult(.change)
-//        }), for: .touchUpInside)
-//
-//        addSubview(levelChooseButton)
-//        levelChooseButton.pin(to: self, [.right, .left])
-//        levelChooseButton.pinCenterX(to: self)
-//        levelChooseButton.pinTop(to: saveButton.bottomAnchor, 25)
-//        levelChooseButton.pinHeight(to: self, 1 / 8)
-//    }
 }

@@ -62,7 +62,6 @@ class GameLogics: ActionExecutor {
             break
         }
         
-        // XXX: remove log
         levelList.getLevel(currentLevel)?.logInfo()
     }
     
