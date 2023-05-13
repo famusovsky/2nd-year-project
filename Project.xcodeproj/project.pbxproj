@@ -205,7 +205,6 @@
 			children = (
 				3F7EA5D729FFEE5800694AE4 /* level-0.json */,
 				3F73E6FA2A0972A900303F15 /* level-1.json */,
-				3F7EA5D929FFEF0100694AE4 /* Coder.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -323,6 +322,7 @@
 		D317CDFD60B51594F2371A50 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				3F7EA5D929FFEF0100694AE4 /* Coder.swift */,
 				D317C5BCAE72D820973EF23A /* UIView_Pin.swift */,
 			);
 			path = Libraries;
