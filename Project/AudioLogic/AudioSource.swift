@@ -72,13 +72,13 @@ class AudioSource {
         
         switch userDirection {
         case .north:
-            yRelativeToTheUser -= 0.25
+            yRelativeToTheUser -= 0.15
         case .east:
-            xRelativeToTheUser -= 0.25
+            xRelativeToTheUser -= 0.15
         case .south:
-            yRelativeToTheUser += 0.25
+            yRelativeToTheUser += 0.15
         case .west:
-            xRelativeToTheUser += 0.25
+            xRelativeToTheUser += 0.15
         }
         
         return sqrt(xRelativeToTheUser * xRelativeToTheUser + yRelativeToTheUser * yRelativeToTheUser)
